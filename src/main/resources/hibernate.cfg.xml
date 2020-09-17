@@ -11,5 +11,10 @@
         <mapping class="core.basesyntax.model.zoo.Animal"/>
         <mapping class="core.basesyntax.model.zoo.Cat"/>
         <mapping class="core.basesyntax.model.zoo.Dog"/>
+
+        <mapping class="core.basesyntax.model.machine.Machine"/>
+        <mapping class="core.basesyntax.model.machine.Car"/>
+        <mapping class="core.basesyntax.model.machine.Truck"/>
+
     </session-factory>
 </hibernate-configuration>
