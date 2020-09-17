@@ -2,7 +2,7 @@ package core.basesyntax.model.embeddable;
 
 public class PostMetadata {
     private long size; // in bytes
-    private String MD5Sum;
+    private String hashSum;
 
     public long getSize() {
         return size;
@@ -12,11 +12,11 @@ public class PostMetadata {
         this.size = size;
     }
 
-    public String getMD5Sum() {
-        return MD5Sum;
+    public String getHashSum() {
+        return hashSum;
     }
 
-    public void setMD5Sum(String MD5Sum) {
-        this.MD5Sum = MD5Sum;
+    public void setHashSum(String hashSum) {
+        this.hashSum = hashSum;
     }
 }
