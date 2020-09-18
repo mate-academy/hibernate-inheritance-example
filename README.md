@@ -41,7 +41,7 @@ Add the implementation of `Mapped Superclass` inheritance strategy.
 1. There are classes: NewsPost and PostMetadata. Each NewsPost has its own PostMetadata. 
 Make PostMetadata embeddable in the NewsPost.
 1. Insert at least 5 posts with metadata.
-1. Select all cars and trucks older than 4 days.
+1. Select all news posts with metadata larger than 10000 bytes.
 
 ### Main class
 1. Each implemented method should be called in the Main class.
