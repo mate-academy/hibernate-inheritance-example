@@ -1,6 +1,5 @@
 package core.basesyntax.model;
 
-import java.util.List;
 import core.basesyntax.model.embeddable.NewsPost;
 import core.basesyntax.model.embeddable.PostMetadata;
 import core.basesyntax.model.figure.Circle;
@@ -13,6 +12,7 @@ import core.basesyntax.model.machine.Truck;
 import core.basesyntax.model.zoo.Animal;
 import core.basesyntax.model.zoo.Cat;
 import core.basesyntax.model.zoo.Dog;
+import java.util.List;
 
 public class DataProvider {
     public static List<NewsPost> getPosts() {

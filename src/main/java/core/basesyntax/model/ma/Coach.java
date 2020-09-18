@@ -38,8 +38,6 @@ public class Coach extends Person {
 
     @Override
     public String toString() {
-        return "Coach{" +
-                "experience=" + experience +
-                '}';
+        return "Coach{experience=" + experience + '}';
     }
 }

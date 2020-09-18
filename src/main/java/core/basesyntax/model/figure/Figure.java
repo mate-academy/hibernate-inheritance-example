@@ -30,9 +30,9 @@ public class Figure {
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName() + "{" +
-                "id=" + id +
-                ", color='" + color + '\'' +
-                '}';
+        return this.getClass().getSimpleName()
+                + "{id=" + id
+                + ", color='" + color + '\''
+                + '}';
     }
 }

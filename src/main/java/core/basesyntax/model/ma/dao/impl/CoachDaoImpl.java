@@ -1,9 +1,9 @@
 package core.basesyntax.model.ma.dao.impl;
 
-import java.util.List;
 import core.basesyntax.model.HibernateUtil;
 import core.basesyntax.model.ma.Coach;
 import core.basesyntax.model.ma.dao.CoachDao;
+import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;

@@ -1,7 +1,7 @@
 package core.basesyntax.model.embeddable.dao;
 
-import java.util.List;
 import core.basesyntax.model.embeddable.NewsPost;
+import java.util.List;
 
 public interface NewsPostDao {
     NewsPost save(NewsPost post);
