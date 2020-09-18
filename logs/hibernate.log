@@ -1,0 +1,803 @@
+2020-09-18 11:47:36 INFO  Version:46 - HHH000412: Hibernate Core {5.4.5.Final}
+2020-09-18 11:47:36 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-09-18 11:47:36 WARN  pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-09-18 11:47:36 INFO  pooling:115 - HHH10001005: using driver [null] at URL [jdbc:mysql://127.0.0.1/inheritance?serverTimezone=UTC]
+2020-09-18 11:47:36 INFO  pooling:124 - HHH10001001: Connection properties: {password=****, driver.class=com.mysql.cj.jdbc.Driver, user=root}
+2020-09-18 11:47:36 INFO  pooling:129 - HHH10001003: Autocommit mode: false
+2020-09-18 11:47:36 INFO  DriverManagerConnectionProviderImpl:239 - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-09-18 11:47:37 INFO  Dialect:172 - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2020-09-18 11:47:37 INFO  TableGenerator:499 - HHH000398: Explicit segment value for id generator [hibernate_sequences.sequence_name] suggested; using default [default]
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    
+    alter table coach 
+       drop 
+       foreign key FKtpmuu72hyoxuwrumm2fwvslnc
+2020-09-18 11:47:38 INFO  access:47 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@748a654a] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    
+    alter table mentor 
+       drop 
+       foreign key FK9gcf9v6mu16xocv7121odbg4n
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    
+    drop table if exists animal
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    
+    drop table if exists car
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    
+    drop table if exists circle
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    
+    drop table if exists coach
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    
+    drop table if exists hibernate_sequences
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    
+    drop table if exists machine
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    
+    drop table if exists mentor
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    
+    drop table if exists news_post
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    
+    drop table if exists person
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    
+    drop table if exists triangle
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    
+    drop table if exists truck
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    
+    create table animal (
+       animal_type varchar(31) not null,
+        id bigint not null auto_increment,
+        age integer not null,
+        name varchar(255),
+        color varchar(255),
+        numberOfLives integer,
+        owner varchar(255),
+        tailLength integer,
+        primary key (id)
+    ) engine=InnoDB
+2020-09-18 11:47:38 INFO  access:47 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@40247d48] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    
+    create table car (
+       id bigint not null,
+        maker varchar(255),
+        year integer not null,
+        horsePower integer not null,
+        model varchar(255),
+        primary key (id)
+    ) engine=InnoDB
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    
+    create table circle (
+       id bigint not null auto_increment,
+        color varchar(255),
+        radius integer not null,
+        primary key (id)
+    ) engine=InnoDB
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    
+    create table coach (
+       experience integer not null,
+        track integer,
+        id bigint not null,
+        primary key (id)
+    ) engine=InnoDB
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    
+    create table hibernate_sequences (
+       sequence_name varchar(255) not null,
+        next_val bigint,
+        primary key (sequence_name)
+    ) engine=InnoDB
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    
+    insert into hibernate_sequences(sequence_name, next_val) values ('default',0)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    
+    create table machine (
+       id bigint not null,
+        maker varchar(255),
+        year integer not null,
+        primary key (id)
+    ) engine=InnoDB
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    
+    create table mentor (
+       id bigint not null,
+        primary key (id)
+    ) engine=InnoDB
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    
+    create table news_post (
+       id bigint not null auto_increment,
+        content varchar(255),
+        metadata_hash_sum varchar(255),
+        metadata_size bigint,
+        postDate date,
+        topic varchar(255),
+        primary key (id)
+    ) engine=InnoDB
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    
+    create table person (
+       id bigint not null auto_increment,
+        age integer not null,
+        name varchar(255),
+        primary key (id)
+    ) engine=InnoDB
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    
+    create table triangle (
+       id bigint not null auto_increment,
+        color varchar(255),
+        area double precision not null,
+        primary key (id)
+    ) engine=InnoDB
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    
+    create table truck (
+       id bigint not null,
+        maker varchar(255),
+        year integer not null,
+        color varchar(255),
+        maxAllowedWeight double precision not null,
+        primary key (id)
+    ) engine=InnoDB
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    
+    alter table coach 
+       add constraint FKtpmuu72hyoxuwrumm2fwvslnc 
+       foreign key (id) 
+       references person (id)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    
+    alter table mentor 
+       add constraint FK9gcf9v6mu16xocv7121odbg4n 
+       foreign key (id) 
+       references person (id)
+2020-09-18 11:47:38 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        animal
+        (age, name, color, numberOfLives, animal_type) 
+    values
+        (?, ?, ?, ?, 'cat')
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        animal
+        (age, name, color, numberOfLives, animal_type) 
+    values
+        (?, ?, ?, ?, 'cat')
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        animal
+        (age, name, color, numberOfLives, animal_type) 
+    values
+        (?, ?, ?, ?, 'cat')
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        animal
+        (age, name, color, numberOfLives, animal_type) 
+    values
+        (?, ?, ?, ?, 'cat')
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        animal
+        (age, name, color, numberOfLives, animal_type) 
+    values
+        (?, ?, ?, ?, 'cat')
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        animal
+        (age, name, owner, tailLength, animal_type) 
+    values
+        (?, ?, ?, ?, 'dog')
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        animal
+        (age, name, owner, tailLength, animal_type) 
+    values
+        (?, ?, ?, ?, 'dog')
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        animal
+        (age, name, owner, tailLength, animal_type) 
+    values
+        (?, ?, ?, ?, 'dog')
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        animal
+        (age, name, owner, tailLength, animal_type) 
+    values
+        (?, ?, ?, ?, 'dog')
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        animal
+        (age, name, owner, tailLength, animal_type) 
+    values
+        (?, ?, ?, ?, 'dog')
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    select
+        animal0_.id as id2_0_,
+        animal0_.age as age3_0_,
+        animal0_.name as name4_0_,
+        animal0_.color as color5_0_,
+        animal0_.numberOfLives as numberOf6_0_,
+        animal0_.owner as owner7_0_,
+        animal0_.tailLength as tailLeng8_0_,
+        animal0_.animal_type as animal_t1_0_ 
+    from
+        animal animal0_ 
+    where
+        lower(animal0_.name) like ?
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    select
+        tbl.next_val 
+    from
+        hibernate_sequences tbl 
+    where
+        tbl.sequence_name=? for update
+            
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    update
+        hibernate_sequences 
+    set
+        next_val=?  
+    where
+        next_val=? 
+        and sequence_name=?
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        car
+        (maker, year, horsePower, model, id) 
+    values
+        (?, ?, ?, ?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    select
+        tbl.next_val 
+    from
+        hibernate_sequences tbl 
+    where
+        tbl.sequence_name=? for update
+            
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    update
+        hibernate_sequences 
+    set
+        next_val=?  
+    where
+        next_val=? 
+        and sequence_name=?
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        car
+        (maker, year, horsePower, model, id) 
+    values
+        (?, ?, ?, ?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    select
+        tbl.next_val 
+    from
+        hibernate_sequences tbl 
+    where
+        tbl.sequence_name=? for update
+            
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    update
+        hibernate_sequences 
+    set
+        next_val=?  
+    where
+        next_val=? 
+        and sequence_name=?
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        car
+        (maker, year, horsePower, model, id) 
+    values
+        (?, ?, ?, ?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    select
+        tbl.next_val 
+    from
+        hibernate_sequences tbl 
+    where
+        tbl.sequence_name=? for update
+            
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    update
+        hibernate_sequences 
+    set
+        next_val=?  
+    where
+        next_val=? 
+        and sequence_name=?
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        car
+        (maker, year, horsePower, model, id) 
+    values
+        (?, ?, ?, ?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    select
+        tbl.next_val 
+    from
+        hibernate_sequences tbl 
+    where
+        tbl.sequence_name=? for update
+            
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    update
+        hibernate_sequences 
+    set
+        next_val=?  
+    where
+        next_val=? 
+        and sequence_name=?
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        car
+        (maker, year, horsePower, model, id) 
+    values
+        (?, ?, ?, ?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    select
+        tbl.next_val 
+    from
+        hibernate_sequences tbl 
+    where
+        tbl.sequence_name=? for update
+            
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    update
+        hibernate_sequences 
+    set
+        next_val=?  
+    where
+        next_val=? 
+        and sequence_name=?
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        truck
+        (maker, year, color, maxAllowedWeight, id) 
+    values
+        (?, ?, ?, ?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    select
+        tbl.next_val 
+    from
+        hibernate_sequences tbl 
+    where
+        tbl.sequence_name=? for update
+            
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    update
+        hibernate_sequences 
+    set
+        next_val=?  
+    where
+        next_val=? 
+        and sequence_name=?
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        truck
+        (maker, year, color, maxAllowedWeight, id) 
+    values
+        (?, ?, ?, ?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    select
+        tbl.next_val 
+    from
+        hibernate_sequences tbl 
+    where
+        tbl.sequence_name=? for update
+            
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    update
+        hibernate_sequences 
+    set
+        next_val=?  
+    where
+        next_val=? 
+        and sequence_name=?
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        truck
+        (maker, year, color, maxAllowedWeight, id) 
+    values
+        (?, ?, ?, ?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    select
+        tbl.next_val 
+    from
+        hibernate_sequences tbl 
+    where
+        tbl.sequence_name=? for update
+            
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    update
+        hibernate_sequences 
+    set
+        next_val=?  
+    where
+        next_val=? 
+        and sequence_name=?
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        truck
+        (maker, year, color, maxAllowedWeight, id) 
+    values
+        (?, ?, ?, ?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    select
+        tbl.next_val 
+    from
+        hibernate_sequences tbl 
+    where
+        tbl.sequence_name=? for update
+            
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    update
+        hibernate_sequences 
+    set
+        next_val=?  
+    where
+        next_val=? 
+        and sequence_name=?
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        truck
+        (maker, year, color, maxAllowedWeight, id) 
+    values
+        (?, ?, ?, ?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    select
+        machine0_.id as id1_4_,
+        machine0_.maker as maker2_4_,
+        machine0_.year as year3_4_,
+        machine0_.horsePower as horsePow1_1_,
+        machine0_.model as model2_1_,
+        machine0_.color as color1_9_,
+        machine0_.maxAllowedWeight as maxAllow2_9_,
+        machine0_.clazz_ as clazz_ 
+    from
+        ( select
+            id,
+            maker,
+            year,
+            null as horsePower,
+            null as model,
+            null as color,
+            null as maxAllowedWeight,
+            0 as clazz_ 
+        from
+            machine 
+        union
+        all select
+            id,
+            maker,
+            year,
+            horsePower,
+            model,
+            null as color,
+            null as maxAllowedWeight,
+            1 as clazz_ 
+        from
+            car 
+        union
+        all select
+            id,
+            maker,
+            year,
+            null as horsePower,
+            null as model,
+            color,
+            maxAllowedWeight,
+            2 as clazz_ 
+        from
+            truck 
+    ) machine0_ 
+where
+    machine0_.year<?
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        person
+        (age, name) 
+    values
+        (?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        coach
+        (experience, track, id) 
+    values
+        (?, ?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        person
+        (age, name) 
+    values
+        (?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        coach
+        (experience, track, id) 
+    values
+        (?, ?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        person
+        (age, name) 
+    values
+        (?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        coach
+        (experience, track, id) 
+    values
+        (?, ?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        person
+        (age, name) 
+    values
+        (?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        coach
+        (experience, track, id) 
+    values
+        (?, ?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        person
+        (age, name) 
+    values
+        (?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        coach
+        (experience, track, id) 
+    values
+        (?, ?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        person
+        (age, name) 
+    values
+        (?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        mentor
+        (id) 
+    values
+        (?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        person
+        (age, name) 
+    values
+        (?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        mentor
+        (id) 
+    values
+        (?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        person
+        (age, name) 
+    values
+        (?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        mentor
+        (id) 
+    values
+        (?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        person
+        (age, name) 
+    values
+        (?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        mentor
+        (id) 
+    values
+        (?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        person
+        (age, name) 
+    values
+        (?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        mentor
+        (id) 
+    values
+        (?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    select
+        coach0_.id as id1_7_,
+        coach0_1_.age as age2_7_,
+        coach0_1_.name as name3_7_,
+        coach0_.experience as experien1_3_,
+        coach0_.track as track2_3_ 
+    from
+        coach coach0_ 
+    inner join
+        person coach0_1_ 
+            on coach0_.id=coach0_1_.id 
+    where
+        coach0_.experience>?
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    select
+        mentor0_.id as id1_7_,
+        mentor0_1_.age as age2_7_,
+        mentor0_1_.name as name3_7_ 
+    from
+        mentor mentor0_ 
+    inner join
+        person mentor0_1_ 
+            on mentor0_.id=mentor0_1_.id 
+    where
+        mentor0_1_.age>?
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        circle
+        (color, radius) 
+    values
+        (?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        circle
+        (color, radius) 
+    values
+        (?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        circle
+        (color, radius) 
+    values
+        (?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        triangle
+        (color, area) 
+    values
+        (?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        triangle
+        (color, area) 
+    values
+        (?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        triangle
+        (color, area) 
+    values
+        (?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    select
+        circle0_.id as id1_2_,
+        circle0_.color as color2_2_,
+        circle0_.radius as radius3_2_ 
+    from
+        circle circle0_ 
+    where
+        circle0_.color=?
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    select
+        triangle0_.id as id1_8_,
+        triangle0_.color as color2_8_,
+        triangle0_.area as area3_8_ 
+    from
+        triangle triangle0_ 
+    where
+        triangle0_.color=?
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        news_post
+        (content, metadata_hash_sum, metadata_size, postDate, topic) 
+    values
+        (?, ?, ?, ?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        news_post
+        (content, metadata_hash_sum, metadata_size, postDate, topic) 
+    values
+        (?, ?, ?, ?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        news_post
+        (content, metadata_hash_sum, metadata_size, postDate, topic) 
+    values
+        (?, ?, ?, ?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        news_post
+        (content, metadata_hash_sum, metadata_size, postDate, topic) 
+    values
+        (?, ?, ?, ?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    insert 
+    into
+        news_post
+        (content, metadata_hash_sum, metadata_size, postDate, topic) 
+    values
+        (?, ?, ?, ?, ?)
+2020-09-18 11:47:38 DEBUG SQL:127 - 
+    select
+        newspost0_.id as id1_6_,
+        newspost0_.content as content2_6_,
+        newspost0_.metadata_hash_sum as metadata3_6_,
+        newspost0_.metadata_size as metadata4_6_,
+        newspost0_.postDate as postDate5_6_,
+        newspost0_.topic as topic6_6_ 
+    from
+        news_post newspost0_ 
+    where
+        newspost0_.metadata_size>?
