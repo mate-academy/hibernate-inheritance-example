@@ -1,31 +1,31 @@
-package core.basesyntax.model.machine.dao.impl;
+package core.basesyntax.model.zoo.dao.impl;
 
-import java.time.LocalDate;
 import java.util.List;
 import core.basesyntax.model.HibernateUtil;
-import core.basesyntax.model.machine.Machine;
-import core.basesyntax.model.machine.dao.MachineDao;
+import core.basesyntax.model.zoo.Animal;
+import core.basesyntax.model.zoo.dao.AnimalDao;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-public class MachineDaoImpl implements MachineDao {
+public class AnimalDaoImpl implements AnimalDao {
     @Override
-    public Machine save(Machine machine) {
+    public Animal save(Animal animal) {
         Transaction transaction = null;
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
-            session.save(machine);
+            session.save(animal);
             transaction.commit();
-            return machine;
+            return animal;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Cannot insert machine entity - " + machine, e);
+            throw new RuntimeException("Cannot insert "
+                    + animal.getClass().getSimpleName() + " entity - " + animal, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -34,16 +34,16 @@ public class MachineDaoImpl implements MachineDao {
     }
 
     @Override
-    public List<Machine> getOlderThan(Integer years) {
+    public List<Animal> findByFirstLetter(Character letter) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            int minYear = LocalDate.now().getYear() - years;
-            Query<Machine> query = session.createQuery(
-                    "from Machine m where m.year < :years");
-            query.setParameter("years", minYear);
+            Query<Animal> query = session.createQuery(
+                    "from Animal a where lower(a.name) like :letter",
+                    Animal.class);
+            query.setParameter("letter", letter + "%");
             return query.getResultList();
         } catch (HibernateException e) {
-            throw new RuntimeException("Can't find Machines which are older then  - "
-                    + years + " years", e);
+            throw new RuntimeException("Can't find cats which names starts with - "
+                    + letter, e);
         }
     }
 }

@@ -1,9 +1,10 @@
 package core.basesyntax.model.zoo.dao;
 
 import java.util.List;
+import core.basesyntax.model.zoo.Animal;
 
-public interface AnimalDao<T> {
-    T save(T animal);
+public interface AnimalDao {
+    Animal save(Animal animal);
 
-    List<T> findByFirstLetter(Character letter);
+    List<Animal> findByFirstLetter(Character letter);
 }

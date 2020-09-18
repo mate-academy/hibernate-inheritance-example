@@ -6,5 +6,5 @@ import core.basesyntax.model.machine.Machine;
 public interface MachineDao {
     Machine save(Machine machine);
 
-    List<Machine> getOlderThen(Integer years);
+    List<Machine> getOlderThan(Integer years);
 }
