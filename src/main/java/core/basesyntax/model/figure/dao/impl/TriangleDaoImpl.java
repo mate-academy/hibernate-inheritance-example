@@ -1,30 +1,31 @@
-package core.basesyntax.model.zoo.dao.impl;
+package core.basesyntax.model.figure.dao.impl;
 
 import java.util.List;
 import core.basesyntax.model.HibernateUtil;
-import core.basesyntax.model.zoo.Cat;
-import core.basesyntax.model.zoo.dao.CatDao;
+import core.basesyntax.model.figure.Triangle;
+import core.basesyntax.model.figure.dao.TriangleDao;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-public class CatDaoImpl implements CatDao {
+public class TriangleDaoImpl implements TriangleDao {
     @Override
-    public Cat save(Cat cat) {
+    public Triangle save(Triangle triangle) {
         Transaction transaction = null;
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
-            session.save(cat);
+            session.save(triangle);
             transaction.commit();
-            return cat;
+            return triangle;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Cannot insert cat entity - " + cat, e);
+            throw new RuntimeException("Cannot insert " + triangle.getClass().getSimpleName()
+                    + " entity - " + triangle, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -33,16 +34,15 @@ public class CatDaoImpl implements CatDao {
     }
 
     @Override
-    public List<Cat> findByFirstLetter(Character letter) {
+    public List<Triangle> getByColor(String color) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Query<Cat> query = session.createQuery(
-                    "from Cat cat where lower(cat.name) like :letter",
-                    Cat.class);
-            query.setParameter("letter", letter + "%");
+            Query<Triangle> query = session.createQuery(
+                    "from Triangle t where t.color = :color");
+            query.setParameter("color", color);
             return query.getResultList();
         } catch (HibernateException e) {
-            throw new RuntimeException("Failure: can't find shopping cart for user "
-                    + letter + ".", e);
+            throw new RuntimeException("Can't find Triangles which have color  - "
+                    + color, e);
         }
     }
 }

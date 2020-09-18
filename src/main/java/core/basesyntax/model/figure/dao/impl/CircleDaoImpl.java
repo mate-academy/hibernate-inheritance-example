@@ -1,30 +1,31 @@
-package core.basesyntax.model.zoo.dao.impl;
+package core.basesyntax.model.figure.dao.impl;
 
 import java.util.List;
 import core.basesyntax.model.HibernateUtil;
-import core.basesyntax.model.zoo.Dog;
-import core.basesyntax.model.zoo.dao.DogDao;
+import core.basesyntax.model.figure.Circle;
+import core.basesyntax.model.figure.dao.CircleDao;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-public class DogDaoImpl implements DogDao {
+public class CircleDaoImpl implements CircleDao {
     @Override
-    public Dog save(Dog dog) {
+    public Circle save(Circle circle) {
         Transaction transaction = null;
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
-            session.save(dog);
+            session.save(circle);
             transaction.commit();
-            return dog;
+            return circle;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Couldn't insert cat entity - " + dog, e);
+            throw new RuntimeException("Cannot insert " + circle.getClass().getSimpleName()
+                    + " entity - " + circle, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -33,16 +34,15 @@ public class DogDaoImpl implements DogDao {
     }
 
     @Override
-    public List<Dog> findByFirstLetter(Character letter) {
+    public List<Circle> getByColor(String color) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Query<Dog> query = session.createQuery(
-                    "from Dog dog where lower(dog.name) like :letter",
-                    Dog.class);
-            query.setParameter("letter", letter + "%");
+            Query<Circle> query = session.createQuery(
+                    "from Circle c where c.color = :color");
+            query.setParameter("color", color);
             return query.getResultList();
         } catch (HibernateException e) {
-            throw new RuntimeException("Can't find dogs which names starts with - "
-                    + letter, e);
+            throw new RuntimeException("Can't find Circles which have color  - "
+                    + color, e);
         }
     }
 }
