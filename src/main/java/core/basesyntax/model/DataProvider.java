@@ -76,5 +76,4 @@ public class DataProvider {
                 new Dog("Merlin"),
                 new Dog("Vovan"));
     }
-
 }

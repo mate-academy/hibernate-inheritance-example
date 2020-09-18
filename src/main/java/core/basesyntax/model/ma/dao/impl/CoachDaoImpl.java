@@ -9,7 +9,6 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 public class CoachDaoImpl implements CoachDao {
-
     @Override
     public List<Coach> getWithExperienceMoreThan(Integer years) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {

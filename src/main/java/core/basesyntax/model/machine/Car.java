@@ -16,7 +16,6 @@ public class Car extends Machine {
         super(year);
     }
 
-
     public int getHorsePower() {
         return horsePower;
     }

@@ -16,7 +16,6 @@ public class Figure {
     public Figure() {
     }
 
-
     public Figure(String color) {
         this.color = color;
     }
