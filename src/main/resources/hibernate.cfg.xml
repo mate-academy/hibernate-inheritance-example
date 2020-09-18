@@ -24,5 +24,6 @@
         <mapping class="core.basesyntax.model.figure.Circle"/>
         <mapping class="core.basesyntax.model.figure.Triangle"/>
 
+        <mapping class="core.basesyntax.model.embeddable.NewsPost"/>
     </session-factory>
 </hibernate-configuration>
