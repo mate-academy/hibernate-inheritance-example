@@ -1,0 +1,268 @@
+2020-09-23 08:30:29 INFO  Version:46 - HHH000412: Hibernate Core {5.4.5.Final}
+2020-09-23 08:30:30 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-09-23 08:30:31 WARN  pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-09-23 08:30:31 INFO  pooling:115 - HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/inheritance?serverTimezone=UTC]
+2020-09-23 08:30:31 INFO  pooling:124 - HHH10001001: Connection properties: {password=****, user=root}
+2020-09-23 08:30:31 INFO  pooling:129 - HHH10001003: Autocommit mode: false
+2020-09-23 08:30:31 INFO  DriverManagerConnectionProviderImpl:239 - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-09-23 08:30:31 INFO  Dialect:172 - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2020-09-23 08:30:31 INFO  TableGenerator:499 - HHH000398: Explicit segment value for id generator [hibernate_sequences.sequence_name] suggested; using default [default]
+2020-09-23 08:30:32 DEBUG SQL:127 - alter table Coach drop foreign key FK4bp1wuw54xokc1yp9mk6incjn
+2020-09-23 08:30:32 INFO  access:47 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@4091b9c3] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2020-09-23 08:30:32 DEBUG SQL:127 - alter table Mentor drop foreign key FK45mbm13u8fqrpsdwaigo1juml
+2020-09-23 08:30:32 DEBUG SQL:127 - drop table if exists Animal
+2020-09-23 08:30:32 DEBUG SQL:127 - drop table if exists Car
+2020-09-23 08:30:32 DEBUG SQL:127 - drop table if exists Character
+2020-09-23 08:30:32 WARN  ExceptionHandlerLoggedImpl:27 - GenerationTarget encountered exception accepting command : Error executing DDL "drop table if exists Character" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "drop table if exists Character" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlString(SchemaDropperImpl.java:375)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlStrings(SchemaDropperImpl.java:359)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:241)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:154)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:126)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:112)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:145)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:73)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:320)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:462)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:708)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:724)
+	at core.basesyntax.model.util.HibernateUtil.initSessionFactory(HibernateUtil.java:14)
+	at core.basesyntax.model.util.HibernateUtil.<clinit>(HibernateUtil.java:7)
+	at core.basesyntax.model.zoo.dao.AnimalDaoImpl.save(AnimalDaoImpl.java:18)
+	at core.basesyntax.model.Main.playWithAnimals(Main.java:48)
+	at core.basesyntax.model.Main.main(Main.java:37)
+Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Character' at line 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:764)
+	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:648)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54)
+	... 17 more
+2020-09-23 08:30:32 DEBUG SQL:127 - drop table if exists Circle
+2020-09-23 08:30:32 DEBUG SQL:127 - drop table if exists Coach
+2020-09-23 08:30:32 DEBUG SQL:127 - drop table if exists hibernate_sequences
+2020-09-23 08:30:32 DEBUG SQL:127 - drop table if exists Mentor
+2020-09-23 08:30:32 DEBUG SQL:127 - drop table if exists NewsPost
+2020-09-23 08:30:32 DEBUG SQL:127 - drop table if exists Person
+2020-09-23 08:30:32 DEBUG SQL:127 - drop table if exists Triangle
+2020-09-23 08:30:32 DEBUG SQL:127 - drop table if exists Truck
+2020-09-23 08:30:32 DEBUG SQL:127 - create table Animal (animal_type varchar(31) not null, id bigint not null auto_increment, age integer not null, name varchar(255), color varchar(255), numberOfLives integer, owner varchar(255), tailLength integer, primary key (id)) engine=InnoDB
+2020-09-23 08:30:32 INFO  access:47 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@71b6172c] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2020-09-23 08:30:32 DEBUG SQL:127 - create table Car (id bigint not null, maker varchar(255), year integer not null, horsePower integer not null, model varchar(255), primary key (id)) engine=InnoDB
+2020-09-23 08:30:32 DEBUG SQL:127 - create table Character (ch_type varchar(31) not null, id bigint not null auto_increment, name varchar(255), power integer not null, money double precision, accuracy double precision, primary key (id)) engine=InnoDB
+2020-09-23 08:30:32 WARN  ExceptionHandlerLoggedImpl:27 - GenerationTarget encountered exception accepting command : Error executing DDL "create table Character (ch_type varchar(31) not null, id bigint not null auto_increment, name varchar(255), power integer not null, money double precision, accuracy double precision, primary key (id)) engine=InnoDB" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "create table Character (ch_type varchar(31) not null, id bigint not null auto_increment, name varchar(255), power integer not null, money double precision, accuracy double precision, primary key (id)) engine=InnoDB" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applySqlString(SchemaCreatorImpl.java:439)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applySqlStrings(SchemaCreatorImpl.java:423)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.createFromMetadata(SchemaCreatorImpl.java:314)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.performCreation(SchemaCreatorImpl.java:166)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:135)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:121)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:156)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:73)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:320)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:462)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:708)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:724)
+	at core.basesyntax.model.util.HibernateUtil.initSessionFactory(HibernateUtil.java:14)
+	at core.basesyntax.model.util.HibernateUtil.<clinit>(HibernateUtil.java:7)
+	at core.basesyntax.model.zoo.dao.AnimalDaoImpl.save(AnimalDaoImpl.java:18)
+	at core.basesyntax.model.Main.playWithAnimals(Main.java:48)
+	at core.basesyntax.model.Main.main(Main.java:37)
+Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Character (ch_type varchar(31) not null, id bigint not null auto_increment, name' at line 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:764)
+	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:648)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54)
+	... 17 more
+2020-09-23 08:30:32 DEBUG SQL:127 - create table Circle (id bigint not null auto_increment, color varchar(255), radius integer not null, primary key (id)) engine=InnoDB
+2020-09-23 08:30:32 DEBUG SQL:127 - create table Coach (experience integer not null, track integer, id bigint not null, primary key (id)) engine=InnoDB
+2020-09-23 08:30:32 DEBUG SQL:127 - create table hibernate_sequences (sequence_name varchar(255) not null, next_val bigint, primary key (sequence_name)) engine=InnoDB
+2020-09-23 08:30:32 DEBUG SQL:127 - insert into hibernate_sequences(sequence_name, next_val) values ('default',0)
+2020-09-23 08:30:32 DEBUG SQL:127 - create table Mentor (id bigint not null, primary key (id)) engine=InnoDB
+2020-09-23 08:30:33 DEBUG SQL:127 - create table NewsPost (id bigint not null auto_increment, content varchar(255), hashSum varchar(255), size bigint not null, postDate date, topic varchar(255), primary key (id)) engine=InnoDB
+2020-09-23 08:30:33 DEBUG SQL:127 - create table Person (id bigint not null auto_increment, age integer not null, name varchar(255), primary key (id)) engine=InnoDB
+2020-09-23 08:30:33 DEBUG SQL:127 - create table Triangle (id bigint not null auto_increment, color varchar(255), area double precision not null, primary key (id)) engine=InnoDB
+2020-09-23 08:30:33 DEBUG SQL:127 - create table Truck (id bigint not null, maker varchar(255), year integer not null, color varchar(255), maxAllowedWeight double precision not null, primary key (id)) engine=InnoDB
+2020-09-23 08:30:33 DEBUG SQL:127 - alter table Coach add constraint FK4bp1wuw54xokc1yp9mk6incjn foreign key (id) references Person (id)
+2020-09-23 08:30:33 DEBUG SQL:127 - alter table Mentor add constraint FK45mbm13u8fqrpsdwaigo1juml foreign key (id) references Person (id)
+2020-09-23 08:30:33 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-09-23 08:30:33 DEBUG SQL:127 - insert into Animal (age, name, color, numberOfLives, animal_type) values (?, ?, ?, ?, 'cat')
+2020-09-23 08:30:33 DEBUG SQL:127 - insert into Animal (age, name, color, numberOfLives, animal_type) values (?, ?, ?, ?, 'cat')
+2020-09-23 08:30:33 DEBUG SQL:127 - insert into Animal (age, name, color, numberOfLives, animal_type) values (?, ?, ?, ?, 'cat')
+2020-09-23 08:30:33 DEBUG SQL:127 - insert into Animal (age, name, color, numberOfLives, animal_type) values (?, ?, ?, ?, 'cat')
+2020-09-23 08:30:33 DEBUG SQL:127 - insert into Animal (age, name, owner, tailLength, animal_type) values (?, ?, ?, ?, 'dog')
+2020-09-23 08:30:33 DEBUG SQL:127 - insert into Animal (age, name, owner, tailLength, animal_type) values (?, ?, ?, ?, 'dog')
+2020-09-23 08:30:33 DEBUG SQL:127 - insert into Animal (age, name, owner, tailLength, animal_type) values (?, ?, ?, ?, 'dog')
+2020-09-23 08:30:33 DEBUG SQL:127 - insert into Animal (age, name, owner, tailLength, animal_type) values (?, ?, ?, ?, 'dog')
+2020-09-23 08:30:33 DEBUG SQL:127 - select animal0_.id as id2_0_, animal0_.age as age3_0_, animal0_.name as name4_0_, animal0_.color as color5_0_, animal0_.numberOfLives as numberOf6_0_, animal0_.owner as owner7_0_, animal0_.tailLength as tailLeng8_0_, animal0_.animal_type as animal_t1_0_ from Animal animal0_ where animal0_.name like ?
+2020-09-23 08:30:33 DEBUG SQL:127 - select tbl.next_val from hibernate_sequences tbl where tbl.sequence_name=? for update
+2020-09-23 08:30:33 DEBUG SQL:127 - update hibernate_sequences set next_val=?  where next_val=? and sequence_name=?
+2020-09-23 08:30:33 DEBUG SQL:127 - insert into Car (maker, year, horsePower, model, id) values (?, ?, ?, ?, ?)
+2020-09-23 08:30:33 DEBUG SQL:127 - select tbl.next_val from hibernate_sequences tbl where tbl.sequence_name=? for update
+2020-09-23 08:30:33 DEBUG SQL:127 - update hibernate_sequences set next_val=?  where next_val=? and sequence_name=?
+2020-09-23 08:30:33 DEBUG SQL:127 - insert into Car (maker, year, horsePower, model, id) values (?, ?, ?, ?, ?)
+2020-09-23 08:30:33 DEBUG SQL:127 - select tbl.next_val from hibernate_sequences tbl where tbl.sequence_name=? for update
+2020-09-23 08:30:33 DEBUG SQL:127 - update hibernate_sequences set next_val=?  where next_val=? and sequence_name=?
+2020-09-23 08:30:33 DEBUG SQL:127 - insert into Car (maker, year, horsePower, model, id) values (?, ?, ?, ?, ?)
+2020-09-23 08:30:33 DEBUG SQL:127 - select tbl.next_val from hibernate_sequences tbl where tbl.sequence_name=? for update
+2020-09-23 08:30:33 DEBUG SQL:127 - update hibernate_sequences set next_val=?  where next_val=? and sequence_name=?
+2020-09-23 08:30:33 DEBUG SQL:127 - insert into Truck (maker, year, color, maxAllowedWeight, id) values (?, ?, ?, ?, ?)
+2020-09-23 08:30:33 DEBUG SQL:127 - select tbl.next_val from hibernate_sequences tbl where tbl.sequence_name=? for update
+2020-09-23 08:30:33 DEBUG SQL:127 - update hibernate_sequences set next_val=?  where next_val=? and sequence_name=?
+2020-09-23 08:30:33 DEBUG SQL:127 - insert into Truck (maker, year, color, maxAllowedWeight, id) values (?, ?, ?, ?, ?)
+2020-09-23 08:30:33 DEBUG SQL:127 - select machine0_.id as id1_5_, machine0_.maker as maker2_5_, machine0_.year as year3_5_, machine0_.horsePower as horsePow1_1_, machine0_.model as model2_1_, machine0_.color as color1_10_, machine0_.maxAllowedWeight as maxAllow2_10_, machine0_.clazz_ as clazz_ from ( select id, maker, year, horsePower, model, null as color, null as maxAllowedWeight, 1 as clazz_ from Car union all select id, maker, year, null as horsePower, null as model, color, maxAllowedWeight, 2 as clazz_ from Truck ) machine0_ where machine0_.year>4
+2020-09-23 08:30:33 DEBUG SQL:127 - insert into Person (age, name) values (?, ?)
+2020-09-23 08:30:33 DEBUG SQL:127 - insert into Coach (experience, track, id) values (?, ?, ?)
+2020-09-23 08:30:33 DEBUG SQL:127 - insert into Person (age, name) values (?, ?)
+2020-09-23 08:30:33 DEBUG SQL:127 - insert into Mentor (id) values (?)
+2020-09-23 08:30:33 DEBUG SQL:127 - insert into Person (age, name) values (?, ?)
+2020-09-23 08:30:33 DEBUG SQL:127 - insert into Mentor (id) values (?)
+2020-09-23 08:30:33 DEBUG SQL:127 - select coach0_.id as id1_8_, coach0_1_.age as age2_8_, coach0_1_.name as name3_8_, coach0_.experience as experien1_4_, coach0_.track as track2_4_ from Coach coach0_ inner join Person coach0_1_ on coach0_.id=coach0_1_.id where coach0_.experience>10
+2020-09-23 08:30:33 DEBUG SQL:127 - select mentor0_.id as id1_8_, mentor0_1_.age as age2_8_, mentor0_1_.name as name3_8_ from Mentor mentor0_ inner join Person mentor0_1_ on mentor0_.id=mentor0_1_.id where mentor0_1_.age>20
+2020-09-23 08:30:33 DEBUG SQL:127 - insert into Circle (color, radius) values (?, ?)
+2020-09-23 08:30:33 DEBUG SQL:127 - insert into Triangle (color, area) values (?, ?)
+2020-09-23 08:30:33 DEBUG SQL:127 - select circle0_.id as id1_3_, circle0_.color as color2_3_, circle0_.radius as radius3_3_ from Circle circle0_ where circle0_.color=?
+2020-09-23 08:30:33 DEBUG SQL:127 - select triangle0_.id as id1_9_, triangle0_.color as color2_9_, triangle0_.area as area3_9_ from Triangle triangle0_ where triangle0_.color=?
+2020-09-23 08:30:33 DEBUG SQL:127 - insert into NewsPost (content, hashSum, size, postDate, topic) values (?, ?, ?, ?, ?)
+2020-09-23 08:30:33 DEBUG SQL:127 - select newspost0_.id as id1_7_, newspost0_.content as content2_7_, newspost0_.hashSum as hashSum3_7_, newspost0_.size as size4_7_, newspost0_.postDate as postDate5_7_, newspost0_.topic as topic6_7_ from NewsPost newspost0_ where newspost0_.size>1000
+2020-09-23 08:31:26 INFO  Version:46 - HHH000412: Hibernate Core {5.4.5.Final}
+2020-09-23 08:31:27 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-09-23 08:31:27 WARN  pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-09-23 08:31:27 INFO  pooling:115 - HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/inheritance?serverTimezone=UTC]
+2020-09-23 08:31:27 INFO  pooling:124 - HHH10001001: Connection properties: {password=****, user=root}
+2020-09-23 08:31:27 INFO  pooling:129 - HHH10001003: Autocommit mode: false
+2020-09-23 08:31:27 INFO  DriverManagerConnectionProviderImpl:239 - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-09-23 08:31:27 INFO  Dialect:172 - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2020-09-23 08:31:28 INFO  TableGenerator:499 - HHH000398: Explicit segment value for id generator [hibernate_sequences.sequence_name] suggested; using default [default]
+2020-09-23 08:31:28 DEBUG SQL:127 - alter table Coach drop foreign key FK4bp1wuw54xokc1yp9mk6incjn
+2020-09-23 08:31:28 INFO  access:47 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@4091b9c3] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2020-09-23 08:31:28 DEBUG SQL:127 - alter table Mentor drop foreign key FK45mbm13u8fqrpsdwaigo1juml
+2020-09-23 08:31:28 DEBUG SQL:127 - drop table if exists Animal
+2020-09-23 08:31:28 DEBUG SQL:127 - drop table if exists Car
+2020-09-23 08:31:28 DEBUG SQL:127 - drop table if exists Character
+2020-09-23 08:31:28 WARN  ExceptionHandlerLoggedImpl:27 - GenerationTarget encountered exception accepting command : Error executing DDL "drop table if exists Character" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "drop table if exists Character" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlString(SchemaDropperImpl.java:375)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlStrings(SchemaDropperImpl.java:359)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:241)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:154)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:126)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:112)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:145)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:73)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:320)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:462)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:708)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:724)
+	at core.basesyntax.model.util.HibernateUtil.initSessionFactory(HibernateUtil.java:14)
+	at core.basesyntax.model.util.HibernateUtil.<clinit>(HibernateUtil.java:7)
+	at core.basesyntax.model.zoo.dao.AnimalDaoImpl.save(AnimalDaoImpl.java:18)
+	at core.basesyntax.model.Main.playWithAnimals(Main.java:48)
+	at core.basesyntax.model.Main.main(Main.java:37)
+Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Character' at line 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:764)
+	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:648)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54)
+	... 17 more
+2020-09-23 08:31:28 DEBUG SQL:127 - drop table if exists Circle
+2020-09-23 08:31:28 DEBUG SQL:127 - drop table if exists Coach
+2020-09-23 08:31:28 DEBUG SQL:127 - drop table if exists hibernate_sequences
+2020-09-23 08:31:28 DEBUG SQL:127 - drop table if exists Mentor
+2020-09-23 08:31:28 DEBUG SQL:127 - drop table if exists NewsPost
+2020-09-23 08:31:28 DEBUG SQL:127 - drop table if exists Person
+2020-09-23 08:31:28 DEBUG SQL:127 - drop table if exists Triangle
+2020-09-23 08:31:28 DEBUG SQL:127 - drop table if exists Truck
+2020-09-23 08:31:28 DEBUG SQL:127 - create table Animal (animal_type varchar(31) not null, id bigint not null auto_increment, age integer not null, name varchar(255), color varchar(255), numberOfLives integer, owner varchar(255), tailLength integer, primary key (id)) engine=InnoDB
+2020-09-23 08:31:28 INFO  access:47 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@71b6172c] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2020-09-23 08:31:28 DEBUG SQL:127 - create table Car (id bigint not null, maker varchar(255), year integer not null, horsePower integer not null, model varchar(255), primary key (id)) engine=InnoDB
+2020-09-23 08:31:29 DEBUG SQL:127 - create table Character (ch_type varchar(31) not null, id bigint not null auto_increment, name varchar(255), power integer not null, money double precision, accuracy double precision, primary key (id)) engine=InnoDB
+2020-09-23 08:31:29 WARN  ExceptionHandlerLoggedImpl:27 - GenerationTarget encountered exception accepting command : Error executing DDL "create table Character (ch_type varchar(31) not null, id bigint not null auto_increment, name varchar(255), power integer not null, money double precision, accuracy double precision, primary key (id)) engine=InnoDB" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "create table Character (ch_type varchar(31) not null, id bigint not null auto_increment, name varchar(255), power integer not null, money double precision, accuracy double precision, primary key (id)) engine=InnoDB" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applySqlString(SchemaCreatorImpl.java:439)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applySqlStrings(SchemaCreatorImpl.java:423)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.createFromMetadata(SchemaCreatorImpl.java:314)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.performCreation(SchemaCreatorImpl.java:166)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:135)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:121)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:156)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:73)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:320)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:462)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:708)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:724)
+	at core.basesyntax.model.util.HibernateUtil.initSessionFactory(HibernateUtil.java:14)
+	at core.basesyntax.model.util.HibernateUtil.<clinit>(HibernateUtil.java:7)
+	at core.basesyntax.model.zoo.dao.AnimalDaoImpl.save(AnimalDaoImpl.java:18)
+	at core.basesyntax.model.Main.playWithAnimals(Main.java:48)
+	at core.basesyntax.model.Main.main(Main.java:37)
+Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Character (ch_type varchar(31) not null, id bigint not null auto_increment, name' at line 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:764)
+	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:648)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54)
+	... 17 more
+2020-09-23 08:31:29 DEBUG SQL:127 - create table Circle (id bigint not null auto_increment, color varchar(255), radius integer not null, primary key (id)) engine=InnoDB
+2020-09-23 08:31:29 DEBUG SQL:127 - create table Coach (experience integer not null, track integer, id bigint not null, primary key (id)) engine=InnoDB
+2020-09-23 08:31:29 DEBUG SQL:127 - create table hibernate_sequences (sequence_name varchar(255) not null, next_val bigint, primary key (sequence_name)) engine=InnoDB
+2020-09-23 08:31:29 DEBUG SQL:127 - insert into hibernate_sequences(sequence_name, next_val) values ('default',0)
+2020-09-23 08:31:29 DEBUG SQL:127 - create table Mentor (id bigint not null, primary key (id)) engine=InnoDB
+2020-09-23 08:31:29 DEBUG SQL:127 - create table NewsPost (id bigint not null auto_increment, content varchar(255), hashSum varchar(255), size bigint not null, postDate date, topic varchar(255), primary key (id)) engine=InnoDB
+2020-09-23 08:31:29 DEBUG SQL:127 - create table Person (id bigint not null auto_increment, age integer not null, name varchar(255), primary key (id)) engine=InnoDB
+2020-09-23 08:31:29 DEBUG SQL:127 - create table Triangle (id bigint not null auto_increment, color varchar(255), area double precision not null, primary key (id)) engine=InnoDB
+2020-09-23 08:31:29 DEBUG SQL:127 - create table Truck (id bigint not null, maker varchar(255), year integer not null, color varchar(255), maxAllowedWeight double precision not null, primary key (id)) engine=InnoDB
+2020-09-23 08:31:29 DEBUG SQL:127 - alter table Coach add constraint FK4bp1wuw54xokc1yp9mk6incjn foreign key (id) references Person (id)
+2020-09-23 08:31:29 DEBUG SQL:127 - alter table Mentor add constraint FK45mbm13u8fqrpsdwaigo1juml foreign key (id) references Person (id)
+2020-09-23 08:31:29 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-09-23 08:31:29 DEBUG SQL:127 - insert into Animal (age, name, color, numberOfLives, animal_type) values (?, ?, ?, ?, 'cat')
+2020-09-23 08:31:29 DEBUG SQL:127 - insert into Animal (age, name, color, numberOfLives, animal_type) values (?, ?, ?, ?, 'cat')
+2020-09-23 08:31:29 DEBUG SQL:127 - insert into Animal (age, name, color, numberOfLives, animal_type) values (?, ?, ?, ?, 'cat')
+2020-09-23 08:31:29 DEBUG SQL:127 - insert into Animal (age, name, color, numberOfLives, animal_type) values (?, ?, ?, ?, 'cat')
+2020-09-23 08:31:29 DEBUG SQL:127 - insert into Animal (age, name, owner, tailLength, animal_type) values (?, ?, ?, ?, 'dog')
+2020-09-23 08:31:29 DEBUG SQL:127 - insert into Animal (age, name, owner, tailLength, animal_type) values (?, ?, ?, ?, 'dog')
+2020-09-23 08:31:29 DEBUG SQL:127 - insert into Animal (age, name, owner, tailLength, animal_type) values (?, ?, ?, ?, 'dog')
+2020-09-23 08:31:29 DEBUG SQL:127 - insert into Animal (age, name, owner, tailLength, animal_type) values (?, ?, ?, ?, 'dog')
+2020-09-23 08:31:29 DEBUG SQL:127 - select animal0_.id as id2_0_, animal0_.age as age3_0_, animal0_.name as name4_0_, animal0_.color as color5_0_, animal0_.numberOfLives as numberOf6_0_, animal0_.owner as owner7_0_, animal0_.tailLength as tailLeng8_0_, animal0_.animal_type as animal_t1_0_ from Animal animal0_ where animal0_.name like ?
+2020-09-23 08:31:29 DEBUG SQL:127 - select tbl.next_val from hibernate_sequences tbl where tbl.sequence_name=? for update
+2020-09-23 08:31:29 DEBUG SQL:127 - update hibernate_sequences set next_val=?  where next_val=? and sequence_name=?
+2020-09-23 08:31:29 DEBUG SQL:127 - insert into Car (maker, year, horsePower, model, id) values (?, ?, ?, ?, ?)
+2020-09-23 08:31:29 DEBUG SQL:127 - select tbl.next_val from hibernate_sequences tbl where tbl.sequence_name=? for update
+2020-09-23 08:31:29 DEBUG SQL:127 - update hibernate_sequences set next_val=?  where next_val=? and sequence_name=?
+2020-09-23 08:31:29 DEBUG SQL:127 - insert into Car (maker, year, horsePower, model, id) values (?, ?, ?, ?, ?)
+2020-09-23 08:31:29 DEBUG SQL:127 - select tbl.next_val from hibernate_sequences tbl where tbl.sequence_name=? for update
+2020-09-23 08:31:29 DEBUG SQL:127 - update hibernate_sequences set next_val=?  where next_val=? and sequence_name=?
+2020-09-23 08:31:29 DEBUG SQL:127 - insert into Car (maker, year, horsePower, model, id) values (?, ?, ?, ?, ?)
+2020-09-23 08:31:29 DEBUG SQL:127 - select tbl.next_val from hibernate_sequences tbl where tbl.sequence_name=? for update
+2020-09-23 08:31:29 DEBUG SQL:127 - update hibernate_sequences set next_val=?  where next_val=? and sequence_name=?
+2020-09-23 08:31:29 DEBUG SQL:127 - insert into Truck (maker, year, color, maxAllowedWeight, id) values (?, ?, ?, ?, ?)
+2020-09-23 08:31:29 DEBUG SQL:127 - select tbl.next_val from hibernate_sequences tbl where tbl.sequence_name=? for update
+2020-09-23 08:31:29 DEBUG SQL:127 - update hibernate_sequences set next_val=?  where next_val=? and sequence_name=?
+2020-09-23 08:31:29 DEBUG SQL:127 - insert into Truck (maker, year, color, maxAllowedWeight, id) values (?, ?, ?, ?, ?)
+2020-09-23 08:31:29 DEBUG SQL:127 - select machine0_.id as id1_5_, machine0_.maker as maker2_5_, machine0_.year as year3_5_, machine0_.horsePower as horsePow1_1_, machine0_.model as model2_1_, machine0_.color as color1_10_, machine0_.maxAllowedWeight as maxAllow2_10_, machine0_.clazz_ as clazz_ from ( select id, maker, year, horsePower, model, null as color, null as maxAllowedWeight, 1 as clazz_ from Car union all select id, maker, year, null as horsePower, null as model, color, maxAllowedWeight, 2 as clazz_ from Truck ) machine0_ where machine0_.year>4
+2020-09-23 08:31:29 DEBUG SQL:127 - insert into Person (age, name) values (?, ?)
+2020-09-23 08:31:29 DEBUG SQL:127 - insert into Coach (experience, track, id) values (?, ?, ?)
+2020-09-23 08:31:29 DEBUG SQL:127 - insert into Person (age, name) values (?, ?)
+2020-09-23 08:31:29 DEBUG SQL:127 - insert into Mentor (id) values (?)
+2020-09-23 08:31:29 DEBUG SQL:127 - insert into Person (age, name) values (?, ?)
+2020-09-23 08:31:29 DEBUG SQL:127 - insert into Mentor (id) values (?)
+2020-09-23 08:31:29 DEBUG SQL:127 - select coach0_.id as id1_8_, coach0_1_.age as age2_8_, coach0_1_.name as name3_8_, coach0_.experience as experien1_4_, coach0_.track as track2_4_ from Coach coach0_ inner join Person coach0_1_ on coach0_.id=coach0_1_.id where coach0_.experience>10
+2020-09-23 08:31:29 DEBUG SQL:127 - select mentor0_.id as id1_8_, mentor0_1_.age as age2_8_, mentor0_1_.name as name3_8_ from Mentor mentor0_ inner join Person mentor0_1_ on mentor0_.id=mentor0_1_.id where mentor0_1_.age>20
+2020-09-23 08:31:29 DEBUG SQL:127 - insert into Circle (color, radius) values (?, ?)
+2020-09-23 08:31:29 DEBUG SQL:127 - insert into Triangle (color, area) values (?, ?)
+2020-09-23 08:31:29 DEBUG SQL:127 - select circle0_.id as id1_3_, circle0_.color as color2_3_, circle0_.radius as radius3_3_ from Circle circle0_ where circle0_.color=?
+2020-09-23 08:31:29 DEBUG SQL:127 - select triangle0_.id as id1_9_, triangle0_.color as color2_9_, triangle0_.area as area3_9_ from Triangle triangle0_ where triangle0_.color=?
+2020-09-23 08:31:29 DEBUG SQL:127 - insert into NewsPost (content, hashSum, size, postDate, topic) values (?, ?, ?, ?, ?)
+2020-09-23 08:31:29 DEBUG SQL:127 - select newspost0_.id as id1_7_, newspost0_.content as content2_7_, newspost0_.hashSum as hashSum3_7_, newspost0_.size as size4_7_, newspost0_.postDate as postDate5_7_, newspost0_.topic as topic6_7_ from NewsPost newspost0_ where newspost0_.size>1000

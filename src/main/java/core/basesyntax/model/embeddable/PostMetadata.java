@@ -1,5 +1,8 @@
 package core.basesyntax.model.embeddable;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class PostMetadata {
     private long size; // in bytes
     private String hashSum;

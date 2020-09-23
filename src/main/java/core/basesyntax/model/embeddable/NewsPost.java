@@ -1,12 +1,30 @@
 package core.basesyntax.model.embeddable;
 
 import java.time.LocalDate;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 public class NewsPost {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private LocalDate postDate;
     private String topic;
     private String content;
+    @Embedded
     private PostMetadata metadata;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public LocalDate getPostDate() {
         return postDate;
