@@ -5,16 +5,10 @@ import core.basesyntax.model.embeddable.PostMetadata;
 import core.basesyntax.model.embeddable.dao.NewsPostDao;
 import core.basesyntax.model.embeddable.dao.NewsPostDaoImpl;
 import core.basesyntax.model.figure.Circle;
+import core.basesyntax.model.figure.Figure;
 import core.basesyntax.model.figure.Triangle;
-import core.basesyntax.model.figure.dao.CircleDao;
-import core.basesyntax.model.figure.dao.CircleDaoImpl;
-import core.basesyntax.model.figure.dao.TriangleDao;
-import core.basesyntax.model.figure.dao.TriangleDaoImpl;
-import core.basesyntax.model.game.Bowman;
-import core.basesyntax.model.game.Character;
-import core.basesyntax.model.game.Farmer;
-import core.basesyntax.model.game.dao.CharacterDao;
-import core.basesyntax.model.game.dao.CharacterDaoImpl;
+import core.basesyntax.model.figure.dao.FigureDao;
+import core.basesyntax.model.figure.dao.FigureDaoImpl;
 import core.basesyntax.model.ma.Coach;
 import core.basesyntax.model.ma.Mentor;
 import core.basesyntax.model.ma.dao.CoachDao;
@@ -31,6 +25,8 @@ import core.basesyntax.model.zoo.Cat;
 import core.basesyntax.model.zoo.Dog;
 import core.basesyntax.model.zoo.dao.AnimalDao;
 import core.basesyntax.model.zoo.dao.AnimalDaoImpl;
+import java.util.List;
+import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
@@ -43,32 +39,18 @@ public class Main {
 
     public static void playWithAnimals() {
         AnimalDao dao = new AnimalDaoImpl();
-        Cat cat1 = new Cat();
-        cat1.setName("c1");
-        dao.save(cat1);
-        Cat cat2 = new Cat();
-        cat2.setName("c2");
-        dao.save(cat2);
-        Cat cat3 = new Cat();
-        cat3.setName("c3");
-        dao.save(cat3);
-        Cat cat4 = new Cat();
-        cat4.setName("c4");
-        dao.save(cat4);
-        Dog dog1 = new Dog();
-        dog1.setName("d1");
-        dao.save(dog1);
-        Dog dog2 = new Dog();
-        dog2.setName("d2");
-        dao.save(dog2);
-        Dog dog3 = new Dog();
-        dog3.setName("cd3");
-        dao.save(dog3);
-        Dog dog4 = new Dog();
-        dog4.setName("d4");
-        dao.save(dog4);
-
-        dao.findByNameFirstLetter('c')
+        List<String> names = List.of("Alice", "Benny", "Marcy", "Ben", "Amy");
+        for (int i = 0; i < 5; i++) {
+            Cat cat = new Cat();
+            cat.setName(names.get(i) + " cat");
+            dao.save(cat);
+        }
+        for (int i = 0; i < 5; i++) {
+            Dog dog = new Dog();
+            dog.setName(names.get(i) + " dog");
+            dao.save(dog);
+        }
+        dao.findByNameFirstLetter('A')
                 .stream()
                 .map(Animal::getName)
                 .forEach(System.out::println);
@@ -76,22 +58,16 @@ public class Main {
 
     public static void playWithMachines() {
         MachineDao dao = new MachineDaoImpl();
-        Car car1 = new Car();
-        car1.setYear(5);
-        dao.save(car1);
-        Car car2 = new Car();
-        car2.setYear(2);
-        dao.save(car2);
-        Car car3 = new Car();
-        car3.setYear(13);
-        dao.save(car3);
-        Truck t1 = new Truck();
-        t1.setYear(10);
-        dao.save(t1);
-        Truck t2 = new Truck();
-        t2.setYear(2);
-        dao.save(t2);
-
+        for (int i = 0; i < 5; i++) {
+            Car car = new Car();
+            car.setYear(i * 2);
+            dao.save(car);
+        }
+        for (int i = 0; i < 5; i++) {
+            Truck truck = new Truck();
+            truck.setYear(i * 2);
+            dao.save(truck);
+        }
         dao.findByAgeOlderThan(4)
                 .stream()
                 .map(Machine::getYear)
@@ -99,18 +75,19 @@ public class Main {
     }
 
     public static void playWithPeople() {
-        CoachDao dao = new CoachDaoImpl();
+        CoachDao coachDao = new CoachDaoImpl();
         MentorDao mentorDao = new MentorDaoImpl();
-        Coach c1 = new Coach();
-        c1.setExperience(100);
-        dao.save(c1);
-        Mentor m1 = new Mentor();
-        m1.setAge(19);
-        mentorDao.save(m1);
-        Mentor m2 = new Mentor();
-        m2.setAge(25);
-        mentorDao.save(m2);
-        dao.findByExperienceGreaterThan(10)
+        for (int i = 0; i < 3; i++) {
+            Coach coach = new Coach();
+            coach.setExperience(i * 6);
+            coachDao.save(coach);
+        }
+        for (int i = 0; i < 5; i++) {
+            Mentor mentor = new Mentor();
+            mentor.setAge(i * 10);
+            mentorDao.save(mentor);
+        }
+        coachDao.findByExperienceGreaterThan(5)
                 .stream()
                 .map(Coach::getExperience)
                 .forEach(System.out::println);
@@ -120,48 +97,40 @@ public class Main {
                 .forEach(System.out::println);
     }
 
-    public static void playWithCharacters() {
-//        CharacterDao dao = new CharacterDaoImpl();
-//        Bowman b1 = new Bowman();
-//        b1.setPower(200);
-//        dao.save(b1);
-//        Farmer f1 = new Farmer();
-//        f1.setPower(10);
-//        dao.save(f1);
-//        Farmer f2 = new Farmer();
-//        f2.setPower(26);
-//        dao.save(f2);
-//
-//        dao.findAllByPowerAcs()
-//                .stream()
-//                .map(Character::getPower)
-//                .forEach(System.out::println);
-    }
-
     public static void playWithFigures() {
-        CircleDao cdao = new CircleDaoImpl();
-        TriangleDao tdao = new TriangleDaoImpl();
-        Circle c1 = new Circle();
-        c1.setColor("red");
-        cdao.save(c1);
-        Triangle t1 = new Triangle();
-        t1.setColor("red");
-        tdao.save(t1);
-
-        cdao.findByColor("red").stream().map(Circle::getColor).forEach(System.out::println);
-        tdao.findByColor("red").stream().map(Triangle::getColor).forEach(System.out::println);
-
+        FigureDao<Circle> circleDao = new FigureDaoImpl<>();
+        FigureDao<Triangle> triangleDao = new FigureDaoImpl<>();
+        List<String> colors = List.of("blue", "white", "red", "yellow", "green");
+        for (int i = 0; i < 3; i++) {
+            Circle circle = new Circle();
+            circle.setColor(colors.get(i));
+            circleDao.save(circle);
+        }
+        for (int i = 0; i < 5; i++) {
+            Triangle triangle = new Triangle();
+            triangle.setColor(colors.get(i));
+            triangleDao.save(triangle);
+        }
+        Stream.concat(
+                circleDao.findByColor("red", Circle.class).stream(),
+                triangleDao.findByColor("red", Triangle.class).stream())
+                .map(Figure::getColor)
+                .forEach(System.out::println);
     }
 
     public static void playWithNews() {
         NewsPostDao dao = new NewsPostDaoImpl();
-        PostMetadata data = new PostMetadata();
-        data.setSize(2000);
-        NewsPost n1 = new NewsPost();
-        n1.setMetadata(data);
-        dao.save(n1);
-
-        dao.findBySizeGreaterThan(1000).stream().map(NewsPost::getMetadata).map(PostMetadata::getSize).forEach(System.out::println);
-
+        for (int i = 0; i < 5; i++) {
+            PostMetadata data = new PostMetadata();
+            data.setSize(i * 500);
+            NewsPost post = new NewsPost();
+            post.setMetadata(data);
+            dao.save(post);
+        }
+        dao.findBySizeGreaterThan(1000)
+                .stream()
+                .map(NewsPost::getMetadata)
+                .map(PostMetadata::getSize)
+                .forEach(System.out::println);
     }
 }

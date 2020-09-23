@@ -1,6 +1,5 @@
 package core.basesyntax.model.ma.dao;
 
-import core.basesyntax.model.ma.Coach;
 import core.basesyntax.model.ma.Mentor;
 import core.basesyntax.model.util.HibernateUtil;
 import java.util.List;

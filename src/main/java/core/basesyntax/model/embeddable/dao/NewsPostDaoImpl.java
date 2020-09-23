@@ -1,7 +1,6 @@
 package core.basesyntax.model.embeddable.dao;
 
 import core.basesyntax.model.embeddable.NewsPost;
-import core.basesyntax.model.machine.Machine;
 import core.basesyntax.model.util.HibernateUtil;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;

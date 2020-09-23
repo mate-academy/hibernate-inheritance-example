@@ -8,8 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "animal")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "animal_type", discriminatorType = DiscriminatorType.STRING)
 public abstract class Animal {
@@ -41,14 +43,5 @@ public abstract class Animal {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Animal {"
-                + "id=" + id
-                + ", age=" + age
-                + ", name='" + name + '\''
-                + '}';
     }
 }
