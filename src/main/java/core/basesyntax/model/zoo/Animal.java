@@ -1,5 +1,11 @@
 package core.basesyntax.model.zoo;
 
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Animal {
     private int age;
     private String name;
