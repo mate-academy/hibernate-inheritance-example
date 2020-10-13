@@ -1,4 +1,4 @@
-# hibernate-inheritance
+## hibernate-inheritance
 
 In this HW you will have a practice with different inheritance strategies.
 
