@@ -10,6 +10,9 @@ import org.junit.Test;
 
 
 public class MentorDaoImplTest extends AbstractTest {
+    private static final int AGE_1 = 50;
+    private static final int AGE_2 = 30;
+    private static final int AGE_3 = 100;
     private MentorDao mentorDao;
     private PersonDao personDao;
 
@@ -33,7 +36,7 @@ public class MentorDaoImplTest extends AbstractTest {
         bojack.setAge(52);
         bojack.setName("Bojack Horseman");
         Person actual = personDao.save(bojack);
-        List<Mentor> eligibleCoaches = mentorDao.findByAgeGreaterThan(50);
+        List<Mentor> eligibleCoaches = mentorDao.findByAgeGreaterThan(AGE_1);
         Assert.assertEquals(eligibleCoaches.get(0).getId(), actual.getId());
     }
 
@@ -47,7 +50,7 @@ public class MentorDaoImplTest extends AbstractTest {
         carolyn.setAge(31);
         carolyn.setName("Princess Carolyn");;
         personDao.save(carolyn);
-        List<Mentor> eligibleMentors = mentorDao.findByAgeGreaterThan(30);
+        List<Mentor> eligibleMentors = mentorDao.findByAgeGreaterThan(AGE_2);
         Assert.assertEquals(eligibleMentors.size(), 2);
     }
 
@@ -58,9 +61,9 @@ public class MentorDaoImplTest extends AbstractTest {
         bojack.setName("Bojack Horseman");
         Person actual = personDao.save(bojack);
         try {
-            mentorDao.findByAgeGreaterThan(100);;
+            mentorDao.findByAgeGreaterThan(AGE_3);;
         } catch (RuntimeException e) {
-            Assert.assertEquals("Failed to get all mentors older than 100.", e.getMessage());
+            Assert.assertEquals("Failed to get all mentors older than " + AGE_3, e.getMessage());
             return;
         }
     }

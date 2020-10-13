@@ -3,13 +3,16 @@ package core.basesyntax.dao.ma;
 import core.basesyntax.dao.AbstractTest;
 import core.basesyntax.model.ma.Coach;
 import core.basesyntax.model.ma.Person;
+import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.List;
 
 public class CoachDaoImplTest extends AbstractTest {
+    private static final int YEARS_1 = 4;
+    private static final int YEARS_2 = 10;
+    private static final int YEARS_3 = 100;
     private CoachDao coachDao;
     private PersonDao personDao;
 
@@ -35,7 +38,7 @@ public class CoachDaoImplTest extends AbstractTest {
         bean.setExperience(5);
         bean.setTrack(Coach.Track.JAVA);
         Person actual = personDao.save(bean);
-        List<Coach> eligibleCoaches = coachDao.findByExperienceGreaterThan(4);
+        List<Coach> eligibleCoaches = coachDao.findByExperienceGreaterThan(YEARS_1);
         Assert.assertEquals(eligibleCoaches.get(0).getId(), actual.getId());
     }
 
@@ -53,16 +56,22 @@ public class CoachDaoImplTest extends AbstractTest {
         elfo.setExperience(12);
         elfo.setTrack(Coach.Track.UI);
         personDao.save(elfo);
-        List<Coach> eligibleCoaches = coachDao.findByExperienceGreaterThan(10);
+        List<Coach> eligibleCoaches = coachDao.findByExperienceGreaterThan(YEARS_2);
         Assert.assertEquals(eligibleCoaches.size(), 2);
     }
 
     @Test
     public void findCoachesByExperience_Fail() {
+        Coach bean = new Coach();
+        bean.setAge(27);
+        bean.setName("Tiabeanie");
+        bean.setExperience(5);
+        bean.setTrack(Coach.Track.JAVA);
+        personDao.save(bean);
         try {
-            coachDao.findByExperienceGreaterThan(100);;
+            coachDao.findByExperienceGreaterThan(YEARS_3);;
         } catch (RuntimeException e) {
-            Assert.assertEquals("Failed to get all coaches with more than 100 years of experience.", e.getMessage());
+            Assert.assertEquals("Failed to get all coaches with more than " + YEARS_3 + " years of experience.", e.getMessage());
             return;
         }
     }
