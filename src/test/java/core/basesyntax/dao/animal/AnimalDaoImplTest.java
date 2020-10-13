@@ -1,7 +1,6 @@
 package core.basesyntax.dao.animal;
 
 import core.basesyntax.dao.AbstractTest;
-import core.basesyntax.dao.ma.PersonDaoImpl;
 import core.basesyntax.model.zoo.Animal;
 import core.basesyntax.model.zoo.Cat;
 import core.basesyntax.model.zoo.Dog;
@@ -48,8 +47,15 @@ public class AnimalDaoImplTest extends AbstractTest {
         dog.setOwner("boy");
         dog.setTailLength(10);
         dao.save(dog);
+        dog = new Dog();
+        dog.setAge(4);
+        dog.setName("aris");
+        dog.setOwner("boy");
+        dog.setTailLength(10);
+        dao.save(dog);
         List<Animal> animals = dao.findByNameFirstLetter('b');
-        Assert.assertNotNull(animals);
-//        Assert.assertEquals(1L, actual.getId().longValue());
+        Assert.assertEquals(1, animals.size());
+        Dog actual = (Dog) animals.get(0);
+        Assert.assertEquals("boy", actual.getOwner());
     }
 }
