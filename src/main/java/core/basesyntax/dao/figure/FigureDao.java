@@ -7,4 +7,6 @@ public interface FigureDao<T extends Figure> {
     T save(T figure);
 
     List<T> findByColor(String color, Class<T> clazz);
+
+    List<T> getAll(Class<T> clazz);
 }
