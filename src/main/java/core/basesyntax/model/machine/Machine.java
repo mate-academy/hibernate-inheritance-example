@@ -1,12 +1,12 @@
 package core.basesyntax.model.machine;
 
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import java.util.Objects;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -43,12 +43,16 @@ public class Machine {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Machine machine = (Machine) o;
-        return year == machine.year &&
-                Objects.equals(id, machine.id) &&
-                Objects.equals(maker, machine.maker);
+        return year == machine.year
+                && Objects.equals(id, machine.id)
+                && Objects.equals(maker, machine.maker);
     }
 
     @Override

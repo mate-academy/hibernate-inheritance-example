@@ -1,12 +1,12 @@
 package core.basesyntax.model.zoo;
 
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import java.util.Objects;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -43,12 +43,16 @@ public class Animal {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Animal animal = (Animal) o;
-        return age == animal.age &&
-                Objects.equals(id, animal.id) &&
-                Objects.equals(name, animal.name);
+        return age == animal.age
+                && Objects.equals(id, animal.id)
+                && Objects.equals(name, animal.name);
     }
 
     @Override

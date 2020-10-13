@@ -1,10 +1,10 @@
 package core.basesyntax.model.figure;
 
+import java.util.Objects;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import java.util.Objects;
 
 @MappedSuperclass
 public class Figure {
@@ -32,11 +32,15 @@ public class Figure {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Figure figure = (Figure) o;
-        return Objects.equals(id, figure.id) &&
-                Objects.equals(color, figure.color);
+        return Objects.equals(id, figure.id)
+                && Objects.equals(color, figure.color);
     }
 
     @Override
