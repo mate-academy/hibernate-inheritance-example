@@ -1,6 +1,7 @@
 package core.basesyntax.dao.animal;
 
 import core.basesyntax.dao.AbstractDao;
+import core.basesyntax.exception.DataProcessingException;
 import core.basesyntax.model.zoo.Animal;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -48,7 +49,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
             query.select(root).where(predicate);
             return session.createQuery(query).getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Can't get animals with first name startWith: "
+            throw new DataProcessingException("Can't get animals with first name startWith: "
                     + character, e);
         }
     }
@@ -57,7 +58,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
         try (Session session = sessionFactory.openSession()) {
             return session.createQuery("from Animal", Animal.class).getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Can't get animals from DB", e);
+            throw new DataProcessingException("Can't get animals from DB", e);
         }
     }
 }

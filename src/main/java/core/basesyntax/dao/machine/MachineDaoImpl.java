@@ -1,6 +1,7 @@
 package core.basesyntax.dao.machine;
 
 import core.basesyntax.dao.AbstractDao;
+import core.basesyntax.exception.DataProcessingException;
 import core.basesyntax.model.machine.Machine;
 import java.util.List;
 import org.hibernate.Session;
@@ -8,7 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 public class MachineDaoImpl extends AbstractDao implements MachineDao {
-    protected MachineDaoImpl(SessionFactory sessionFactory) {
+    public MachineDaoImpl(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
 
@@ -26,7 +27,7 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Can't insert to DB machine: " + machine, e);
+            throw new DataProcessingException("Can't insert to DB machine: " + machine, e);
         } finally {
             if (session != null) {
                 session.close();

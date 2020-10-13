@@ -1,6 +1,7 @@
 package core.basesyntax.dao.ma;
 
 import core.basesyntax.dao.AbstractDao;
+import core.basesyntax.exception.DataProcessingException;
 import core.basesyntax.model.ma.Person;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -25,7 +26,7 @@ public class PersonDaoImpl extends AbstractDao implements PersonDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Can't insert to DB person: " + person, e);
+            throw new DataProcessingException("Can't insert to DB person: " + person, e);
         } finally {
             if (session != null) {
                 session.close();
