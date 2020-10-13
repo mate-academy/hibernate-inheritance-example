@@ -42,7 +42,8 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
                     + "where f.color = :color", clazz).setParameter("color", color)
                     .getResultList();
         } catch (Exception e) {
-            throw new DataProcessingException("Can't find figure: " + clazz + " by color: " + color, e);
+            throw new DataProcessingException("Can't find figure: " + clazz
+                    + " by color: " + color, e);
         }
     }
 
