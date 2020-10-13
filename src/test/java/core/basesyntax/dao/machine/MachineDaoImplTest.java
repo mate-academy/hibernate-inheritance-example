@@ -1,14 +1,9 @@
 package core.basesyntax.dao.machine;
 
 import core.basesyntax.dao.AbstractTest;
-import core.basesyntax.dao.animal.AnimalDaoImpl;
-import core.basesyntax.model.ma.Coach;
 import core.basesyntax.model.machine.Car;
 import core.basesyntax.model.machine.Machine;
 import core.basesyntax.model.machine.Truck;
-import core.basesyntax.model.zoo.Animal;
-import core.basesyntax.model.zoo.Cat;
-import core.basesyntax.model.zoo.Dog;
 import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
@@ -19,7 +14,7 @@ public class MachineDaoImplTest extends AbstractTest {
 
     @Override
     protected Class<?>[] entities() {
-        return new Class[] {
+        return new Class[]{
                 Machine.class,
                 Car.class,
                 Truck.class

@@ -1,7 +1,5 @@
 package core.basesyntax.dao;
 
-import core.basesyntax.HibernateUtil;
-import core.basesyntax.model.zoo.Animal;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -10,7 +8,7 @@ public abstract class AbstractDao<T> {
     protected final SessionFactory sessionFactory;
 
     protected AbstractDao(SessionFactory sessionFactory) {
-        this.sessionFactory = HibernateUtil.getSessionFactory();
+        this.sessionFactory = sessionFactory;
     }
 
     public T save(T entity) {

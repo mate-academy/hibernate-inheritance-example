@@ -14,7 +14,7 @@ public class AnimalDaoImplTest extends AbstractTest {
 
     @Override
     protected Class<?>[] entities() {
-        return new Class[] {
+        return new Class[]{
                 Animal.class,
                 Cat.class,
                 Dog.class
