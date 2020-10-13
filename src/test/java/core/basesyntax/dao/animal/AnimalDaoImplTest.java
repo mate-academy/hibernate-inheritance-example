@@ -1,19 +1,19 @@
 package core.basesyntax.dao.animal;
 
-        import core.basesyntax.dao.AbstractTest;
-        import core.basesyntax.model.zoo.Animal;
-        import core.basesyntax.model.zoo.Cat;
-        import core.basesyntax.model.zoo.Dog;
-        import org.junit.Assert;
-        import org.junit.Before;
-        import org.junit.Test;
+import core.basesyntax.dao.AbstractTest;
+import core.basesyntax.model.zoo.Animal;
+import core.basesyntax.model.zoo.Cat;
+import core.basesyntax.model.zoo.Dog;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 public class AnimalDaoImplTest extends AbstractTest {
     private AnimalDao animalDao;
 
     @Override
     protected Class<?>[] entities() {
-        return new Class[] {
+        return new Class[]{
                 Animal.class,
                 Dog.class,
                 Cat.class

@@ -1,17 +1,9 @@
 package core.basesyntax.dao.figure;
 
 import core.basesyntax.dao.AbstractTest;
-import core.basesyntax.dao.animal.AnimalDaoImpl;
 import core.basesyntax.model.figure.Circle;
 import core.basesyntax.model.figure.Figure;
 import core.basesyntax.model.figure.Triangle;
-import core.basesyntax.model.machine.Car;
-import core.basesyntax.model.machine.Machine;
-import core.basesyntax.model.machine.Truck;
-import core.basesyntax.model.zoo.Animal;
-import core.basesyntax.model.zoo.Cat;
-import core.basesyntax.model.zoo.Dog;
-import org.hibernate.MappingException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
