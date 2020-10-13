@@ -1,5 +1,11 @@
 package core.basesyntax.dao.ma;
 
-public class CoachDaoImplTest {
+import core.basesyntax.dao.AbstractTest;
 
+public class CoachDaoImplTest extends AbstractTest {
+
+    @Override
+    protected Class<?>[] entities() {
+        return new Class[0];
+    }
 }

@@ -32,7 +32,7 @@ public class FigureDaoImplTest extends AbstractTest {
         try {
             figureDao.save(figure);
         } catch (RuntimeException e) {
-            Assert.assertEquals("Failed to add the figure to the DB.", e.getMessage());
+            Assert.assertEquals("Failed to add the figure" + figure + " to the DB.", e.getMessage());
             return;
         }
     }
