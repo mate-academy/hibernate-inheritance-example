@@ -1,5 +1,12 @@
 package core.basesyntax.model.ma;
 
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
+@Entity
+@PrimaryKeyJoinColumn(name = "coachId")
+@Table(name = "coach")
 public class Coach extends Person {
     public enum Track {
         JAVA, FE, UI, QA
@@ -22,5 +29,13 @@ public class Coach extends Person {
 
     public void setTrack(Track track) {
         this.track = track;
+    }
+
+    @Override
+    public String toString() {
+        return "Coach{"
+                + "experience=" + experience
+                + ", track=" + track
+                + '}';
     }
 }

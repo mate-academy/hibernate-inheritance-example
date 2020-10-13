@@ -1,5 +1,11 @@
 package core.basesyntax.model.ma;
 
-public class Mentor extends Person {
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
+@Entity
+@PrimaryKeyJoinColumn(name = "mentorId")
+@Table(name = "mentor")
+public class Mentor extends Person {
 }
