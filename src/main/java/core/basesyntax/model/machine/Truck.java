@@ -7,10 +7,6 @@ import javax.persistence.Id;
 
 @Entity
 public class Truck extends Machine {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     private String color;
     private double maxAllowedWeight;
 

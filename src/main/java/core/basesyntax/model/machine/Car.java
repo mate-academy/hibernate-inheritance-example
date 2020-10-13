@@ -7,10 +7,6 @@ import javax.persistence.Id;
 
 @Entity
 public class Car extends Machine {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     private int horsePower;
     private String model;
 
