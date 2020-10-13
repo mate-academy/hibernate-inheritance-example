@@ -2,10 +2,8 @@ package core.basesyntax.dao.machine;
 
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.exception.DataProcesingException;
-import core.basesyntax.model.ma.Mentor;
 import core.basesyntax.model.machine.Machine;
 import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -41,8 +39,8 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
     @Override
     public List<Machine> findByAgeOlderThan(int age) {
         try (Session session = sessionFactory.openSession()) {
-            Query<Machine> query = session.createQuery("FROM Machine " +
-                    "WHERE year < :param",Machine.class);
+            Query<Machine> query = session.createQuery("FROM Machine "
+                    + "WHERE year < :param",Machine.class);
             query.setParameter("param", age);
             return query.getResultList();
         } catch (Exception e) {
