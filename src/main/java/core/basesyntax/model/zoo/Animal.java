@@ -46,10 +46,10 @@ public class Animal {
 
     @Override
     public String toString() {
-        return "Animal{" +
-                "id=" + id +
-                ", age=" + age +
-                ", name='" + name + '\'' +
-                '}';
+        return "Animal{"
+                + "id=" + id
+                + ", age=" + age
+                + ", name='" + name + '\''
+                + '}';
     }
 }
