@@ -8,8 +8,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.sound.midi.Track;
-
 public class MachineDaoImplTest extends AbstractTest {
     private MachineDao machineDao;
 
