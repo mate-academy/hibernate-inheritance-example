@@ -1,5 +1,11 @@
 package core.basesyntax.model.machine;
 
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Car extends Machine {
     private int horsePower;
     private String model;
