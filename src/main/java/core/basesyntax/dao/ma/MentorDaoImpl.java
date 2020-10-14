@@ -2,15 +2,12 @@ package core.basesyntax.dao.ma;
 
 import core.basesyntax.model.ma.Mentor;
 import java.util.List;
-
-import core.basesyntax.model.zoo.Animal;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
-
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 
 public class MentorDaoImpl extends PersonDaoImpl implements MentorDao {
     public MentorDaoImpl(SessionFactory sessionFactory) {
