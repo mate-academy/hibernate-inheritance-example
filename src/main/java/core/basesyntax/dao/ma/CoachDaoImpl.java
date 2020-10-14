@@ -20,11 +20,11 @@ public class CoachDaoImpl extends PersonDaoImpl implements CoachDao {
             CriteriaBuilder builder = session.getCriteriaBuilder();
             CriteriaQuery<Coach> query = builder.createQuery(Coach.class);
             Root<Coach> root = query.from(Coach.class);
-            Predicate greatThanYears = builder.greaterThan(root.get("years"), years);
+            Predicate greatThanYears = builder.greaterThan(root.get("experience"), years);
             query.select(root).where(greatThanYears);
             return session.createQuery(query).getResultList();
         } catch (Exception exception) {
-            throw new RuntimeException("Can't get list of coach with experience greater than "
+            throw new RuntimeException("Can't get list of coaches with experience greater than "
                     + years, exception);
         }
     }

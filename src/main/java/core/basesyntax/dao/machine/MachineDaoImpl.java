@@ -44,7 +44,7 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
             CriteriaBuilder builder = session.getCriteriaBuilder();
             CriteriaQuery<Machine> query = builder.createQuery(Machine.class);
             Root<Machine> root = query.from(Machine.class);
-            Predicate olderThan = builder.greaterThan(root.get("age"), age);
+            Predicate olderThan = builder.greaterThan(root.get("year"), age);
             query.select(root).where(olderThan);
             return session.createQuery(query).getResultList();
         } catch (Exception exception) {
