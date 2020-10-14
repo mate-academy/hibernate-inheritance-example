@@ -1,8 +1,33 @@
 package core.basesyntax.model.zoo;
 
+import java.util.Objects;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+@Entity (name = "animals")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "animal_type",
+            discriminatorType = DiscriminatorType.STRING)
 public class Animal {
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    private Long id;
     private int age;
     private String name;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public int getAge() {
         return age;
@@ -18,5 +43,31 @@ public class Animal {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Animal{ id=" + id
+                + ", age=" + age
+                + ", name='" + name + " '}'";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Animal)) {
+            return false;
+        }
+        Animal animal = (Animal) o;
+        return getAge() == animal.getAge()
+                && getId().equals(animal.getId())
+                && getName().equals(animal.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getAge(), getName());
     }
 }
