@@ -1,6 +1,11 @@
 package core.basesyntax.model.machine;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+@Entity
 public class Car extends Machine {
+    @Column(name = "horse_power")
     private int horsePower;
     private String model;
 
@@ -18,5 +23,10 @@ public class Car extends Machine {
 
     public void setModel(String model) {
         this.model = model;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" + "horsePower=" + horsePower + ", model='" + model + '\'' + '}';
     }
 }
