@@ -33,8 +33,6 @@ public class CoachDaoImplTest extends AbstractTest {
         coach.setTrack(Coach.Track.JAVA);
         coach.setExperience(5);
         coachDao.save(coach);
-
-        System.out.println(coachDao.findByExperienceGreaterThan(4));
         Assert.assertNotNull(coachDao.findByExperienceGreaterThan(4));
         Assert.assertEquals(1, coachDao.findByExperienceGreaterThan(4).size());
     }
