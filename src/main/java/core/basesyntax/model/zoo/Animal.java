@@ -15,6 +15,7 @@ import javax.persistence.InheritanceType;
 public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private int age;
     private String name;
 
@@ -26,8 +27,22 @@ public class Animal {
         this.age = age;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String toString() {
+        return "Animal{" + "id=" + id + ", age=" + age
+                + ", name='" + name + '\'' + '}';
     }
 
     public void setName(String name) {
