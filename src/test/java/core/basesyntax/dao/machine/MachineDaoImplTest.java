@@ -29,7 +29,7 @@ public class MachineDaoImplTest extends AbstractTest {
         teslaS.setHorsePower(500);
         teslaS.setModel("Tesla Model S");
         teslaS.setMaker("Mask");
-        teslaS.setYear(2020);
+        teslaS.setYear(2018);
 
         cyberTruck = new Truck();
         cyberTruck.setColor("Metalic");
@@ -42,6 +42,6 @@ public class MachineDaoImplTest extends AbstractTest {
     public void saveAndGetMachine() {
         machineDao.save(teslaS);
         machineDao.save(cyberTruck);
-        Assert.assertEquals(machineDao.findByAgeOlderThan(2022).size(), 2);
+        Assert.assertEquals(machineDao.findByAgeOlderThan(1).size(), 1);
     }
 }
