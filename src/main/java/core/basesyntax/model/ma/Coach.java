@@ -1,12 +1,18 @@
 package core.basesyntax.model.ma;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Coach extends Person {
+    private int experience;
+    private Track track;
+
+    public Coach() {
+    }
+
     public enum Track {
         JAVA, FE, UI, QA
     }
-
-    private int experience;
-    private Track track;
 
     public int getExperience() {
         return experience;
@@ -22,5 +28,13 @@ public class Coach extends Person {
 
     public void setTrack(Track track) {
         this.track = track;
+    }
+
+    @Override
+    public String toString() {
+        return "Coach{"
+                + "experience=" + experience
+                + ", track=" + track
+                + '}';
     }
 }
