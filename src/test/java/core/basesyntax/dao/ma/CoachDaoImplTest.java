@@ -26,7 +26,7 @@ public class CoachDaoImplTest extends AbstractTest {
     }
 
     @Test
-    public void get_list_of_mentors_test() {
+    public void get_list_of_coaches_test() {
         Coach coach = new Coach();
         coach.setName("Bogdan");
         coach.setAge(28);
