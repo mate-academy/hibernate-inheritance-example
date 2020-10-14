@@ -1,5 +1,12 @@
 package core.basesyntax.model.zoo;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@Entity
+@DiscriminatorValue("cat")
 public class Cat extends Animal {
     private int numberOfLives;
     private String color;

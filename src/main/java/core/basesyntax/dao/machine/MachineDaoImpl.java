@@ -1,22 +1,50 @@
 package core.basesyntax.dao.machine;
 
 import core.basesyntax.dao.AbstractDao;
+import core.basesyntax.exception.DataProcessingException;
 import core.basesyntax.model.machine.Machine;
 import java.util.List;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 public class MachineDaoImpl extends AbstractDao implements MachineDao {
-    protected MachineDaoImpl(SessionFactory sessionFactory) {
+    public MachineDaoImpl(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
 
     @Override
     public Machine save(Machine machine) {
-        return null;
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession().getSession();
+            transaction = session.beginTransaction();
+            session.persist(machine);
+            transaction.commit();
+            return machine;
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            throw new DataProcessingException("Can't save machine " + machine, e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
 
     @Override
     public List<Machine> findByAgeOlderThan(int age) {
-        return null;
+        try (Session session = sessionFactory.openSession().getSession()) {
+            Query<Machine> findByAgeOlderThanQuery = session.createQuery("from Machine m "
+                    + "where m.year < :age", Machine.class);
+            findByAgeOlderThanQuery.setParameter("age", age);
+            return findByAgeOlderThanQuery.getResultList();
+        } catch (Exception e) {
+            throw new DataProcessingException("Can't find by age older than " + age, e);
+        }
     }
 }

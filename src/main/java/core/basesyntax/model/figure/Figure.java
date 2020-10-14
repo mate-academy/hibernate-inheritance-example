@@ -1,5 +1,10 @@
 package core.basesyntax.model.figure;
 
+import javax.persistence.MappedSuperclass;
+import lombok.Data;
+
+@Data
+@MappedSuperclass
 public class Figure {
     private String color;
 
