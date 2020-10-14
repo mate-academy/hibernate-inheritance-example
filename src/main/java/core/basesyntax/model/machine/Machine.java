@@ -1,5 +1,8 @@
 package core.basesyntax.model.machine;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Machine {
     private int year;
     private String maker;
