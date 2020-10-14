@@ -1,5 +1,6 @@
 package core.basesyntax.model.ma;
 
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -47,5 +48,24 @@ public class Person {
                 + ", age=" + age
                 + ", name='" + name + '\''
                 + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Person person = (Person) o;
+        return age == person.age
+                && Objects.equals(id, person.id)
+                && Objects.equals(name, person.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, age, name);
     }
 }
