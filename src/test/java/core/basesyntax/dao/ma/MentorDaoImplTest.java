@@ -10,7 +10,6 @@ import org.junit.Test;
 
 public class MentorDaoImplTest extends AbstractTest {
     private MentorDao mentorDao;
-    private PersonDao personDao;
 
     @Override
     protected Class<?>[] entities() {
@@ -24,7 +23,6 @@ public class MentorDaoImplTest extends AbstractTest {
     @Before
     public void setUp() throws Exception {
         mentorDao = new MentorDaoImpl(getSessionFactory());
-        personDao = new PersonDaoImpl(getSessionFactory());
     }
 
     @Test
@@ -35,9 +33,8 @@ public class MentorDaoImplTest extends AbstractTest {
         Mentor mentor2 = new Mentor();
         mentor2.setAge(13);
         mentor2.setName("Malik");
-        personDao.save(mentor);
-        personDao.save(mentor2);
-        mentorDao.findByAgeGreaterThan(10);
+        mentorDao.save(mentor);
+        mentorDao.save(mentor2);
         Assert.assertNotNull(mentorDao.findByAgeGreaterThan(10));
         Assert.assertEquals(2, mentorDao.findByAgeGreaterThan(10).size());
     }
