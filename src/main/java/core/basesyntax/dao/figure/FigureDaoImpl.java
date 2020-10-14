@@ -24,12 +24,6 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao<T> implements F
             Predicate colorEqual = criteriaBuilder.equal(root.get("color"), color);
             criteriaQuery.select(root).where(colorEqual);
             return session.createQuery(criteriaQuery).getResultList();
-//            return session.createQuery(
-//                    "FROM " + clazz.getSimpleName() + " f"
-//                            + " WHERE f.color = :color", clazz)
-//                    .setParameter("table", clazz.getSimpleName())
-//                    .setParameter("color", color)
-//                    .getResultList();
         }
     }
 }
