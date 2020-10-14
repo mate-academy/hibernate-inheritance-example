@@ -1,6 +1,5 @@
 package core.basesyntax.model.figure;
 
-import java.util.Objects;
 import javax.persistence.Entity;
 
 @Entity
@@ -20,11 +19,6 @@ public class Circle extends Figure {
 
     public void setRadius(int radius) {
         this.radius = radius;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getRadius());
     }
 
     @Override
