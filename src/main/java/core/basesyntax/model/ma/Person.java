@@ -11,7 +11,7 @@ import javax.persistence.InheritanceType;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Person {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int age;
     private String name;
