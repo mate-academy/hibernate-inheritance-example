@@ -21,5 +21,7 @@
         <mapping class="core.basesyntax.model.machine.Machine"/>
         <mapping class="core.basesyntax.model.machine.Truck"/>
         <mapping class="core.basesyntax.model.figure.Circle"/>
+        <mapping class="core.basesyntax.model.figure.Figure"/>
+        <mapping class="core.basesyntax.model.figure.Triangle"/>
     </session-factory>
 </hibernate-configuration>
