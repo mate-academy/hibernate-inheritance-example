@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "triangle")
+@Table(name = "triangles")
 public class Triangle extends Figure {
     private double area;
 

@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "circle")
+@Table(name = "circles")
 public class Circle extends Figure {
     private int radius;
 
@@ -14,5 +14,12 @@ public class Circle extends Figure {
 
     public void setRadius(int radius) {
         this.radius = radius;
+    }
+
+    @Override
+    public String toString() {
+        return "Circle{"
+                + "radius=" + radius
+                + '}';
     }
 }

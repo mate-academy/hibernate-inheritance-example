@@ -6,7 +6,7 @@ import javax.persistence.Table;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "coachId")
-@Table(name = "coach")
+@Table(name = "coaches")
 public class Coach extends Person {
     public enum Track {
         JAVA, FE, UI, QA

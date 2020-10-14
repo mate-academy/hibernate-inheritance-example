@@ -6,6 +6,6 @@ import javax.persistence.Table;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "mentorId")
-@Table(name = "mentor")
+@Table(name = "mentors")
 public class Mentor extends Person {
 }
