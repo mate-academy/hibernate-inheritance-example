@@ -15,7 +15,6 @@
         <property name="use_sql_comments">true</property>
 
         <mapping class="core.basesyntax.model.figure.Circle"/>
-        <mapping class="core.basesyntax.model.figure.Figure"/>
         <mapping class="core.basesyntax.model.figure.Triangle"/>
         <mapping class="core.basesyntax.model.ma.Coach"/>
         <mapping class="core.basesyntax.model.ma.Mentor"/>
