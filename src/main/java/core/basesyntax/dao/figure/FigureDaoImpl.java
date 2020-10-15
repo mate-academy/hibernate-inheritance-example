@@ -44,5 +44,6 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
                     + "WHERE f.color = :color", clazz);
             query.setParameter("color", color);
             return query.getResultList();
+        }
     }
-}}
+}
