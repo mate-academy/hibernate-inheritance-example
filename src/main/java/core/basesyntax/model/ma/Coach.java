@@ -1,11 +1,10 @@
 package core.basesyntax.model.ma;
 
-import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-@PrimaryKeyJoinColumn(name = "id")
+@PrimaryKeyJoinColumn
 public class Coach extends Person {
     public enum Track {
         JAVA, FE, UI, QA
@@ -36,24 +35,6 @@ public class Coach extends Person {
 
     public void setTrack(Track track) {
         this.track = track;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Coach)) {
-            return false;
-        }
-        Coach coach = (Coach) o;
-        return getExperience() == coach.getExperience()
-                && getTrack() == coach.getTrack();
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getExperience(), getTrack());
     }
 
     @Override

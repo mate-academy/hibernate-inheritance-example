@@ -1,6 +1,5 @@
 package core.basesyntax.model.zoo;
 
-import java.util.Objects;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
@@ -38,26 +37,5 @@ public class Cat extends Animal {
     public String toString() {
         return "Cat { numberOfLives = " + numberOfLives
                 + ", color='" + color + "'}'";
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Cat)) {
-            return false;
-        }
-        if (!super.equals(o)) {
-            return false;
-        }
-        Cat cat = (Cat) o;
-        return getNumberOfLives() == cat.getNumberOfLives()
-                && getColor().equals(cat.getColor());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), getNumberOfLives(), getColor());
     }
 }
