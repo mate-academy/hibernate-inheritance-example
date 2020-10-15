@@ -8,11 +8,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "animal_species",
         discriminatorType = DiscriminatorType.STRING)
+@Table(name = "animals")
 public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
