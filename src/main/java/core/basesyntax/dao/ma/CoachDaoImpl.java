@@ -1,10 +1,10 @@
 package core.basesyntax.dao.ma;
 
-import core.basesyntax.model.ma.Coach;
 import core.basesyntax.exceptions.DataProcessingException;
+import core.basesyntax.model.ma.Coach;
 import java.util.List;
-import org.hibernate.SessionFactory;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
 public class CoachDaoImpl extends PersonDaoImpl implements CoachDao {

@@ -11,7 +11,7 @@ import javax.persistence.InheritanceType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="animal_name",
+@DiscriminatorColumn(name = "animal_name",
         discriminatorType = DiscriminatorType.STRING)
 public class Animal {
     @Id
