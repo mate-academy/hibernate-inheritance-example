@@ -16,12 +16,12 @@ public class CoachDaoImpl extends PersonDaoImpl implements CoachDao {
     public List<Coach> findByExperienceGreaterThan(int years) {
         try (Session session = sessionFactory.openSession()) {
             Query<Coach> query = session.createQuery("FROM Coach "
-                    + "WHERE experience > :param",Coach.class);
+                    + "WHERE experience > :param", Coach.class);
             query.setParameter("param", years);
             return query.getResultList();
         } catch (Exception e) {
             throw new DataProcessingException(
-                    "Can't get mentors by experience greater than " + years, e);
+                    "Can't get Coaches by experience greater than " + years, e);
         }
     }
 }

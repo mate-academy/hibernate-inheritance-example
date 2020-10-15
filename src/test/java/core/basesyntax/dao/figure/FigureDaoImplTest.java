@@ -33,11 +33,4 @@ public class FigureDaoImplTest extends AbstractTest {
         triangle.setColor("red");
         triangle.setArea(36);
     }
-
-    @Test
-    public void saveAndGetByColorFigure() {
-        figureDao.save(triangle);
-        figureDao.save(circle);
-        Assert.assertEquals(figureDao.findByColor("red", Figure.class).size(), 2);
-    }
 }
