@@ -31,7 +31,7 @@ public class AnimalDaoImplTest extends AbstractTest {
     @Test
     public void createAnimal_Ok() {
         Animal animal = new Animal();
-        animal.setName("Grut");
+        animal.setName("Gruty");
         animal.setAge(400);
         Animal actual = animalDao.save(animal);
         Assert.assertNotNull(actual);
