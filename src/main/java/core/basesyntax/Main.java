@@ -102,7 +102,7 @@ public class Main {
         machine3.setMaxAllowedWeight(5000);
         machineDao.save(machine3);
 
-        machineDao.findByAgeOlderThan(2020).forEach(System.out::println);
+        machineDao.findByAgeOlderThan(5).forEach(System.out::println);
 
         Triangle triangle = new Triangle();
         triangle.setArea(5);

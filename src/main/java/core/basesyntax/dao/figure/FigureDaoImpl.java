@@ -35,9 +35,7 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
     public List<T> findByColor(String color, Class<T> clazz) {
         try {
             Query<T> query = sessionFactory.openSession().createQuery(
-                    "FROM " + clazz.getSimpleName() + " m "
-                            + "WHERE m.color = :color ",
-                    clazz);
+                    "FROM " + clazz.getSimpleName() + " m WHERE m.color = :color ", clazz);
             query.setParameter("color", color);
             return query.getResultList();
         } catch (Exception e) {

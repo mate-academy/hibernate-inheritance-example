@@ -11,7 +11,6 @@ import org.hibernate.query.Query;
 public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
 
     public AnimalDaoImpl(SessionFactory sessionFactory) {
-
         super(sessionFactory);
     }
 
@@ -41,9 +40,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
     public List<Animal> findByNameFirstLetter(Character character) {
         try (Session session = sessionFactory.openSession()) {
             Query<Animal> query = session.createQuery(
-                    "FROM Animal a "
-                            + "WHERE a.name LIKE :name ",
-                    Animal.class);
+                    "FROM Animal a WHERE a.name LIKE :name ", Animal.class);
             query.setParameter("name", character + "%");
             return query.getResultList();
         } catch (Exception e) {
