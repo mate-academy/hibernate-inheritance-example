@@ -10,9 +10,10 @@ import org.junit.Test;
 
 public class PersonDaoImplTest extends AbstractTest {
     private PersonDao personDao;
+
     @Override
     protected Class<?>[] entities() {
-        return new Class[] {
+        return new Class[]{
                 Person.class,
                 Coach.class,
                 Mentor.class
