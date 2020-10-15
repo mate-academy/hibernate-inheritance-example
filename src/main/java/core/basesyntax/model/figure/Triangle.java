@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 
 @Entity
 public class Triangle extends Figure {
-    private Long id;
     private double area;
 
     public double getArea() {
@@ -17,6 +16,6 @@ public class Triangle extends Figure {
 
     @Override
     public String toString() {
-        return "Triangle{" + "id=" + id + ", area=" + area + '}';
+        return "Triangle{" + "id=" + super.getId() + ", area=" + area + '}';
     }
 }

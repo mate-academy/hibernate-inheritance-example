@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 
 @Entity
 public class Circle extends Figure {
-    private Long id;
     private int radius;
 
     public int getRadius() {
@@ -17,6 +16,6 @@ public class Circle extends Figure {
 
     @Override
     public String toString() {
-        return "Circle{" + "id=" + id + ", radius=" + radius + '}';
+        return "Circle{" + "id=" + super.getId() + ", radius=" + radius + '}';
     }
 }
