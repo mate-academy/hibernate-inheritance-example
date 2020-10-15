@@ -71,6 +71,8 @@ public abstract class AbstractTest {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", getDataSourceProvider().hibernateDialect());
         properties.put("hibernate.hbm2ddl.auto", "create-drop");
+        properties.put("hibernate.show_sql", "true");
+        properties.put("hibernate.format_sql", "true");
 
         //data source settings
         properties.put("hibernate.connection.datasource", newDataSource());
