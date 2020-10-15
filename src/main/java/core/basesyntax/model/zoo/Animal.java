@@ -14,7 +14,7 @@ import javax.persistence.InheritanceType;
 @DiscriminatorColumn(name = "animal_type", discriminatorType = DiscriminatorType.STRING)
 public class Animal {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int age;
     private String name;
