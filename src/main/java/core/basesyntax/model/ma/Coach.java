@@ -1,9 +1,8 @@
 package core.basesyntax.model.ma;
 
+import javax.persistence.Entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 @Data

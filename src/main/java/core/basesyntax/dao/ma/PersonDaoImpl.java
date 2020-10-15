@@ -3,7 +3,6 @@ package core.basesyntax.dao.ma;
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.exeptions.DataProcessingException;
 import core.basesyntax.model.ma.Person;
-import lombok.Data;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

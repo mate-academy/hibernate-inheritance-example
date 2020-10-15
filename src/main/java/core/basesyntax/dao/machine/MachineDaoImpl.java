@@ -4,15 +4,13 @@ import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.exeptions.DataProcessingException;
 import core.basesyntax.model.machine.Machine;
 import java.util.List;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 public class MachineDaoImpl extends AbstractDao implements MachineDao {
     public MachineDaoImpl(SessionFactory sessionFactory) {
@@ -46,14 +44,14 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
     public List<Machine> findByAgeOlderThan(int age) {
         try (Session session = sessionFactory.openSession()) {
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-            CriteriaQuery<Machine> orderCriteriaQuery =
+            CriteriaQuery<Machine> machineCriteriaQuery =
                     criteriaBuilder.createQuery(Machine.class);
-            Root<Machine> orderRoot =
-                    orderCriteriaQuery.from(Machine.class);
+            Root<Machine> machineRoot =
+                    machineCriteriaQuery.from(Machine.class);
             Predicate predicate =
-                    criteriaBuilder.lt(orderRoot.get("year"), age);
-            orderCriteriaQuery.select(orderRoot).where(predicate);
-            return session.createQuery(orderCriteriaQuery.distinct(true)).getResultList();
+                    criteriaBuilder.lt(machineRoot.get("year"), age);
+            machineCriteriaQuery.select(machineRoot).where(predicate);
+            return session.createQuery(machineCriteriaQuery.distinct(true)).getResultList();
         }
     }
 }

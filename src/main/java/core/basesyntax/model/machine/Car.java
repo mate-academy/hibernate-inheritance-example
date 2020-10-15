@@ -1,9 +1,9 @@
 package core.basesyntax.model.machine;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor

@@ -1,10 +1,10 @@
 package core.basesyntax.model.zoo;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data

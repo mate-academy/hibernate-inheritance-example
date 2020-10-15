@@ -7,7 +7,6 @@ import core.basesyntax.dao.figure.FigureDaoImpl;
 import core.basesyntax.dao.ma.*;
 import core.basesyntax.dao.machine.MachineDao;
 import core.basesyntax.dao.machine.MachineDaoImpl;
-import core.basesyntax.library.Injector;
 import core.basesyntax.model.figure.Circle;
 import core.basesyntax.model.figure.Figure;
 import core.basesyntax.model.figure.Triangle;
@@ -25,10 +24,10 @@ import core.basesyntax.model.zoo.Dog;
 public class Main {
     public static void main(String[] args) {
         PersonDao personDao = new PersonDaoImpl(HibernateUtil.getSessionFactory());
-        Person person = new Person();
-        person.setName("person");
-        person.setAge(20);
-        personDao.save(person);
+//        Person person = new Person();
+//        person.setName("person");
+//        person.setAge(20);
+//        personDao.save(person);
         Mentor mentor = new Mentor();
         mentor.setAge(20);
         mentor.setName("bob");
