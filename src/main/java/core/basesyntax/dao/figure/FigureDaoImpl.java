@@ -22,7 +22,7 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
         Transaction transaction = null;
         Session session = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.save(figure);
             transaction.commit();

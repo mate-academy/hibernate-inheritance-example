@@ -3,7 +3,6 @@ package core.basesyntax.dao.machine;
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.exceptions.DataProcessingException;
 import core.basesyntax.model.machine.Machine;
-import core.basesyntax.util.HibernateUtil;
 import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -23,7 +22,7 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
         Transaction transaction = null;
         Session session = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.save(machine);
             transaction.commit();
@@ -43,12 +42,12 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
 
     @Override
     public List<Machine> findByAgeOlderThan(int age) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
             CriteriaQuery<Machine> criteriaQuery = criteriaBuilder.createQuery(Machine.class);
             Root<Machine> root = criteriaQuery.from(Machine.class);
             int machineYear = LocalDate.now().getYear() - age;
-            criteriaQuery.select(root).where(criteriaBuilder.gt(root.get("year"), machineYear));
+            criteriaQuery.select(root).where(criteriaBuilder.lt(root.get("year"), machineYear));
             return session.createQuery(criteriaQuery).getResultList();
         } catch (Exception e) {
             throw new RuntimeException("Can't findAll", e);
