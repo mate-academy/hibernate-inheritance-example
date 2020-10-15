@@ -13,7 +13,7 @@ public class CoachDaoImpl extends PersonDaoImpl implements CoachDao {
     @Override
     public List<Coach> findByExperienceGreaterThan(int years) {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("FROM Coach c WHERE c.experience >: experience", Coach.class)
+            return session.createQuery("FROM Coach c WHERE c.experience > :experience", Coach.class)
                     .setParameter("experience", years)
                     .getResultList();
         }
