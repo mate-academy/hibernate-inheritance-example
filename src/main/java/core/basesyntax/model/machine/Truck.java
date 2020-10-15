@@ -1,12 +1,10 @@
 package core.basesyntax.model.machine;
 
 import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "trucks")
-@PrimaryKeyJoinColumn(name = "truck_id")
 public class Truck extends Machine {
     private String color;
     private double maxAllowedWeight;
