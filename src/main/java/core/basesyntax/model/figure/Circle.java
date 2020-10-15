@@ -7,9 +7,6 @@ import javax.persistence.Entity;
 public class Circle extends Figure {
     private int radius;
 
-    public Circle() {
-    }
-
     public int getRadius() {
         return radius;
     }

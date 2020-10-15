@@ -12,9 +12,6 @@ public class Figure {
     private Long id;
     private String color;
 
-    public Figure() {
-    }
-
     public Long getId() {
         return id;
     }

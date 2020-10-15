@@ -7,9 +7,6 @@ import javax.persistence.Entity;
 public class Triangle extends Figure {
     private double area;
 
-    public Triangle() {
-    }
-
     public double getArea() {
         return area;
     }

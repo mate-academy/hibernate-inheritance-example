@@ -7,9 +7,6 @@ public class Car extends Machine {
     private int horsePower;
     private String model;
 
-    public Car() {
-    }
-
     public int getHorsePower() {
         return horsePower;
     }

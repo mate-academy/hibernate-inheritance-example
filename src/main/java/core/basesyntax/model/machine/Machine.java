@@ -19,9 +19,6 @@ public class Machine {
     private int year;
     private String maker;
 
-    public Machine() {
-    }
-
     public Long getId() {
         return id;
     }

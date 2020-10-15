@@ -7,9 +7,6 @@ public class Coach extends Person {
     private int experience;
     private Track track;
 
-    public Coach() {
-    }
-
     public enum Track {
         JAVA, FE, UI, QA
     }

@@ -16,9 +16,6 @@ public class Person {
     private int age;
     private String name;
 
-    public Person() {
-    }
-
     public int getAge() {
         return age;
     }
