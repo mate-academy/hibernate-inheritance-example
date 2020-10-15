@@ -103,8 +103,8 @@ public class MachineDaoImplTest extends AbstractTest {
         truck2.setMaxAllowedWeight(1000);
         Machine truck2DB = machineDao.save(truck2);
 
-        List<Machine> actualMachine = machineDao.findByAgeOlderThan(2012);
-        List<Machine> expectedMachine = List.of(machine2DB, truck2DB, car2DB);
+        List<Machine> actualMachine = machineDao.findByAgeOlderThan(10);
+        List<Machine> expectedMachine = List.of(machine2DB, car2DB, truck2DB);
         Assert.assertEquals(actualMachine, expectedMachine);
     }
 }
