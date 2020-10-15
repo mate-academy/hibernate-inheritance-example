@@ -19,7 +19,7 @@ public class MentorDaoImpl extends PersonDaoImpl implements MentorDao {
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
             CriteriaQuery<Mentor> query = criteriaBuilder.createQuery(Mentor.class);
             Root<Mentor> root = query.from(Mentor.class);
-            query.where(criteriaBuilder.greaterThan(root.get("experience"), age));
+            query.where(criteriaBuilder.greaterThan(root.get("age"), age));
             List<Mentor> resultList = session.createQuery(query).getResultList();
             return resultList;
         }
