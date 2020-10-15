@@ -27,7 +27,7 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
                 transaction.rollback();
             }
             throw new RuntimeException("Can't insert figure "
-                    + figure.toString(), e);
+                    + figure, e);
         } finally {
             if (session != null) {
                 session.close();

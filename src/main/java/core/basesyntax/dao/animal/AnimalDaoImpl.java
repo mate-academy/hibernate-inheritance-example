@@ -28,7 +28,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
                 transaction.rollback();
             }
             throw new RuntimeException("Can't insert animal "
-                    + animal.toString(), e);
+                    + animal, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -40,8 +40,8 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
     public List<Animal> findByNameFirstLetter(Character character) {
         try (Session session = sessionFactory.openSession()) {
             Query<Animal> query = session.createQuery("FROM Animal "
-                    + "WHERE name LIKE CONCAT(:character, '%')", Animal.class);
-            query.setParameter("character", character);
+                    + "WHERE name LIKE :regex", Animal.class);
+            query.setParameter("regex", character + "%");
             return query.getResultList();
         }
     }
