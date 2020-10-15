@@ -45,7 +45,7 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
             CriteriaQuery<T> criteriaQuery =
                     criteriaBuilder.createQuery(clazz);
             Root<T> root = criteriaQuery.from(clazz);
-            Predicate colorPredicate = criteriaBuilder.like(root.get("color"), color);
+            Predicate colorPredicate = criteriaBuilder.equal(root.get("color"), color);
             criteriaQuery.select(root).where(colorPredicate);
             return session.createQuery(criteriaQuery).getResultList();
         }
