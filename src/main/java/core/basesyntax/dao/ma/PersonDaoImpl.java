@@ -2,7 +2,9 @@ package core.basesyntax.dao.ma;
 
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.ma.Person;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 public class PersonDaoImpl extends AbstractDao implements PersonDao {
     public PersonDaoImpl(SessionFactory sessionFactory) {
@@ -11,7 +13,23 @@ public class PersonDaoImpl extends AbstractDao implements PersonDao {
 
     @Override
     public Person save(Person person) {
-        sessionFactory.openSession().save(person);
-        return person;
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.save(person);
+            transaction.commit();
+            return person;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new RuntimeException("Can't add new person: " + person, e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
 }
