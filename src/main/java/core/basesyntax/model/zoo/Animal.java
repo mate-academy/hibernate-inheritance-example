@@ -1,16 +1,10 @@
 package core.basesyntax.model.zoo;
 
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "animals")
+@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name = "animals")
 public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
@@ -44,6 +38,6 @@ public class Animal {
 
     @Override
     public String toString() {
-        return "Animal{" + "id=" + id + ", age=" + age + ", name='" + name + '\'' + '}';
+        return "Animal{ id= " + this.getId() + "id=" + id + ", age=" + age + ", name='" + name + '\'' + '}';
     }
 }

@@ -18,6 +18,6 @@ public class Triangle extends Figure {
 
     @Override
     public String toString() {
-        return "Triangle{" + "area=" + area + ", id= " + this.getId() + "}";
+        return "Triangle{ id= " + this.getId() + "area=" + area + "}";
     }
 }

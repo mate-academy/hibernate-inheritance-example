@@ -42,6 +42,6 @@ public class Machine {
 
     @Override
     public String toString() {
-        return "Machine{" + "id=" + id + ", year=" + year + ", maker='" + maker + '\'' + '}';
+        return "Machine{ id= " + this.getId() + "id=" + id + ", year=" + year + ", maker='" + maker + '\'' + '}';
     }
 }

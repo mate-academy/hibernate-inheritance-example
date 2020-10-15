@@ -27,6 +27,6 @@ public class Car extends Machine {
 
     @Override
     public String toString() {
-        return "Car{" + "horsePower=" + horsePower + ", model='" + model + '\'' + '}';
+        return "Car{ id= " + this.getId() + "horsePower=" + horsePower + ", model='" + model + '\'' + '}';
     }
 }

@@ -1,8 +1,10 @@
 package core.basesyntax.model.zoo;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
+@DiscriminatorValue(value = "dog")
 public class Dog extends Animal {
     private int tailLength;
     private String owner;
@@ -25,6 +27,6 @@ public class Dog extends Animal {
 
     @Override
     public String toString() {
-        return "Dog{" + "tailLength=" + tailLength + ", owner='" + owner + '\'' + '}';
+        return "Dog{ id= " + this.getId() + "tailLength=" + tailLength + ", owner='" + owner + '\'' + '}';
     }
 }

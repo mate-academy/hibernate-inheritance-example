@@ -16,7 +16,7 @@ public class PersonDaoImpl extends AbstractDao implements PersonDao {
         Session session = null;
         Transaction transaction = null;
         try {
-            session = super.sessionFactory.openSession();
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.save(person);
             transaction.commit();

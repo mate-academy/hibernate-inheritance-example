@@ -11,7 +11,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 public class MachineDaoImpl extends AbstractDao implements MachineDao {
-    public MachineDaoImpl(SessionFactory sessionFactory) {
+    protected MachineDaoImpl(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
 
@@ -20,7 +20,7 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
         Session session = null;
         Transaction transaction = null;
         try {
-            session = super.sessionFactory.openSession();
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.save(machine);
             transaction.commit();
@@ -39,7 +39,7 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
 
     @Override
     public List<Machine> findByAgeOlderThan(int age) {
-        try (Session session = super.sessionFactory.openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
             CriteriaQuery<Machine> query = criteriaBuilder.createQuery(Machine.class);
             Root<Machine> root = query.from(Machine.class);

@@ -1,8 +1,11 @@
 package core.basesyntax.model.zoo;
 
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
+@DiscriminatorValue(value = "cat")
 public class Cat extends Animal {
     private int numberOfLives;
     private String color;
@@ -25,6 +28,6 @@ public class Cat extends Animal {
 
     @Override
     public String toString() {
-        return "Cat{" + "numberOfLives=" + numberOfLives + ", color='" + color + '\'' + '}';
+        return "Cat{ id= " + this.getId() + "numberOfLives=" + numberOfLives + ", color='" + color + '\'' + '}';
     }
 }

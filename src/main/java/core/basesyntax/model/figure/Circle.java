@@ -18,6 +18,6 @@ public class Circle extends Figure {
 
     @Override
     public String toString() {
-        return "Circle{" + "radius=" + radius + '}';
+        return "Circle{ id= " + this.getId() + "radius=" + radius + '}';
     }
 }

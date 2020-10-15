@@ -20,7 +20,7 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
         Session session = null;
         Transaction transaction = null;
         try {
-            session = super.sessionFactory.openSession();
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.save(figure);
             transaction.commit();

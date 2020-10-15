@@ -1,11 +1,14 @@
 package core.basesyntax.model.figure;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public class Figure {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String color;
 
@@ -27,6 +30,6 @@ public class Figure {
 
     @Override
     public String toString() {
-        return "Figure{" + "id=" + id + ", color='" + color + '\'' + '}';
+        return "Figure{ id= " + this.getId() + "id=" + id + ", color='" + color + '\'' + '}';
     }
 }
