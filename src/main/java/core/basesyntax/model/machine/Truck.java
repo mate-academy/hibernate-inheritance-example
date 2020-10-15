@@ -1,7 +1,14 @@
 package core.basesyntax.model.machine;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "trucks")
 public class Truck extends Machine {
     private String color;
+    @Column(name = "max_allowed_weight")
     private double maxAllowedWeight;
 
     public String getColor() {
@@ -18,5 +25,13 @@ public class Truck extends Machine {
 
     public void setMaxAllowedWeight(double maxAllowedWeight) {
         this.maxAllowedWeight = maxAllowedWeight;
+    }
+
+    @Override
+    public String toString() {
+        return "Truck{"
+                + "color='" + color + '\''
+                + ", maxAllowedWeight=" + maxAllowedWeight
+                + '}';
     }
 }
