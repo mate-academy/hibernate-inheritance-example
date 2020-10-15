@@ -58,4 +58,17 @@ public class AnimalDaoImplTest extends AbstractTest {
         Dog actual = (Dog) animals.get(0);
         Assert.assertEquals("boy", actual.getOwner());
     }
+
+    @Test
+    public void findByName_NotOk() {
+        Dog dog = new Dog();
+        dog.setAge(4);
+        dog.setName("boris");
+        dog.setOwner("boy");
+        dog.setTailLength(10);
+        dao.save(dog);
+        List<Animal> animals = dao.findByNameFirstLetter('a');
+        Assert.assertNotNull(animals);
+        Assert.assertEquals(0, animals.size());
+    }
 }
