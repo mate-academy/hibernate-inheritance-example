@@ -1,6 +1,7 @@
 package core.basesyntax.dao.animal;
 
 import core.basesyntax.dao.AbstractDao;
+import core.basesyntax.exceptions.DataProcessingException;
 import core.basesyntax.model.zoo.Animal;
 import java.util.List;
 import org.hibernate.Session;
@@ -25,6 +26,9 @@ public class AnimalDaoImpl extends AbstractDao<Animal> implements AnimalDao {
                             Animal.class);
             userQuery.setParameter("character", character.toString() + "%");
             return userQuery.getResultList();
+        } catch (Exception e) {
+            throw new DataProcessingException("Can't find any animals with name starts"
+                    + " with " + character, e);
         }
     }
 }
