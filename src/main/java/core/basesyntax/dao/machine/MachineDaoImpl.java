@@ -2,6 +2,7 @@ package core.basesyntax.dao.machine;
 
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.machine.Machine;
+import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -41,10 +42,11 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
     @Override
     public List<Machine> findByAgeOlderThan(int age) {
         try (Session session = sessionFactory.openSession()) {
+            int year = LocalDateTime.now().getYear() - age;
             CriteriaBuilder builder = session.getCriteriaBuilder();
             CriteriaQuery<Machine> query = builder.createQuery(Machine.class);
             Root<Machine> root = query.from(Machine.class);
-            Predicate olderThan = builder.greaterThan(root.get("year"), age);
+            Predicate olderThan = builder.lessThan(root.get("year"), year);
             query.select(root).where(olderThan);
             return session.createQuery(query).getResultList();
         } catch (Exception exception) {
