@@ -10,6 +10,7 @@ import org.junit.Test;
 
 public class PersonDaoImplTest extends AbstractTest {
     private PersonDao personDao;
+
     @Override
     protected Class<?>[] entities() {
         return new Class[] {
