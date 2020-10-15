@@ -40,6 +40,7 @@ public class PersonDaoImplTest extends AbstractTest {
         Coach coach = new Coach();
         coach.setAge(20);
         coach.setName("John");
+        coach.setTrack(Coach.Track.FE);
         Person actual = personDao.save(coach);
         Assert.assertNotNull(actual);
         Assert.assertNotNull(actual.getId());
