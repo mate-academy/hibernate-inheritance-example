@@ -43,7 +43,6 @@ public class MentorDaoImplTest extends AbstractTest {
     public void mentorFindByAgeAll_Ok() {
         List<Mentor> actual = mentorDao.findByAgeGreaterThan(14);
         Assert.assertNotNull(actual);
-        Assert.assertNotNull(actual.get(0).getId());
         Assert.assertEquals(3, actual.size());
     }
 
@@ -51,7 +50,6 @@ public class MentorDaoImplTest extends AbstractTest {
     public void mentorFindByAgeOlder20_Ok() {
         List<Mentor> actual = mentorDao.findByAgeGreaterThan(20);
         Assert.assertNotNull(actual);
-        Assert.assertNotNull(actual.get(0).getId());
         Assert.assertEquals(2, actual.size());
     }
 }

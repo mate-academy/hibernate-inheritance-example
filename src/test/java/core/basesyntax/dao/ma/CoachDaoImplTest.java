@@ -42,7 +42,6 @@ public class CoachDaoImplTest extends AbstractTest {
     public void coachFindByExperienceAll_Ok() {
         List<Coach> actual = coachDao.findByExperienceGreaterThan(0);
         Assert.assertNotNull(actual);
-        Assert.assertNotNull(actual.get(0).getId());
         Assert.assertEquals(3, actual.size());
     }
 
@@ -50,7 +49,6 @@ public class CoachDaoImplTest extends AbstractTest {
     public void coachFindByMoreThan5_Ok() {
         List<Coach> actual = coachDao.findByExperienceGreaterThan(5);
         Assert.assertNotNull(actual);
-        Assert.assertNotNull(actual.get(0).getId());
         Assert.assertEquals(1, actual.size());
     }
 
