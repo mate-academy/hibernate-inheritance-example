@@ -40,7 +40,7 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
         int year = LocalDate.now().getYear() - age;
         try (Session session = sessionFactory.openSession()) {
             return session.createQuery("from Machine "
-                    + "where year > :year", Machine.class)
+                    + "where year < :year", Machine.class)
                     .setParameter("year", year)
                     .getResultList();
         } catch (Exception e) {
