@@ -31,6 +31,7 @@ public class Coach extends Person {
 
     @Override
     public String toString() {
-        return "Coach{ id= " + this.getId() + ", experience= " + experience + ", track=" + track + '}';
+        return "Coach{ id= " + this.getId()
+                + ", experience= " + experience + ", track=" + track + '}';
     }
 }

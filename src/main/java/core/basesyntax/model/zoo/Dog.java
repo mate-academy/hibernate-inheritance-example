@@ -27,6 +27,7 @@ public class Dog extends Animal {
 
     @Override
     public String toString() {
-        return "Dog{ id= " + this.getId() + "tailLength=" + tailLength + ", owner='" + owner + '\'' + '}';
+        return "Dog{ id= " + this.getId() + "tailLength="
+                + tailLength + ", owner='" + owner + '\'' + '}';
     }
 }

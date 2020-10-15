@@ -27,6 +27,7 @@ public class Truck extends Machine {
 
     @Override
     public String toString() {
-        return "Truck{ id= " + this.getId() + "color='" + color + '\'' + ", maxAllowedWeight=" + maxAllowedWeight + '}';
+        return "Truck{ id= " + this.getId() + "color='"
+                + color + '\'' + ", maxAllowedWeight=" + maxAllowedWeight + '}';
     }
 }
