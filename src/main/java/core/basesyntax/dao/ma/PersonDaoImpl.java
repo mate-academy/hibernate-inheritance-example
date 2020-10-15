@@ -4,14 +4,13 @@ import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.ma.Person;
 import org.hibernate.SessionFactory;
 
-public class PersonDaoImpl extends AbstractDao implements PersonDao {
+public class PersonDaoImpl extends AbstractDao<Person> implements PersonDao {
     public PersonDaoImpl(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
 
     @Override
     public Person save(Person person) {
-        sessionFactory.openSession().save(person);
-        return person;
+        return super.save(person);
     }
 }
