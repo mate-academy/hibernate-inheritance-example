@@ -15,6 +15,9 @@
         <property name="hbm2ddl.auto">create-drop</property>
 
         <mapping class="core.basesyntax.model.zoo.Animal"/>
+        <mapping class="core.basesyntax.model.figure.Figure"/>
+        <mapping class="core.basesyntax.model.ma.Person"/>
+        <mapping class="core.basesyntax.model.machine.Machine"/>
 
     </session-factory>
 
