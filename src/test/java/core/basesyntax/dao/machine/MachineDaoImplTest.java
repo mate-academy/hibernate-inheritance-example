@@ -70,19 +70,18 @@ public class MachineDaoImplTest extends AbstractTest {
         machine.setYear(2020);
         machineDao.save(machine);
         Car car = new Car();
-        car.setModel("BMW");
-        car.setMaker("Germany");
+        car.setModel("X5");
+        car.setMaker("BMW");
         car.setYear(2015);
         car.setHorsePower(220);
         machineDao.save(car);
         Truck truck = new Truck();
-        truck.setMaker("Holland");
+        truck.setMaker("DAF");
         truck.setYear(2018);
         truck.setColor("yellow");
         truck.setMaxAllowedWeight(480.50);
         machineDao.save(truck);
-        List<Machine> machineList = machineDao.findByAgeOlderThan(2017);
+        List<Machine> machineList = machineDao.findByAgeOlderThan(1);
         Assert.assertEquals(2, machineList.size());
-        Assert.assertEquals(machineList.get(0), truck);
     }
 }
