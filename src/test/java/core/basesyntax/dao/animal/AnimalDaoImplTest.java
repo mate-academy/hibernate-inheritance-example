@@ -1,5 +1,5 @@
 package core.basesyntax.dao.animal;
 
-public class AnimalDaoImplTest {
+public class AnimalDaoImplTest  {
 
 }
