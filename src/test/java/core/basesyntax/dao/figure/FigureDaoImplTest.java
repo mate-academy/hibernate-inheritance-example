@@ -38,6 +38,6 @@ public class FigureDaoImplTest extends AbstractTest {
     public void saveAndGetByColorFigure() {
         figureDao.save(triangle);
         figureDao.save(circle);
-        Assert.assertEquals(figureDao.findByColor("red",Figure.class).size(), 2);
+        Assert.assertEquals(figureDao.findByColor("red", Figure.class).size(), 2);
     }
 }
