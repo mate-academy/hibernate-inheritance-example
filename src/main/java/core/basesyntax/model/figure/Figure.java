@@ -4,10 +4,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.Table;
 
 @MappedSuperclass
-@Table(name = "figure")
 public class Figure {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
