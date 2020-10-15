@@ -4,7 +4,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("cat")
+@DiscriminatorValue("cats")
 public class Cat extends Animal {
     private int numberOfLives;
     private String color;
