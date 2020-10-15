@@ -29,7 +29,8 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Can't save Machine " + machine.getMaker(), e);
+            throw new DataProcessingException("Can't save Machine " + machine.getMaker()
+                    + machine, e);
         } finally {
             if (session != null) {
                 session.close();

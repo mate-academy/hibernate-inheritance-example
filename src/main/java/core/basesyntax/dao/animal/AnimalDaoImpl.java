@@ -28,7 +28,8 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Can't save animal " + animal.getName(), e);
+            throw new DataProcessingException("Can't save animal "
+                    + animal.getName() + animal, e);
         } finally {
             if (session != null) {
                 session.close();
