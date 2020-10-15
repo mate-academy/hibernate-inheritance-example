@@ -15,7 +15,7 @@ public class AnimalDaoImpl extends AbstractDao<Animal> implements AnimalDao {
     public List<Animal> findByNameFirstLetter(Character character) {
         try (Session session = sessionFactory.openSession()) {
             return session.createQuery("FROM Animal WHERE name LIKE :pattern", Animal.class)
-                    .setParameter("pattern", String.valueOf(character).concat("%"))
+                    .setParameter("pattern", character + "%")
                     .getResultList();
         }
     }
