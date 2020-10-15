@@ -3,14 +3,14 @@ package core.basesyntax.dao.animal;
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.exceptions.DataProcessingException;
 import core.basesyntax.model.zoo.Animal;
-import java.util.List;
 import core.basesyntax.util.HibernateUtil;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
     public AnimalDaoImpl(SessionFactory sessionFactory) {
