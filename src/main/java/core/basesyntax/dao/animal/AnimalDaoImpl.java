@@ -46,7 +46,8 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
             CriteriaQuery<Animal> criteriaQuery = criteriaBuilder.createQuery(Animal.class);
             Root<Animal> root = criteriaQuery.from(Animal.class);
-            criteriaQuery.select(root).where(criteriaBuilder.like(root.get("name"), character + "%"));
+            criteriaQuery.select(root).where(criteriaBuilder
+                    .like(root.get("name"), character + "%"));
             return session.createQuery(criteriaQuery).getResultList();
         } catch (Exception e) {
             throw new RuntimeException("Can't findAll", e);
