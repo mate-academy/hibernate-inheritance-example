@@ -1,5 +1,6 @@
 package core.basesyntax.model.machine;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +16,7 @@ public class Machine {
             strategy = GenerationType.AUTO,
             generator = "native"
     )
+    @Column(name = "id", updatable = false, nullable = false)
     private Long id;
     private int year;
     private String maker;

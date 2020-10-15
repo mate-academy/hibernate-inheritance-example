@@ -1,9 +1,7 @@
 package core.basesyntax.exception;
 
-import org.hibernate.HibernateException;
-
-public class DataProcessingException extends HibernateException {
-    public DataProcessingException(String message, HibernateException e) {
+public class DataProcessingException extends RuntimeException {
+    public DataProcessingException(String message, Throwable e) {
         super(message, e);
     }
 }

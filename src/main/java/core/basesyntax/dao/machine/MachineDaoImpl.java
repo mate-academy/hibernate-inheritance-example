@@ -1,13 +1,13 @@
 package core.basesyntax.dao.machine;
 
-import core.basesyntax.dao.AbstractDao;
+import core.basesyntax.dao.GeneralDaoImpl;
 import core.basesyntax.model.machine.Machine;
 import java.time.LocalDate;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-public class MachineDaoImpl extends AbstractDao<Machine> implements MachineDao {
+public class MachineDaoImpl extends GeneralDaoImpl<Machine> implements MachineDao {
     public MachineDaoImpl(SessionFactory sessionFactory) {
         super(sessionFactory);
     }

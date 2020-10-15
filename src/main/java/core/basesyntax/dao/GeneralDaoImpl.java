@@ -6,10 +6,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-public abstract class AbstractDao<T> implements GeneralDao<T> {
+public abstract class GeneralDaoImpl<T> implements GeneralDao<T> {
     protected final SessionFactory sessionFactory;
 
-    protected AbstractDao(SessionFactory sessionFactory) {
+    protected GeneralDaoImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 

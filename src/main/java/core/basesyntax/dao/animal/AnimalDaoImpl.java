@@ -1,12 +1,12 @@
 package core.basesyntax.dao.animal;
 
-import core.basesyntax.dao.AbstractDao;
+import core.basesyntax.dao.GeneralDaoImpl;
 import core.basesyntax.model.zoo.Animal;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-public class AnimalDaoImpl extends AbstractDao<Animal> implements AnimalDao {
+public class AnimalDaoImpl extends GeneralDaoImpl<Animal> implements AnimalDao {
     public AnimalDaoImpl(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
@@ -16,8 +16,8 @@ public class AnimalDaoImpl extends AbstractDao<Animal> implements AnimalDao {
         try (Session session = sessionFactory.openSession()) {
             return session.createQuery(
                     "FROM Animal a "
-                            + "WHERE SUBSTRING(a.name, 1, 1) LIKE :character", Animal.class)
-                    .setParameter("character", character + "")
+                            + "WHERE a.name LIKE :character", Animal.class)
+                    .setParameter("character", character + "%")
                     .getResultList();
         }
     }
