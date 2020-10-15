@@ -2,13 +2,11 @@ package core.basesyntax.model.zoo;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "dogs")
 @DiscriminatorValue("dog")
-@PrimaryKeyJoinColumn(name = "dog_id")
 public class Dog extends Animal {
     private int tailLength;
     private String owner;
