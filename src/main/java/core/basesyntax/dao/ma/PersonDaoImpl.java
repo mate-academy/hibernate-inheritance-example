@@ -26,7 +26,7 @@ public class PersonDaoImpl extends AbstractDao implements PersonDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Can't insert pearson "
+            throw new DataProcessingException("Can't insert person "
                     + person + " into data", e);
         } finally {
             if (session != null) {
