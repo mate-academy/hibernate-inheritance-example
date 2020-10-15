@@ -49,7 +49,7 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
             Root<Machine> machineRoot =
                     machineCriteriaQuery.from(Machine.class);
             Predicate predicate =
-                    criteriaBuilder.lt(machineRoot.get("year"), age);
+                    criteriaBuilder.gt(machineRoot.get("year"), age);
             machineCriteriaQuery.select(machineRoot).where(predicate);
             return session.createQuery(machineCriteriaQuery.distinct(true)).getResultList();
         }
