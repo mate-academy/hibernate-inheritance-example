@@ -39,7 +39,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
     public List<Animal> findByNameFirstLetter(Character character) {
         try (Session session = sessionFactory.openSession()) {
             return session.createQuery("from Animal where name like :letter", Animal.class)
-                    .setParameter("letter", "'" + character + "%'")
+                    .setParameter("letter", character + "%")
                     .getResultList();
         }
     }
