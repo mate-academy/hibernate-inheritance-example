@@ -10,7 +10,6 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 public class FigureDaoImpl<T extends Figure> extends AbstractDao implements FigureDao<T> {
-
     public FigureDaoImpl(SessionFactory sessionFactory) {
         super(sessionFactory);
     }

@@ -11,7 +11,6 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 public class MachineDaoImpl extends AbstractDao implements MachineDao {
-
     protected MachineDaoImpl(SessionFactory sessionFactory) {
         super(sessionFactory);
     }

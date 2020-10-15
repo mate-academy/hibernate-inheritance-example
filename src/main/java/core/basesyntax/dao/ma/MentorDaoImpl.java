@@ -7,7 +7,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
 public class MentorDaoImpl extends PersonDaoImpl implements MentorDao {
-
     public MentorDaoImpl(SessionFactory sessionFactory) {
         super(sessionFactory);
     }

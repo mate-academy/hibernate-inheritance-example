@@ -7,7 +7,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
 public class CoachDaoImpl extends PersonDaoImpl implements CoachDao {
-
     public CoachDaoImpl(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
