@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-@PrimaryKeyJoinColumn(name = "mentorId")
+@PrimaryKeyJoinColumn(name = "mentor_Id")
 public class Mentor extends Person {
 
 }
