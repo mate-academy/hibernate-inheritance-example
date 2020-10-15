@@ -1,6 +1,7 @@
 package core.basesyntax.model.figure;
 
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
@@ -9,7 +10,7 @@ import javax.persistence.Table;
 @Table(name = "figure")
 public class Figure {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String color;
 
