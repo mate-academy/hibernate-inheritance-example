@@ -42,7 +42,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
         try (Session session = sessionFactory.openSession()) {
             Query<Animal> animalQuery = session
                     .createQuery("from Animal a where a.name LIKE :letter ", Animal.class);
-            animalQuery.setParameter("letter", new String(character + "%"));
+            animalQuery.setParameter("letter",character + "%");
             return animalQuery.getResultList();
         }
     }
