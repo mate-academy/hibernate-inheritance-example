@@ -1,5 +1,11 @@
 package core.basesyntax.model.ma;
 
-public class Mentor extends Person {
+import javax.persistence.Entity;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Entity
+@Data
+@NoArgsConstructor
+public class Mentor extends Person {
 }
