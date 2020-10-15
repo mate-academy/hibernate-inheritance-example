@@ -39,4 +39,10 @@ public class Machine {
     public void setMaker(String maker) {
         this.maker = maker;
     }
+
+    @Override
+    public String toString() {
+        return "Machine{ id=" + id + ", year=" + year
+                + ", maker = '" + maker + "' }";
+    }
 }
