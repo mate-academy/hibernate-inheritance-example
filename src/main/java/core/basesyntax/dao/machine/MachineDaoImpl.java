@@ -3,6 +3,7 @@ package core.basesyntax.dao.machine;
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.exeptions.DataProcessingException;
 import core.basesyntax.model.machine.Machine;
+import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -48,8 +49,9 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
                     criteriaBuilder.createQuery(Machine.class);
             Root<Machine> machineRoot =
                     machineCriteriaQuery.from(Machine.class);
+            int ageMachine = LocalDate.now().getYear() - age;
             Predicate predicate =
-                    criteriaBuilder.gt(machineRoot.get("year"), age);
+                    criteriaBuilder.gt(machineRoot.get("year"), ageMachine);
             machineCriteriaQuery.select(machineRoot).where(predicate);
             return session.createQuery(machineCriteriaQuery.distinct(true)).getResultList();
         }
