@@ -1,11 +1,8 @@
 package core.basesyntax.model.machine;
 
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Truck extends Machine {
     private String color;
     private double maxAllowedWeight;
