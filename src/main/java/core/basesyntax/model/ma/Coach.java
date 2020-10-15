@@ -1,8 +1,10 @@
 package core.basesyntax.model.ma;
 
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
+@PrimaryKeyJoinColumn(name = "coach_id")
 public class Coach extends Person {
     private int experience;
     private Track track;

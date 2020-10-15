@@ -1,5 +1,7 @@
 package core.basesyntax.model.machine;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,8 +15,8 @@ import javax.persistence.InheritanceType;
 public class Machine {
     @Id
     @GeneratedValue(
-            strategy = GenerationType.AUTO,
-            generator = "native"
+            strategy = GenerationType.TABLE,
+            generator = "native_for_machine"
     )
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
