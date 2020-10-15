@@ -62,11 +62,11 @@ public class MachineDaoImplTest extends AbstractTest {
     @Test
     public void findByAgeOlderThan_Ok() {
         Machine machine = new Machine();
-        machine.setYear(1990);
+        machine.setYear(2019);
         machine.setMaker("USA");
         Car car = new Car();
         car.setModel("Zaporozhets");
-        car.setYear(1950);
+        car.setYear(2017);
         car.setHorsePower(100);
         car.setMaker("Ukraine");
         Truck truck = new Truck();
@@ -74,8 +74,11 @@ public class MachineDaoImplTest extends AbstractTest {
         truck.setMaxAllowedWeight(100);
         truck.setMaker("France");
         truck.setYear(2012);
-        List<Machine> actual = machineDao.findByAgeOlderThan(5);
+        machineDao.save(machine);
+        machineDao.save(car);
+        machineDao.save(truck);
+        List<Machine> actual = machineDao.findByAgeOlderThan(1);
         Assert.assertNotNull(actual);
-        Assert.assertEquals(3, actual.size());
+        Assert.assertEquals(2, actual.size());
     }
 }
