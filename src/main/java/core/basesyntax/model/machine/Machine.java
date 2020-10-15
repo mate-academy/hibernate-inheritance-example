@@ -18,6 +18,14 @@ public class Machine {
     private int year;
     private String maker;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public int getYear() {
         return year;
     }
