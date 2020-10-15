@@ -13,5 +13,4 @@ public class Circle extends Figure {
     public void setRadius(int radius) {
         this.radius = radius;
     }
-
 }

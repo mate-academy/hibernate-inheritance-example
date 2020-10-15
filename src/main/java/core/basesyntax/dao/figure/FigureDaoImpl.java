@@ -1,10 +1,12 @@
 package core.basesyntax.dao.figure;
 
 import core.basesyntax.dao.AbstractDao;
+import core.basesyntax.exception.DataProcessingException;
 import core.basesyntax.model.figure.Figure;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 public class FigureDaoImpl<T extends Figure> extends AbstractDao implements FigureDao<T> {
@@ -14,8 +16,25 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
 
     @Override
     public T save(T figure) {
-        sessionFactory.openSession().save(figure);
-        return figure;
+        Transaction transaction = null;
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.save(figure);
+            transaction.commit();
+            return figure;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new DataProcessingException("Can't create figure with description "
+                    + figure, e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
 
     @Override
