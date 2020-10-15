@@ -1,13 +1,12 @@
 package core.basesyntax.model.figure;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import javax.persistence.MappedSuperclass;
+
+@Data
+@NoArgsConstructor
+@MappedSuperclass
 public class Figure {
     private String color;
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
 }

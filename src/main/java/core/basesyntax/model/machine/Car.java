@@ -1,22 +1,15 @@
 package core.basesyntax.model.machine;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+@Data
+@NoArgsConstructor
+@Entity
 public class Car extends Machine {
+    @Column(name = "horse_power")
     private int horsePower;
     private String model;
-
-    public int getHorsePower() {
-        return horsePower;
-    }
-
-    public void setHorsePower(int horsePower) {
-        this.horsePower = horsePower;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
 }

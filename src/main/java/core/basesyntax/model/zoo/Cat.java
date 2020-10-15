@@ -1,22 +1,17 @@
 package core.basesyntax.model.zoo;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@Data
+@NoArgsConstructor
+@DiscriminatorValue("CAT")
 public class Cat extends Animal {
+    @Column(name = "number_of_lives")
     private int numberOfLives;
     private String color;
-
-    public int getNumberOfLives() {
-        return numberOfLives;
-    }
-
-    public void setNumberOfLives(int numberOfLives) {
-        this.numberOfLives = numberOfLives;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
 }

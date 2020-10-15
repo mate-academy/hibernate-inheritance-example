@@ -1,8 +1,12 @@
 package core.basesyntax.dao.ma;
 
 import core.basesyntax.dao.AbstractDao;
+import core.basesyntax.exeptions.DataProcessingException;
 import core.basesyntax.model.ma.Person;
+import lombok.Data;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 public class PersonDaoImpl extends AbstractDao implements PersonDao {
     public PersonDaoImpl(SessionFactory sessionFactory) {
@@ -11,7 +15,24 @@ public class PersonDaoImpl extends AbstractDao implements PersonDao {
 
     @Override
     public Person save(Person person) {
-        sessionFactory.openSession().save(person);
-        return person;
+        Transaction transaction = null;
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.save(person);
+            transaction.commit();
+            return person;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new DataProcessingException("Can't add person"
+                    + person.getId(), e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
 }
