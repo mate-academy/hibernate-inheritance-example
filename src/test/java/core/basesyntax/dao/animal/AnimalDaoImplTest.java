@@ -24,8 +24,7 @@ public class AnimalDaoImplTest extends AbstractTest {
 
     @Before
     public void setUp() {
-        SessionFactory factory  = HibernateUtil.getSessionFactory();
-        animalDao = new AnimalDaoImpl(factory);
+        animalDao = new AnimalDaoImpl(getSessionFactory());
     }
 
     @Test
