@@ -2,8 +2,12 @@ package core.basesyntax.dao.machine;
 
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.machine.Machine;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 public class MachineDaoImpl extends AbstractDao implements MachineDao {
     public MachineDaoImpl(SessionFactory sessionFactory) {
@@ -12,11 +16,36 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
 
     @Override
     public Machine save(Machine machine) {
-        return null;
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.save(machine);
+            return machine;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new RuntimeException("Could not save " + machine, e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
 
     @Override
     public List<Machine> findByAgeOlderThan(int age) {
-        return null;
+        try (Session session = sessionFactory.openSession()) {
+            return session.createQuery("from Machine where :curr_year - Machine.year > :age",
+                    Machine.class)
+                    .setParameter("curr_year",
+                            DateTimeFormatter.ofPattern("yyyy").format(LocalDate.now()))
+                    .setParameter("age", age)
+                    .getResultList();
+        } catch (Exception e) {
+            throw new RuntimeException("Could not find machines older than " + age, e);
+        }
     }
 }
