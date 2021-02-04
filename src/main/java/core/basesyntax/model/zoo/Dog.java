@@ -1,14 +1,11 @@
 package core.basesyntax.model.zoo;
 
-import javax.persistence.*;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("dog")
 public class Dog extends Animal {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     private int tailLength;
     private String owner;
 
