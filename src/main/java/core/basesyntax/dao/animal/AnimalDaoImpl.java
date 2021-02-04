@@ -35,7 +35,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Can't insert figure entity "
+            throw new RuntimeException("Can't insert animal entity "
                     + animal, e);
         } finally {
             if (session != null) {
