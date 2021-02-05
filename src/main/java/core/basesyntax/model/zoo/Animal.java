@@ -10,7 +10,7 @@ import javax.persistence.InheritanceType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "Animal_Tipe")
+@DiscriminatorColumn(name = "Animal_Type")
 public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
