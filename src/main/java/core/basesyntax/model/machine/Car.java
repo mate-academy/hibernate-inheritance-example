@@ -1,6 +1,13 @@
 package core.basesyntax.model.machine;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "car")
 public class Car extends Machine {
+    @Column(name = "horse_power")
     private int horsePower;
     private String model;
 
