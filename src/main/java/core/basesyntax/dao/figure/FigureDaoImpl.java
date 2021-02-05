@@ -2,8 +2,6 @@ package core.basesyntax.dao.figure;
 
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.figure.Figure;
-import core.basesyntax.model.machine.Machine;
-import java.time.LocalDate;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -44,7 +42,8 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
                     .setParameter("color", color)
                     .getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Cant find Figure(" + clazz.getSimpleName()+ ") by color " + color, e);
+            throw new RuntimeException("Cant find Figure("
+                    + clazz.getSimpleName() + ") by color " + color, e);
         }
     }
 }
