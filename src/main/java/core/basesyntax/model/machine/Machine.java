@@ -11,7 +11,7 @@ import javax.persistence.InheritanceType;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Machine {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private int year;
     private String maker;

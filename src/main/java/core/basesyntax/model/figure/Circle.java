@@ -8,7 +8,7 @@ import javax.persistence.Id;
 @Entity(name = "Circle")
 public class Circle extends Figure {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int radius;
 
