@@ -1,6 +1,7 @@
 package core.basesyntax.model.figure;
 
 public class Circle extends Figure {
+
     private int radius;
 
     public int getRadius() {
