@@ -1,5 +1,8 @@
 package core.basesyntax.model.ma;
 
+import javax.persistence.Entity;
+
+@Entity(name = "Coach")
 public class Coach extends Person {
     public enum Track {
         JAVA, FE, UI, QA
