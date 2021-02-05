@@ -1,6 +1,11 @@
 package core.basesyntax.model.zoo;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+@Entity
 public class Cat extends Animal {
+    @Column(name = "number_of_lives")
     private int numberOfLives;
     private String color;
 
@@ -18,5 +23,14 @@ public class Cat extends Animal {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    @Override
+    public String toString() {
+        return "Cat{"
+                + super.toString()
+                + ", numberOfLives=" + numberOfLives
+                + ", color='" + color + '\''
+                + '}';
     }
 }
