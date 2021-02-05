@@ -3,6 +3,10 @@ package core.basesyntax.dao.figure;
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.figure.Figure;
 import java.util.List;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -36,14 +40,14 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
     @Override
     public List<T> findByColor(String color, Class<T> clazz) {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("from :class where :class.color = :color",
-                    clazz)
-                    .setParameter("class", clazz)
-                    .setParameter("color", color)
-                    .getResultList();
+            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            CriteriaQuery<T> query = criteriaBuilder.createQuery(clazz);
+            Root<T> root = query.from(clazz);
+            Predicate predicate = criteriaBuilder.equal(root.get("color"), color);
+            query.select(root).where(predicate);
+            return session.createQuery(query).getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Could not find " + clazz.toString()
-                    + "of color" + color, e);
+            throw new RuntimeException("Could not find figure with color " + color, e);
         }
     }
 }
