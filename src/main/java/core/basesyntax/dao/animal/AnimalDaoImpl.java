@@ -27,8 +27,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Can't insert animal entity "
-                    + animal, e);
+            throw new RuntimeException("Can't insert animal entity " + animal, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -46,8 +45,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
             query.setParameter("ch", new String(character + "%"));
             return query.getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Can`t find by name first letter: "
-                    + character, e);
+            throw new RuntimeException("Can`t find by name first letter: " + character, e);
         }
     }
 }

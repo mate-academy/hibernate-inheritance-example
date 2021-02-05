@@ -24,8 +24,7 @@ public class CoachDaoImpl extends PersonDaoImpl implements CoachDao {
             query.select(root).where(predicate);
             return session.createQuery(query).getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Can`t find by experience greater than : "
-                    + years, e);
+            throw new RuntimeException("Can`t find by experience greater than : " + years, e);
         }
     }
 }

@@ -25,8 +25,7 @@ public class PersonDaoImpl extends AbstractDao implements PersonDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Can't insert person entity "
-                    + person, e);
+            throw new RuntimeException("Can't insert person entity " + person, e);
         } finally {
             if (session != null) {
                 session.close();

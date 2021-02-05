@@ -30,8 +30,7 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Can't insert machine entity "
-                    + machine, e);
+            throw new RuntimeException("Can't insert machine entity " + machine, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -49,8 +48,7 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
             query.select(root).where(predicate);
             return session.createQuery(query).getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Can`t find by age older than age : "
-                    + age, e);
+            throw new RuntimeException("Can`t find by age older than age : " + age, e);
         }
     }
 }

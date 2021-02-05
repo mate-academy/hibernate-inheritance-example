@@ -24,8 +24,7 @@ public class MentorDaoImpl extends PersonDaoImpl implements MentorDao {
             query.select(root).where(predicate);
             return session.createQuery(query).getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Can`t find by age greater than age : "
-                    + age, e);
+            throw new RuntimeException("Can`t find by age greater than age : " + age, e);
         }
     }
 }
