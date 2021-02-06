@@ -1,5 +1,6 @@
 package core.basesyntax.model.zoo;
 
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -38,5 +39,24 @@ public class Animal {
     
     public void setId(Long id) {
         this.id = id;
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Animal animal = (Animal) o;
+        return age == animal.age
+               && Objects.equals(id, animal.id)
+               && Objects.equals(name, animal.name);
+    }
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, age, name);
     }
 }

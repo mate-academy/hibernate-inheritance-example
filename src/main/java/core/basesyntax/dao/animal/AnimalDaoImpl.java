@@ -2,7 +2,6 @@ package core.basesyntax.dao.animal;
 
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.zoo.Animal;
-import java.util.Collections;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,7 +11,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
     public AnimalDaoImpl(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
-
+    
     @Override
     public Animal save(Animal animal) {
         Session session = null;
@@ -34,12 +33,14 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
         }
         return animal;
     }
-
+    
     @Override
     public List<Animal> findByNameFirstLetter(Character character) {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("from Animal where name like :c%", Animal.class)
-                    .setParameter("c", character).getResultList();
+            return session.createQuery("from Animal a"
+                                       + " where a.name like :search", Animal.class)
+                    .setParameter("search", character + "%")
+                    .getResultList();
         } catch (Exception e) {
             throw new RuntimeException("Errored while getting data by "
                                        + character + " character.");
