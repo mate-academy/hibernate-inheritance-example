@@ -3,13 +3,13 @@ package core.basesyntax.dao.figure;
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.figure.Figure;
 import java.util.List;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 public class FigureDaoImpl<T extends Figure> extends AbstractDao implements FigureDao<T> {
     public FigureDaoImpl(SessionFactory sessionFactory) {
