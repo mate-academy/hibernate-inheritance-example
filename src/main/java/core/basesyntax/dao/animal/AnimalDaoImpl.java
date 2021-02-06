@@ -2,19 +2,11 @@ package core.basesyntax.dao.animal;
 
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.zoo.Animal;
-
-import java.util.ArrayList;
 import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 
 public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
     public AnimalDaoImpl(SessionFactory sessionFactory) {
@@ -51,7 +43,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
             getByFirstLetterQuery.setParameter("name", character + "%");
             return getByFirstLetterQuery.getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Can't get Animal by Letter " + character, e);
+            throw new RuntimeException("Can't find Animal by Letter " + character, e);
         }
     }
 }
