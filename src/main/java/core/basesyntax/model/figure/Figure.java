@@ -1,15 +1,11 @@
 package core.basesyntax.model.figure;
 
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-@DiscriminatorColumn(name = "figure_type",
-        discriminatorType = DiscriminatorType.INTEGER)
 public class Figure {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

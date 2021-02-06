@@ -1,10 +1,8 @@
 package core.basesyntax.model.figure;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("1")
 public class Circle extends Figure {
     private int radius;
 

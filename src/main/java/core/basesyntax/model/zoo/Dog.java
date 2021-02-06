@@ -1,9 +1,11 @@
 package core.basesyntax.model.zoo;
 
 import java.util.Objects;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
+@DiscriminatorValue("2")
 public class Dog extends Animal {
     private int tailLength;
     private String owner;
