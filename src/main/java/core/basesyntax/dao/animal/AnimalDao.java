@@ -6,5 +6,5 @@ import java.util.List;
 public interface AnimalDao {
     Animal save(Animal animal);
 
-    List<Animal> findByNameFirstLetter(Character character);
+    List<Animal> findByNameFirstLetter(Character letter);
 }
