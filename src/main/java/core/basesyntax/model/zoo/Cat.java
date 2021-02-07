@@ -26,4 +26,13 @@ public class Cat extends Animal {
     public void setColor(String color) {
         this.color = color;
     }
+
+    @Override
+    public String toString() {
+        return super.toString()
+                + "Cat{"
+                + "numberOfLives=" + numberOfLives
+                + ", color='" + color + '\''
+                + '}';
+    }
 }

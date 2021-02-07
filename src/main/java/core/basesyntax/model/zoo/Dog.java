@@ -26,4 +26,12 @@ public class Dog extends Animal {
     public void setOwner(String owner) {
         this.owner = owner;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Dog{"
+                + "tailLength=" + tailLength
+                + ", owner='" + owner + '\''
+                + '}';
+    }
 }
