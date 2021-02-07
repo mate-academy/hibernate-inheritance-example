@@ -1,6 +1,11 @@
 package core.basesyntax.model.figure;
 
-public class Figure {
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
+public abstract class Figure {
+    @Column
     private String color;
 
     public String getColor() {
