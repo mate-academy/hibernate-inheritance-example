@@ -10,9 +10,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "circles")
 public class Circle extends Figure {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
     @Column
     private int radius;
 
