@@ -1,6 +1,15 @@
 package core.basesyntax.model.machine;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+@Entity
+@Inheritance (strategy = InheritanceType.TABLE_PER_CLASS)
 public class Machine {
+    @Id
+    private Long id;
     private int year;
     private String maker;
 
@@ -18,5 +27,13 @@ public class Machine {
 
     public void setMaker(String maker) {
         this.maker = maker;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
