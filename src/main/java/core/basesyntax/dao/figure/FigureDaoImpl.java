@@ -30,7 +30,7 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Can't add figure entity to DB", e);
+            throw new RuntimeException("Can't add figure entity to DB: " + figure, e);
         } finally {
             if (session != null) {
                 session.close();
