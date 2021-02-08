@@ -1,10 +1,14 @@
 package core.basesyntax;
 
 import core.basesyntax.dao.animal.AnimalDaoImpl;
+import core.basesyntax.dao.figure.FigureDaoImpl;
 import core.basesyntax.dao.ma.CoachDaoImpl;
 import core.basesyntax.dao.ma.MentorDaoImpl;
 import core.basesyntax.dao.ma.PersonDaoImpl;
 import core.basesyntax.dao.machine.MachineDaoImpl;
+import core.basesyntax.model.figure.Circle;
+import core.basesyntax.model.figure.Figure;
+import core.basesyntax.model.figure.Triangle;
 import core.basesyntax.model.ma.Coach;
 import core.basesyntax.model.ma.Mentor;
 import core.basesyntax.model.ma.Person;
@@ -70,5 +74,18 @@ public class Main {
         List<Coach> byExperienceGreaterThan = coachDao.findByExperienceGreaterThan(5);
         System.out.println(byAgeOlderThan);
         System.out.println(byExperienceGreaterThan);
+        System.out.println("---------------------------------------------");
+
+        Figure circle = new Circle();
+        circle.setColor("Red");
+        ((Circle)circle).setRadius(10);
+        Figure triangle = new Triangle();
+        triangle.setColor("Green");
+        ((Triangle)triangle).setArea(12);
+        FigureDaoImpl<Figure> figureDao = new FigureDaoImpl<>(HibernateUtil.getSessionFactory());
+        figureDao.save(circle);
+        figureDao.save(triangle);
+        List<Figure> figures = figureDao.findByColor("Green", Figure.class);
+        System.out.println(figures);
     }
 }
