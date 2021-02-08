@@ -1,6 +1,5 @@
 package core.basesyntax.model.figure;
 
-
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
