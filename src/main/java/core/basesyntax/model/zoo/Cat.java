@@ -5,7 +5,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("1")
+@DiscriminatorValue("cat")
 public class Cat extends Animal {
     @Column(name = "number_of_lives")
     private int numberOfLives;
