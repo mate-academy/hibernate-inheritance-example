@@ -2,11 +2,9 @@ package core.basesyntax.dao.machine;
 
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.machine.Machine;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -41,12 +39,12 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
     @Override
     public List<Machine> findByAgeOlderThan(int age) {
         try (Session session = sessionFactory.openSession()) {
-            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-            CriteriaQuery<Machine> query = criteriaBuilder.createQuery(Machine.class);
-            Root<Machine> root = query.from(Machine.class);
-            Predicate predicate = criteriaBuilder.gt(root.get("age"), age);
-            query.select(root).where(predicate);
-            return session.createQuery(query).getResultList();
+            return session.createQuery("FROM Machine WHERE :now_year - Machine.year > :age",
+                    Machine.class)
+                    .setParameter("now_year",
+                            DateTimeFormatter.ofPattern("yyyy").format(LocalDate.now()))
+                    .setParameter("age", age)
+                    .getResultList();
         } catch (Exception e) {
             throw new RuntimeException("Can`t find by age older than age : " + age, e);
         }
