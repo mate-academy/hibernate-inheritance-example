@@ -1,7 +1,6 @@
 package core.basesyntax.dao.ma;
 
 import core.basesyntax.model.ma.Mentor;
-import java.time.LocalDate;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,7 +16,7 @@ public class MentorDaoImpl extends PersonDaoImpl implements MentorDao {
         try (Session session = sessionFactory.openSession()) {
             Query<Mentor> getAgeGreaterThanQuery = session.createQuery("SELECT m FROM Mentor m "
                     + "WHERE m.age > :age", Mentor.class);
-            getAgeGreaterThanQuery.setParameter("age", LocalDate.now().getYear() - age);
+            getAgeGreaterThanQuery.setParameter("age", age);
             return getAgeGreaterThanQuery.getResultList();
         } catch (Exception e) {
             throw new RuntimeException("Can't find Mentor with age greater than " + age, e);
