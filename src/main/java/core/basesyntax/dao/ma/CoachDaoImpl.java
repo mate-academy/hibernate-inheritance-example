@@ -20,7 +20,7 @@ public class CoachDaoImpl extends PersonDaoImpl implements CoachDao {
             findByExperience.setParameter("years", years);
             return findByExperience.getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Could not find by experience", e);
+            throw new RuntimeException("Could not find by experience" + years, e);
         }
     }
 }

@@ -44,7 +44,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
             findNameByLetter.setParameter("character", character);
             return findNameByLetter.getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Could not find name by first letter", e);
+            throw new RuntimeException("Could not find name by first letter" + character, e);
         }
     }
 }
