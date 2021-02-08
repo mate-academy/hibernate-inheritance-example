@@ -3,7 +3,6 @@ package core.basesyntax.dao.machine;
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.machine.Machine;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
