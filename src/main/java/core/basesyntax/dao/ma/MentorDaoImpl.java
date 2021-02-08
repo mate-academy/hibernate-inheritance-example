@@ -1,9 +1,9 @@
 package core.basesyntax.dao.ma;
 
 import core.basesyntax.model.ma.Mentor;
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import java.util.List;
 
 public class MentorDaoImpl extends PersonDaoImpl implements MentorDao {
     public MentorDaoImpl(SessionFactory sessionFactory) {
