@@ -40,7 +40,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
         try (Session session = sessionFactory.openSession()) {
             return session.createQuery("select a from Animal a "
                     + "where a.name like :name", Animal.class)
-                    .setParameter("name", "'" + character + "%'")
+                    .setParameter("name", character + "%")
                     .getResultList();
         } catch (Exception e) {
             throw new RuntimeException("Couldn't find animal by first name letter: "
