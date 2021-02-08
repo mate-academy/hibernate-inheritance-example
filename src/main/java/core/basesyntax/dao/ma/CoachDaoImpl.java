@@ -1,7 +1,6 @@
 package core.basesyntax.dao.ma;
 
 import core.basesyntax.model.ma.Coach;
-import java.sql.Connection;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
