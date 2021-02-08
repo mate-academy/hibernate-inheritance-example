@@ -1,9 +1,11 @@
 package core.basesyntax.model.zoo;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
+@DiscriminatorValue("Cat")
 public class Cat extends Animal {
     @Column(name = "number_of_lives")
     private int numberOfLives;
