@@ -47,7 +47,8 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
             criteriaQuery.where(builder.equal(root.get("color"), color));
             return session.createQuery(criteriaQuery).getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Can`t find " + clazz + " by color " + color, e);
+            throw new RuntimeException("Can`t find " + clazz.getSimpleName()
+                    + " by color " + color, e);
         }
     }
 }
