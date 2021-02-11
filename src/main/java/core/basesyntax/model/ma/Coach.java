@@ -1,11 +1,19 @@
 package core.basesyntax.model.ma;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "coaches")
 public class Coach extends Person {
     public enum Track {
         JAVA, FE, UI, QA
     }
 
+    @Column
     private int experience;
+    @Column
     private Track track;
 
     public int getExperience() {

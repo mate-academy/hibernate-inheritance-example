@@ -1,7 +1,15 @@
 package core.basesyntax.model.zoo;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("dog")
 public class Dog extends Animal {
+    @Column
     private int tailLength;
+    @Column
     private String owner;
 
     public int getTailLength() {
