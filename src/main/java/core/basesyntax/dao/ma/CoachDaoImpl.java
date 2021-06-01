@@ -1,5 +1,6 @@
 package core.basesyntax.dao.ma;
 
+import core.basesyntax.exception.DataProcessingException;
 import core.basesyntax.model.ma.Coach;
 import java.util.List;
 import org.hibernate.Session;
@@ -16,6 +17,9 @@ public class CoachDaoImpl extends PersonDaoImpl implements CoachDao {
             return session.createQuery("from Coach where experience > :years", Coach.class)
                     .setParameter("years", years)
                     .getResultList();
+        } catch (Exception e) {
+            throw new DataProcessingException(
+                    "Can't find a coach with experience larger than " + years, e);
         }
     }
 }

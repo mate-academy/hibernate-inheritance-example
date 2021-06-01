@@ -1,5 +1,6 @@
 package core.basesyntax.dao.ma;
 
+import core.basesyntax.exception.DataProcessingException;
 import core.basesyntax.model.ma.Mentor;
 import java.util.List;
 import org.hibernate.Session;
@@ -16,6 +17,9 @@ public class MentorDaoImpl extends PersonDaoImpl implements MentorDao {
             return session.createQuery("from Mentor where age > :age", Mentor.class)
                     .setParameter("age", age)
                     .getResultList();
+        } catch (Exception e) {
+            throw new DataProcessingException(
+                    "Can't find a mentor with age greater than " + age, e);
         }
     }
 }
