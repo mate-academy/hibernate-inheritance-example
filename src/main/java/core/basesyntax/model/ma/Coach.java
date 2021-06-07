@@ -1,6 +1,8 @@
 package core.basesyntax.model.ma;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Entity
 public class Coach extends Person {
@@ -9,6 +11,8 @@ public class Coach extends Person {
     }
 
     private int experience;
+
+    @Enumerated(EnumType.STRING)
     private Track track;
 
     public int getExperience() {

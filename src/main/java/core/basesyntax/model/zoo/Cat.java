@@ -1,13 +1,8 @@
 package core.basesyntax.model.zoo;
 
-import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "Animal_Type")
 public class Cat extends Animal {
     private int numberOfLives;
     private String color;
