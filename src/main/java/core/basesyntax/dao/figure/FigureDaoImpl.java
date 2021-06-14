@@ -1,5 +1,6 @@
 package core.basesyntax.dao.figure;
 
+import core.basesyntax.Exception.DataProcessingException;
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.figure.Figure;
 import java.util.List;
@@ -30,7 +31,7 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Can't save figure: " + figure, e);
+            throw new DataProcessingException("Can't save figure: " + figure, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -48,7 +49,7 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
             criteriaQuery.where(predicate);
             return session.createQuery(criteriaQuery).getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Can't get a figure by color: " + color, e);
+            throw new DataProcessingException("Can't get a figure by color: " + color, e);
         }
     }
 }
