@@ -29,7 +29,7 @@ public class MachineDaoImplTest extends AbstractTest {
     @Test
     public void createMachine_Ok() {
         Machine machine = new Machine();
-        machine.setYear(2010);
+        machine.setProductionYear(2010);
         machine.setMaker("Cat");
         Machine actualMachine = machineDao.save(machine);
         Assert.assertNotNull(actualMachine);
@@ -41,7 +41,7 @@ public class MachineDaoImplTest extends AbstractTest {
         Truck truck = new Truck();
         truck.setMaker("Volvo");
         truck.setMaxAllowedWeight(1500);
-        truck.setYear(2018);
+        truck.setProductionYear(2018);
         truck.setColor("Pink");
         Machine actualTruck = machineDao.save(truck);
         Assert.assertNotNull(actualTruck.getId());
@@ -51,7 +51,7 @@ public class MachineDaoImplTest extends AbstractTest {
     @Test
     public void createCar_Ok() {
         Car car = new Car();
-        car.setYear(2016);
+        car.setProductionYear(2016);
         car.setMaker("Audi");
         car.setModel("A6");
         car.setHorsePower(300);
@@ -64,11 +64,11 @@ public class MachineDaoImplTest extends AbstractTest {
     public void findByAgeOlderThan_Ok() {
         Machine machine = new Machine();
         int currentYear = LocalDate.now().getYear();
-        machine.setYear(currentYear - 2);
+        machine.setProductionYear(currentYear - 2);
         Car car = new Car();
-        car.setYear(currentYear - 3);
+        car.setProductionYear(currentYear - 3);
         Truck truck = new Truck();
-        truck.setYear(currentYear - 4);
+        truck.setProductionYear(currentYear - 4);
         machineDao.save(car);
         machineDao.save(truck);
         machineDao.save(machine);
@@ -79,11 +79,11 @@ public class MachineDaoImplTest extends AbstractTest {
     public void findByAgeOlderThan_zeroMachines() {
         Machine machine = new Machine();
         int currentYear = LocalDate.now().getYear();
-        machine.setYear(currentYear - 2);
+        machine.setProductionYear(currentYear - 2);
         Car car = new Car();
-        car.setYear(currentYear - 1);
+        car.setProductionYear(currentYear - 1);
         Truck truck = new Truck();
-        truck.setYear(currentYear);
+        truck.setProductionYear(currentYear);
         machineDao.save(car);
         machineDao.save(truck);
         machineDao.save(machine);

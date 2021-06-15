@@ -1,11 +1,18 @@
 package core.basesyntax.model.ma;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
+@Entity
 public class Coach extends Person {
     public enum Track {
         JAVA, FE, UI, QA
     }
 
     private int experience;
+
+    @Enumerated(EnumType.STRING)
     private Track track;
 
     public int getExperience() {
@@ -22,5 +29,15 @@ public class Coach extends Person {
 
     public void setTrack(Track track) {
         this.track = track;
+    }
+
+    @Override
+    public String toString() {
+        return "Coach{"
+                + "id=" + super.getId()
+                + ", age=" + super.getAge()
+                + ", name='" + super.getName()
+                + "experience=" + experience
+                + ", track=" + track + "} ";
     }
 }
