@@ -1,5 +1,11 @@
 package core.basesyntax.model.ma;
 
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Person {
     private int age;
     private String name;
