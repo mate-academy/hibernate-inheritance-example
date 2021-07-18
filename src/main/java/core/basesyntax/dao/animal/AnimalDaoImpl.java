@@ -3,10 +3,10 @@ package core.basesyntax.dao.animal;
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.zoo.Animal;
 import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
     public AnimalDaoImpl(SessionFactory sessionFactory) {
@@ -27,7 +27,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Can't insert movie " + animal, e);
+            throw new RuntimeException("Can't insert animal " + animal, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -37,6 +37,13 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
 
     @Override
     public List<Animal> findByNameFirstLetter(Character character) {
-        return null;
+        try (Session session = sessionFactory.openSession()) {
+            Query<Animal> getAllAnimalsByNameFirstLetter
+                    = session.createQuery("from Animal a "
+                    + "where lower(a.name) like: firstLetter", Animal.class);
+            getAllAnimalsByNameFirstLetter
+                    .setParameter("firstLetter", character.toString().toLowerCase() + '%');
+            return getAllAnimalsByNameFirstLetter.list();
+        }
     }
 }
