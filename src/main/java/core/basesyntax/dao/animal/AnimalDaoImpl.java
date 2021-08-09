@@ -3,10 +3,10 @@ package core.basesyntax.dao.animal;
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.zoo.Animal;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
     public AnimalDaoImpl(SessionFactory sessionFactory) {
@@ -37,10 +37,12 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
     @Override
     public List<Animal> findByNameFirstLetter(Character character) {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("from Animal", Animal.class).getResultStream()
-                    .filter(animal -> animal.getName().toLowerCase()
-                            .startsWith(character.toString().toLowerCase()))
-                    .collect(Collectors.toList());
+            Query<Animal> query = session.createQuery("FROM Animal a "
+                    + "WHERE a.name LIKE LOWER(:low) "
+                    + "or a.name LIKE UPPER(:upp)", Animal.class);
+            query.setParameter("low", character + "%");
+            query.setParameter("upp", character + "%");
+            return query.getResultList();
         }
     }
 }
