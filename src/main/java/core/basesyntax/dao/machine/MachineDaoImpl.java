@@ -4,10 +4,10 @@ import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.machine.Machine;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 public class MachineDaoImpl extends AbstractDao implements MachineDao {
     public MachineDaoImpl(SessionFactory sessionFactory) {
@@ -39,10 +39,11 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
     @Override
     public List<Machine> findByAgeOlderThan(int age) {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("from Machine", Machine.class)
-                    .getResultStream()
-                    .filter(machine -> (LocalDate.now().getYear() - machine.getYear()) > age)
-                    .collect(Collectors.toList());
+            Query<Machine> query = session.createQuery("from Machine m "
+                    +  "where (:currentDate - m.year) > :age", Machine.class);
+            query.setParameter("currentDate", LocalDate.now().getYear());
+            query.setParameter("age", age);
+            return query.getResultList();
         }
     }
 }
