@@ -13,8 +13,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 public class MachineDaoImpl extends AbstractDao implements MachineDao {
-    private static final int YEAR = LocalDate.now().getYear();
-
     public MachineDaoImpl(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
@@ -43,11 +41,12 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
 
     @Override
     public List<Machine> findByAgeOlderThan(int age) {
+        int year = LocalDate.now().getYear();
         try (Session session = sessionFactory.openSession()) {
             CriteriaBuilder builder = session.getCriteriaBuilder();
             CriteriaQuery<Machine> query = builder.createQuery(Machine.class);
             Root<Machine> root = query.from(Machine.class);
-            Predicate predicate = builder.lessThan(root.get("year"), YEAR - age);
+            Predicate predicate = builder.lessThan(root.get("year"), year - age);
             query.select(root).where(predicate);
             return session.createQuery(query).getResultList();
         } catch (Exception e) {
