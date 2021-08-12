@@ -1,7 +1,11 @@
 package core.basesyntax.model.ma;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Coach extends Person {
     public enum Track {
+        @Enumerated(EnumType.STRING)
         JAVA, FE, UI, QA
     }
 
