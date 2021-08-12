@@ -7,11 +7,11 @@ import javax.persistence.Enumerated;
 @Entity
 public class Coach extends Person {
     public enum Track {
-        @Enumerated(EnumType.STRING)
         JAVA, FE, UI, QA
     }
 
     private int experience;
+    @Enumerated(EnumType.STRING)
     private Track track;
 
     public int getExperience() {
