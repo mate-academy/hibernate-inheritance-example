@@ -26,7 +26,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Can't save animal", e);
+            throw new RuntimeException("Can't save animal : " + animal, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -42,7 +42,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
                     .setParameter("str", character + "%")
                     .getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Can't get animals by first letter", e);
+            throw new RuntimeException("Can't get animals by first letter : " + character, e);
         }
     }
 }
