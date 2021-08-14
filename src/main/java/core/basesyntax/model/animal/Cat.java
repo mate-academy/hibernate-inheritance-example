@@ -1,15 +1,15 @@
-package core.basesyntax.model.figure;
+package core.basesyntax.model.animal;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
 
-@MappedSuperclass
-public class Figure {
+@Entity
+public class Cat extends Animal {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "number_of_lives")
+    private int numberOfLives;
     private String color;
 
     public Long getId() {
@@ -18,6 +18,14 @@ public class Figure {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public int getNumberOfLives() {
+        return numberOfLives;
+    }
+
+    public void setNumberOfLives(int numberOfLives) {
+        this.numberOfLives = numberOfLives;
     }
 
     public String getColor() {
@@ -30,8 +38,9 @@ public class Figure {
 
     @Override
     public String toString() {
-        return "Figure{"
+        return "Cat{"
                 + "id=" + id
+                + ", numberOfLives=" + numberOfLives
                 + ", color='" + color + '\''
                 + '}';
     }
