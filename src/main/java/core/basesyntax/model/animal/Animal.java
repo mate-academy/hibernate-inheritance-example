@@ -1,4 +1,4 @@
-package core.basesyntax.model.ma;
+package core.basesyntax.model.animal;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,9 +9,9 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "persons")
-@Inheritance(strategy = InheritanceType.JOINED)
-public class Person {
+@Table(name = "animals")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -44,7 +44,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person{"
+        return "Animal{"
                 + "id=" + id
                 + ", age=" + age
                 + ", name='" + name + '\''
