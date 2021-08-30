@@ -1,5 +1,10 @@
 package core.basesyntax.model.zoo;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "dogs")
 public class Dog extends Animal {
     private int tailLength;
     private String owner;
@@ -18,5 +23,15 @@ public class Dog extends Animal {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    @Override
+    public String toString() {
+        return "Dog{"
+                + "age=" + super.getAge()
+                + ", name='" + super.getName()
+                + "tailLength=" + tailLength
+                + ", owner='" + owner + '\''
+                + '}';
     }
 }
