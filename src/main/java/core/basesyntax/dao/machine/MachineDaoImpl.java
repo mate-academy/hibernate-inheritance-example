@@ -1,13 +1,9 @@
 package core.basesyntax.dao.machine;
 
 import core.basesyntax.dao.AbstractDao;
-import core.basesyntax.model.machine.Car;
 import core.basesyntax.model.machine.Machine;
-import core.basesyntax.model.machine.Truck;
 import java.time.LocalDateTime;
 import java.util.List;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
