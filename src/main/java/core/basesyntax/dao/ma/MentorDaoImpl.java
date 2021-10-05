@@ -17,7 +17,7 @@ public class MentorDaoImpl extends PersonDaoImpl implements MentorDao {
             Query<Mentor> findByAgeQuery =
                     session.createQuery("FROM Mentor "
                             + "WHERE age > :age", Mentor.class);
-            findByAgeQuery.setParameter("year", age);
+            findByAgeQuery.setParameter("age", age);
             return findByAgeQuery.getResultList();
         } catch (Exception e) {
             throw new RuntimeException("Can't get mentors older than: " + age, e);

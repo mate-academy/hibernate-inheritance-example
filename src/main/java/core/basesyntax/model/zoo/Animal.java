@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
-@Entity(name = "animals")
+@Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Animal {
     @Id

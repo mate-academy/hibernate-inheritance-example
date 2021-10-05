@@ -2,7 +2,7 @@ package core.basesyntax.model.zoo;
 
 import javax.persistence.Entity;
 
-@Entity(name = "cats")
+@Entity
 public class Cat extends Animal {
     private int numberOfLives;
     private String color;
