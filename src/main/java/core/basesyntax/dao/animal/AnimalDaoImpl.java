@@ -44,7 +44,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
             query.setParameter("character", character.toString().toLowerCase() + "%");
             return query.getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Can't find figures by character: " + character, e);
+            throw new RuntimeException("Can't find animals by character: " + character, e);
         }
     }
 }
