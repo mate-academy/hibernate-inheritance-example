@@ -24,6 +24,9 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
             transaction.commit();
             return figure;
         } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
             throw new RuntimeException("Can't save figure " + figure
                     + " to DB", e);
         } finally {

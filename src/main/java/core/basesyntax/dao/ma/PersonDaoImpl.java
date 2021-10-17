@@ -22,6 +22,9 @@ public class PersonDaoImpl extends AbstractDao implements PersonDao {
             transaction.commit();
             return person;
         } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
             throw new RuntimeException("Can't save person " + person
                     + " to DB", e);
         } finally {
