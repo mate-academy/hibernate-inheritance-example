@@ -43,7 +43,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
             Query<Animal> query = session.createQuery(queryString, Animal.class);
             return query.getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Can't get animal by letter: " + character, e);
+            throw new RuntimeException("Can't get animals by letter: " + character, e);
         }
     }
 }
