@@ -1,15 +1,14 @@
 package core.basesyntax.dao.figure;
 
 import core.basesyntax.dao.AbstractDao;
-import core.basesyntax.model.figure.Circle;
 import core.basesyntax.model.figure.Figure;
-import core.basesyntax.model.figure.Triangle;
-import java.util.Collections;
 import java.util.List;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 public class FigureDaoImpl<T extends Figure> extends AbstractDao implements FigureDao<T> {
     public FigureDaoImpl(SessionFactory sessionFactory) {
@@ -40,22 +39,15 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
 
     @Override
     public List<T> findByColor(String color, Class<T> clazz) {
-        if (clazz.equals(Triangle.class)) {
-            try (Session session = sessionFactory.openSession()) {
-                Query triangleQuery
-                        = session.createQuery("from Triangle t where t.color = :color");
-                triangleQuery.setParameter("color",color);
-                return triangleQuery.getResultList();
-            }
+        try (Session session = sessionFactory.openSession()) {
+            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            CriteriaQuery<T> query = criteriaBuilder.createQuery(clazz);
+            Root<T> root = query.from(clazz);
+            query.where(criteriaBuilder.equal(root.get("color"), color));
+            return session.createQuery(query).getResultList();
+        } catch (Exception e) {
+            throw new RuntimeException("Can't find - "
+                    + clazz.getName() + " by color - " + color, e);
         }
-        if (clazz.equals(Circle.class)) {
-            try (Session session = sessionFactory.openSession()) {
-                Query circleQuery
-                        = session.createQuery("from Circle c where c.color = :color");
-                circleQuery.setParameter("color",color);
-                return circleQuery.getResultList();
-            }
-        }
-        return Collections.emptyList();
     }
 }

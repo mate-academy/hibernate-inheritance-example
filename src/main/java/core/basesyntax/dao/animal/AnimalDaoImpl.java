@@ -43,6 +43,8 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
                     + "like LOWER(concat(:char, '%'))", Animal.class);
             animalQuery.setParameter("char", character);
             return animalQuery.getResultList();
+        } catch (Exception e) {
+            throw new RuntimeException("Can't get animals by the first letter: " + character, e);
         }
     }
 }
