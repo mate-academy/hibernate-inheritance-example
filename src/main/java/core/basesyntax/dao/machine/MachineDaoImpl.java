@@ -43,7 +43,6 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
             Query<Machine> machineQuery
                     = session.createQuery("from Machine m "
                     + "where :currentYear - m.year > :age ", Machine.class);
-
             return machineQuery.setParameter("currentYear", currentYear)
                     .setParameter("age", age).getResultList();
         }
