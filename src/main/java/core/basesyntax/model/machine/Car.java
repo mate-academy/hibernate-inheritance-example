@@ -22,12 +22,4 @@ public class Car extends Machine {
     public void setModel(String model) {
         this.model = model;
     }
-
-    @Override
-    public String toString() {
-        return "Car{"
-                + "horsePower=" + horsePower
-                + ", model='" + model + '\''
-                + "} " + super.toString();
-    }
 }

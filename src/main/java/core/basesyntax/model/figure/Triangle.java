@@ -13,11 +13,4 @@ public class Triangle extends Figure {
     public void setArea(double area) {
         this.area = area;
     }
-
-    @Override
-    public String toString() {
-        return "Triangle{"
-                + "area=" + area
-                + "} " + super.toString();
-    }
 }
