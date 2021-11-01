@@ -41,4 +41,5 @@ public class Machine {
     public void setMaker(String maker) {
         this.maker = maker;
     }
+
 }

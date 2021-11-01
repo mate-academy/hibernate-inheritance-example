@@ -41,12 +41,11 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
         try (Session session = sessionFactory.openSession()) {
             Query<Machine> getAllMachineQuery = session.createQuery(
                     "FROM Machine m WHERE "
-                            + "EXTRACT(YEAR FROM CURRENT_DATE) - m.year > :age",
-                    Machine.class);
+                            + "EXTRACT(YEAR FROM CURRENT_DATE) - m.year > :age", Machine.class);
             getAllMachineQuery.setParameter("age", age);
             return getAllMachineQuery.getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Can't get all machine by age: " + age, e);
+            throw new RuntimeException("Couldn't get all machines by age: " + age, e);
         }
     }
 }

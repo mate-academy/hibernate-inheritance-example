@@ -22,4 +22,5 @@ public class Truck extends Machine {
     public void setMaxAllowedWeight(double maxAllowedWeight) {
         this.maxAllowedWeight = maxAllowedWeight;
     }
+
 }

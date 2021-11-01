@@ -45,7 +45,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
             findAllAnimalQuery.setParameter("character", character + "%");
             return findAllAnimalQuery.getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Couldn't get all animal by character: "
+            throw new RuntimeException("Couldn't get all animals by first letter name: "
                     + character + " from DB. ", e);
         }
     }
