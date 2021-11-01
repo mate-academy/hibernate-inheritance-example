@@ -1,8 +1,6 @@
 package core.basesyntax.dao.ma;
 
 import core.basesyntax.model.ma.Mentor;
-import core.basesyntax.model.machine.Machine;
-import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;

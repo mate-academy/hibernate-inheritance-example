@@ -10,7 +10,6 @@ import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
     public AnimalDaoImpl(SessionFactory sessionFactory) {

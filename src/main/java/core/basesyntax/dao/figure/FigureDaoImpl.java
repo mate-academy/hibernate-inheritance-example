@@ -2,7 +2,6 @@ package core.basesyntax.dao.figure;
 
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.figure.Figure;
-import core.basesyntax.model.zoo.Animal;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;

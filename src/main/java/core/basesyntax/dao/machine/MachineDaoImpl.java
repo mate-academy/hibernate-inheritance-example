@@ -2,7 +2,6 @@ package core.basesyntax.dao.machine;
 
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.machine.Machine;
-import core.basesyntax.model.zoo.Animal;
 import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
