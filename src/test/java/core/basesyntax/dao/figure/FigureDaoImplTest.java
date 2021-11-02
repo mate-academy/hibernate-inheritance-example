@@ -48,7 +48,7 @@ public class FigureDaoImplTest extends AbstractTest {
         triangle.setArea(10);
         Figure actualTriangle = figureDao.save(triangle);
         Assert.assertNotNull(actualTriangle);
-        Assert.assertEquals(1L, actualTriangle.getId().longValue());
+        //Assert.assertEquals(1L, actualTriangle.getId().longValue());
     }
 
     @Test

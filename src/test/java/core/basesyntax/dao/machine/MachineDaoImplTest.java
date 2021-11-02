@@ -26,7 +26,7 @@ public class MachineDaoImplTest extends AbstractTest {
         machineDao = new MachineDaoImpl(getSessionFactory());
     }
 
-    @Test
+   @Test
     public void createMachine_Ok() {
         Machine machine = new Machine();
         machine.setYear(2010);
