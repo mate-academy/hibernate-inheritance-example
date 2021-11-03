@@ -43,9 +43,10 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
             CriteriaQuery<T> query = criteriaBuilder.createQuery(clazz);
             Root<T> classRoot = query.from(clazz);
-            CriteriaBuilder.In<Object> colorCriteria =
-                    criteriaBuilder.in(classRoot.get("color")).value(color);
-            return session.createQuery(query.where(colorCriteria)).getResultList();
+            CriteriaQuery<T> criteriaQuery = query
+                    .where(criteriaBuilder.equal(classRoot
+                            .get("color"), color));
+            return session.createQuery(criteriaQuery).getResultList();
         } catch (Exception e) {
             throw new RuntimeException("Unable to get figure by color" + color, e);
         }
