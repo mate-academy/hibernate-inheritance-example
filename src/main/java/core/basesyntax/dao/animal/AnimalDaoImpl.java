@@ -22,6 +22,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
             transaction = session.beginTransaction();
             session.save(animal);
             transaction.commit();
+            return animal;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
@@ -32,7 +33,6 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
                 session.close();
             }
         }
-        return animal;
     }
 
     @Override

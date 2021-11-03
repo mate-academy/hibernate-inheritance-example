@@ -23,6 +23,7 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
             transaction = session.beginTransaction();
             session.save(machine);
             transaction.commit();
+            return machine;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
@@ -33,7 +34,6 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
                 session.close();
             }
         }
-        return machine;
     }
 
     @Override
