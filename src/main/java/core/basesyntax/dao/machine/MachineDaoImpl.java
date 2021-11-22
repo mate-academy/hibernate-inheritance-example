@@ -46,7 +46,7 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
             List<Machine> machines = query.getResultList();
             return query.getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Can't find coach older than +" + age + " years", e);
+            throw new RuntimeException("Can't find machine older than +" + age + " years", e);
         }
     }
 }
