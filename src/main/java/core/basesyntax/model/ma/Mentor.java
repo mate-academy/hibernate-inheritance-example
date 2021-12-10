@@ -2,7 +2,7 @@ package core.basesyntax.model.ma;
 
 import javax.persistence.Entity;
 
-@Entity(name = "mentors")
+@Entity
 public class Mentor extends Person {
 
 }
