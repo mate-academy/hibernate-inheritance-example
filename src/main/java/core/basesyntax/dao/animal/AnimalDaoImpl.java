@@ -39,7 +39,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
     public List<Animal> findByNameFirstLetter(Character character) {
         try (Session session = sessionFactory.openSession()) {
             Query<Animal> query = session.createQuery("FROM Animal "
-                    + "WHERE UPPER(name) LIKE :letter", Animal.class);
+                    + "WHERE UPPER(name) LIKE UPPER(:letter)", Animal.class);
             return query.setParameter("letter", character + "%").getResultList();
         } catch (Exception e) {
             throw new RuntimeException("Can't get animals be first letter " + character, e);
