@@ -7,7 +7,6 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 public class MachineDaoImpl extends AbstractDao implements MachineDao {
     public MachineDaoImpl(SessionFactory sessionFactory) {
@@ -39,9 +38,10 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
     @Override
     public List<Machine> findByAgeOlderThan(int age) {
         try (Session session = sessionFactory.openSession()) {
-            Query<Machine> query = session.createQuery("FROM Machine  "
-                    + "WHERE year < :year", Machine.class);
-            return query.setParameter("year", LocalDate.now().getYear() - age).getResultList();
+            return session.createQuery("FROM Machine "
+                            + "WHERE year < :year", Machine.class)
+                    .setParameter("year", LocalDate.now().getYear() - age)
+                    .getResultList();
         } catch (Exception e) {
             throw new RuntimeException("Can't get machines older than " + age, e);
         }
