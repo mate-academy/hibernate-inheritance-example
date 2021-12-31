@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public class Figure {
+public abstract class Figure {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
