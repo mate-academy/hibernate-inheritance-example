@@ -3,12 +3,10 @@ package core.basesyntax.dao.figure;
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.figure.Figure;
 import java.util.List;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 public class FigureDaoImpl<T extends Figure> extends AbstractDao implements FigureDao<T> {
     public FigureDaoImpl(SessionFactory sessionFactory) {
@@ -40,14 +38,14 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
     @Override
     public List<T> findByColor(String color, Class<T> clazz) {
         try (Session session = sessionFactory.openSession()) {
-            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-            CriteriaQuery<T> query = criteriaBuilder.createQuery(clazz);
-            Root<T> root = query.from(clazz);
-            query.where(criteriaBuilder.equal(root.get("color"), color));
-            return session.createQuery(query).getResultList();
+            String queryString = String.format("FROM %s "
+                    + "WHERE color = :color", clazz.getName());
+            Query<T> query = session.createQuery(queryString, clazz);
+            query.setParameter("color", color);
+            return query.getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Can't get " + clazz.getSimpleName()
-                    + " by color: " + color, e);
+            throw new RuntimeException("Can't get " + clazz.getSimpleName() + " by color: "
+                    + color, e);
         }
     }
 }
