@@ -9,14 +9,6 @@ public class Car extends Machine {
     private int horsePower;
     private String model;
 
-    @Override
-    public String toString() {
-        return "Car{"
-                + ", horsePower=" + horsePower
-                + ", model='" + model + '\''
-                + '}';
-    }
-
     public int getHorsePower() {
         return horsePower;
     }
@@ -31,5 +23,13 @@ public class Car extends Machine {
 
     public void setModel(String model) {
         this.model = model;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{"
+                + ", horsePower=" + horsePower
+                + ", model='" + model + '\''
+                + '}';
     }
 }

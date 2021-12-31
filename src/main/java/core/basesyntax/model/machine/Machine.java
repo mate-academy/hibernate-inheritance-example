@@ -18,15 +18,6 @@ public class Machine {
     private int year;
     private String maker;
 
-    @Override
-    public String toString() {
-        return "Machine{"
-                + "id=" + id
-                + ", year=" + year
-                + ", maker='" + maker + '\''
-                + '}';
-    }
-
     public Long getId() {
         return id;
     }
@@ -49,5 +40,14 @@ public class Machine {
 
     public void setMaker(String maker) {
         this.maker = maker;
+    }
+
+    @Override
+    public String toString() {
+        return "Machine{"
+                + "id=" + id
+                + ", year=" + year
+                + ", maker='" + maker + '\''
+                + '}';
     }
 }

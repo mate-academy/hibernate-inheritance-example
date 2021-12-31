@@ -12,14 +12,6 @@ public abstract class Figure {
     private Long id;
     private String color;
 
-    @Override
-    public String toString() {
-        return "Figure{"
-                + "id=" + id
-                + ", color='" + color + '\''
-                + '}';
-    }
-
     public Long getId() {
         return id;
     }
@@ -34,5 +26,13 @@ public abstract class Figure {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    @Override
+    public String toString() {
+        return "Figure{"
+                + "id=" + id
+                + ", color='" + color + '\''
+                + '}';
     }
 }

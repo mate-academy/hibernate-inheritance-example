@@ -26,15 +26,6 @@ public class Animal {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "Animal{"
-                + "id=" + id
-                + ", age=" + age
-                + ", name='" + name + '\''
-                + '}';
-    }
-
     public int getAge() {
         return age;
     }
@@ -49,5 +40,14 @@ public class Animal {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Animal{"
+                + "id=" + id
+                + ", age=" + age
+                + ", name='" + name + '\''
+                + '}';
     }
 }

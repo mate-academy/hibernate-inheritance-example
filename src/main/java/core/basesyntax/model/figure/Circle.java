@@ -1,33 +1,12 @@
 package core.basesyntax.model.figure;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "circles")
 public class Circle extends Figure {
-    @Id
-    private Long id;
     private int radius;
-
-    @Override
-    public String toString() {
-        return "Circle{"
-                + "id=" + id
-                + ", radius=" + radius
-                + '}';
-    }
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public int getRadius() {
         return radius;
@@ -35,5 +14,12 @@ public class Circle extends Figure {
 
     public void setRadius(int radius) {
         this.radius = radius;
+    }
+
+    @Override
+    public String toString() {
+        return "Circle{"
+                + ", radius=" + radius
+                + '}';
     }
 }

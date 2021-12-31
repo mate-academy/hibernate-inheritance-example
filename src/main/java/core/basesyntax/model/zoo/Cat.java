@@ -9,14 +9,6 @@ public class Cat extends Animal {
     private int numberOfLives;
     private String color;
 
-    @Override
-    public String toString() {
-        return "Cat{"
-                + ", numberOfLives=" + numberOfLives
-                + ", color='" + color + '\''
-                + '}';
-    }
-
     public int getNumberOfLives() {
         return numberOfLives;
     }
@@ -31,5 +23,13 @@ public class Cat extends Animal {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    @Override
+    public String toString() {
+        return "Cat{"
+                + ", numberOfLives=" + numberOfLives
+                + ", color='" + color + '\''
+                + '}';
     }
 }

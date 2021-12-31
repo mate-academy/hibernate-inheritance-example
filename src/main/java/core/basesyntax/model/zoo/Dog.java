@@ -9,14 +9,6 @@ public class Dog extends Animal {
     private int tailLength;
     private String owner;
 
-    @Override
-    public String toString() {
-        return "Dog{"
-                + ", tailLength=" + tailLength
-                + ", owner='" + owner + '\''
-                + '}';
-    }
-
     public int getTailLength() {
         return tailLength;
     }
@@ -31,5 +23,13 @@ public class Dog extends Animal {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    @Override
+    public String toString() {
+        return "Dog{"
+                + ", tailLength=" + tailLength
+                + ", owner='" + owner + '\''
+                + '}';
     }
 }

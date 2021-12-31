@@ -6,5 +6,4 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "mentors")
 public class Mentor extends Person {
-
 }
