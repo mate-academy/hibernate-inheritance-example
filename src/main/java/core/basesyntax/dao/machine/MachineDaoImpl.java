@@ -45,7 +45,7 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
             query.setParameter("countedYear", countedYear);
             return query.getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Can't find machine older than : "
+            throw new RuntimeException("Can't find machines older than : "
                     + age + " years", e);
         }
     }

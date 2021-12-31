@@ -19,7 +19,7 @@ public class CoachDaoImpl extends PersonDaoImpl implements CoachDao {
             query.setParameter("years", years);
             return query.getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Can't find coach with experience greater than : "
+            throw new RuntimeException("Can't find coaches with experience greater than : "
                     + years + " years", e);
         }
     }

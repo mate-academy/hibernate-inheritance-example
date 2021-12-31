@@ -44,7 +44,7 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
             query.setParameter("color", color);
             return query.getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Can't find figure by color: " + color, e);
+            throw new RuntimeException("Can't find figures by color: " + color, e);
         }
     }
 }
