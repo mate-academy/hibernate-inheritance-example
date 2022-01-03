@@ -44,7 +44,7 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
             machineQuery.setParameter("age", LocalDateTime.now().getYear() - age);
             return machineQuery.getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Can't find mentors by age greater than " + age);
+            throw new RuntimeException("Can't find mentors by age greater than " + age, e);
         }
     }
 }

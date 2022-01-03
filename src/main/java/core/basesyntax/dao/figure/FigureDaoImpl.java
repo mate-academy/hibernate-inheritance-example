@@ -30,7 +30,7 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Can't save figure: " + figure);
+            throw new RuntimeException("Can't save figure: " + figure, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -48,7 +48,7 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
             query.where(predicate);
             return session.createQuery(query).getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Can't find figure by color " + color);
+            throw new RuntimeException("Can't find figure by color " + color, e);
         }
     }
 }
