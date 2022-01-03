@@ -2,7 +2,7 @@ package core.basesyntax.model.machine;
 
 import javax.persistence.Entity;
 
-@Entity(name = "dog")
+@Entity(name = "trucks")
 public class Truck extends Machine {
     private String color;
     private double maxAllowedWeight;

@@ -8,7 +8,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
-@Entity(name = "machine")
+@Entity(name = "machines")
 @Table(name = "machines")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Machine {

@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
-@Entity(name = "coach")
+@Entity(name = "coaches")
 public class Coach extends Person {
     public enum Track {
         JAVA, FE, UI, QA
