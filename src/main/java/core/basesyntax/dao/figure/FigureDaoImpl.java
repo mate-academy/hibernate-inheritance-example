@@ -25,6 +25,7 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
             if (transaction != null) {
                 transaction.rollback();
             }
+            throw new RuntimeException("Can't insert figure: " + figure + " to DB", e);
         } finally {
             if (session != null) {
                 session.close();
@@ -38,6 +39,9 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
         try (Session session = sessionFactory.openSession()) {
             return session.createQuery("from " + clazz.getName() + " where color = :color", clazz)
                     .setParameter("color", color).getResultList();
+        } catch (Exception e) {
+            throw new RuntimeException("Can't get a figure " + clazz.getName()
+                    + " by color: " + color, e);
         }
     }
 }
