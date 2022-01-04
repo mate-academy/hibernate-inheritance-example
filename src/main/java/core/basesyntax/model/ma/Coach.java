@@ -19,8 +19,4 @@ public class Coach extends Person {
     private int experience;
     @Enumerated(EnumType.STRING)
     private Track track;
-
-    public void setExperience(int experience) {
-        this.experience = experience;
-    }
 }
