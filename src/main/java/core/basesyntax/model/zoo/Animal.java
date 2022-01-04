@@ -6,10 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.Table;
 
 @Entity(name = "animals")
-@Table(name = "aminals")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Animal {
     @Id
