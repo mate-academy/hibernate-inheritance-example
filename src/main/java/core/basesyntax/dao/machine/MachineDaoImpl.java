@@ -3,7 +3,6 @@ package core.basesyntax.dao.machine;
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.machine.Machine;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -40,7 +39,6 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
 
     @Override
     public List<Machine> findByAgeOlderThan(int age) {
-        List<Machine> machines = new ArrayList<>();
         try (Session session = sessionFactory.openSession()) {
             LocalDate localDate = LocalDate.now();
             int year = localDate.getYear();
@@ -48,8 +46,7 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
                     + "where :year - m.year > :age", Machine.class);
             queue.setParameter("year", year);
             queue.setParameter("age", age);
-            machines.addAll(queue.getResultList());
-            return machines;
+            return queue.getResultList();
         } catch (HibernateException e) {
             throw new RuntimeException("Сan't get all machines older than year - " + age, e);
         }
