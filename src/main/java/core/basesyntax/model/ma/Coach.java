@@ -1,8 +1,16 @@
 package core.basesyntax.model.ma;
 
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@Entity
+@Table(name = "coaches")
 public class Coach extends Person {
     public enum Track {
         JAVA, FE, UI, QA
@@ -12,19 +20,7 @@ public class Coach extends Person {
     @Enumerated(EnumType.STRING)
     private Track track;
 
-    public int getExperience() {
-        return experience;
-    }
-
     public void setExperience(int experience) {
         this.experience = experience;
-    }
-
-    public Track getTrack() {
-        return track;
-    }
-
-    public void setTrack(Track track) {
-        this.track = track;
     }
 }
