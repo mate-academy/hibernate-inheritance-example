@@ -19,7 +19,7 @@ public class MentorDaoImpl extends PersonDaoImpl implements MentorDao {
             findMentorsByAge.setParameter("age", age);
             return findMentorsByAge.getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Can't get all mentors by age: " + age, e);
+            throw new RuntimeException("Can't get all mentors by age greater than: " + age, e);
         }
     }
 }
