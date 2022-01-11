@@ -12,9 +12,5 @@
     <property name="show_sql">false</property>
     <property name="format_sql">false</property>
     <property name="hibernate.hbm2ddl.auto">create-drop</property>
-
-    <mapping class="core.basesyntax.model.zoo.Animal" />
-    <mapping class="core.basesyntax.model.zoo.Cat" />
-    <mapping class="core.basesyntax.model.zoo.Dog" />
   </session-factory>
 </hibernate-configuration>
