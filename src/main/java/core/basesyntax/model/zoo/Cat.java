@@ -1,8 +1,22 @@
 package core.basesyntax.model.zoo;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "cats")
 public class Cat extends Animal {
     private int numberOfLives;
     private String color;
+
+    public Cat() {
+    }
+
+    public Cat(int age, String name, int numberOfLives, String color) {
+        super(age, name);
+        this.numberOfLives = numberOfLives;
+        this.color = color;
+    }
 
     public int getNumberOfLives() {
         return numberOfLives;
