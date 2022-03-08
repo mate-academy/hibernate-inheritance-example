@@ -14,6 +14,7 @@ import javax.persistence.Table;
 public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private int age;
     private String name;
 
@@ -31,5 +32,13 @@ public class Animal {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
