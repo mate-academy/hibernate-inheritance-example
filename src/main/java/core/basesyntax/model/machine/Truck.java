@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "trucks")
+@Table(name = "truck")
 public class Truck extends Machine {
     private String color;
     private double maxAllowedWeight;

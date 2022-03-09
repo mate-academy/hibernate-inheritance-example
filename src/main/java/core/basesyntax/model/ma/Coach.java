@@ -6,7 +6,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "coaches")
+@Table(name = "coach")
 public class Coach extends Person {
     public enum Track {
         JAVA, FE, UI, QA

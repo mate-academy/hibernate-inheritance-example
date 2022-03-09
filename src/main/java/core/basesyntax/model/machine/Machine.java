@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@Table(name = "machines")
+@Table(name = "machine")
 public class Machine {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)

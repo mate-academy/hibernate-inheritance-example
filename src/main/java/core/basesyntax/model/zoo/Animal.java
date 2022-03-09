@@ -9,7 +9,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "animals")
+@Table(name = "animal")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Animal {
     @Id
