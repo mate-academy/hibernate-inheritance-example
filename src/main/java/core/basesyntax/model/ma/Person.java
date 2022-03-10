@@ -2,7 +2,7 @@ package core.basesyntax.model.ma;
 
 public class Person {
     private int age;
-    private String name;
+    private String names;
 
     public int getAge() {
         return age;
