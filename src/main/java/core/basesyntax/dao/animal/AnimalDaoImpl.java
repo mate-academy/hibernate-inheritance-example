@@ -3,7 +3,6 @@ package core.basesyntax.dao.animal;
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.zoo.Animal;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -38,13 +37,10 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
     @Override
     public List<Animal> findByNameFirstLetter(Character character) {
         try (Session session = sessionFactory.openSession()) {
-            List<Animal> animalsFromDB = session
-                    .createQuery("SELECT DISTINCT a FROM Animal a", Animal.class)
+            return session.createQuery("SELECT DISTINCT a FROM Animal a"
+                    + " WHERE UPPER(a.name) LIKE CONCAT(:firstLetter, '%')", Animal.class)
+                    .setParameter("firstLetter", Character.toUpperCase(character))
                     .getResultList();
-
-            return animalsFromDB.stream().filter(n -> n.getName().toLowerCase()
-                    .startsWith(String.valueOf(character).toLowerCase()))
-                    .collect(Collectors.toList());
         } catch (Exception e) {
             throw new RuntimeException("Can't find Animals starting with first letter: "
                     + character, e);
