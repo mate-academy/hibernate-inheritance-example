@@ -8,10 +8,10 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 @Entity
-@Inheritance (strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance (strategy = InheritanceType.SINGLE_TABLE)
 public class Animal {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int age;
     private String name;

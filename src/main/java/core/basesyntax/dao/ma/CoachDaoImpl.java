@@ -14,11 +14,11 @@ public class CoachDaoImpl extends PersonDaoImpl implements CoachDao {
     public List<Coach> findByExperienceGreaterThan(int years) {
         try (Session session = sessionFactory.openSession()) {
             return session.createQuery("SELECT c FROM Coach c"
-                            + " WHERE c.experience > :exp", Coach.class)
-                    .setParameter("exp", years)
+                            + " WHERE c.experience > :experience", Coach.class)
+                    .setParameter("experience", years)
                     .getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Can't find Coach Person with exp more years than: "
+            throw new RuntimeException("Can't find Coach Person with experience more years than: "
                     + years, e);
         }
     }
