@@ -1,9 +1,9 @@
 package core.basesyntax.dao.animal;
 
 import core.basesyntax.dao.AbstractTest;
-import core.basesyntax.model.zoo.Animal;
-import core.basesyntax.model.zoo.Cat;
-import core.basesyntax.model.zoo.Dog;
+import core.basesyntax.model.figure.zoo.Animal;
+import core.basesyntax.model.figure.zoo.Cat;
+import core.basesyntax.model.figure.zoo.Dog;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
