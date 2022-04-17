@@ -1,4 +1,4 @@
-package core.basesyntax.model.ma;
+package core.basesyntax.model.figure.zoo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,12 +6,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "persons")
-@Inheritance(strategy = InheritanceType.JOINED)
-public class Person {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -1,6 +1,6 @@
 package core.basesyntax.dao.animal;
 
-import core.basesyntax.model.zoo.Animal;
+import core.basesyntax.model.figure.zoo.Animal;
 import java.util.List;
 
 public interface AnimalDao {
