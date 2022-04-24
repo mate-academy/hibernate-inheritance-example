@@ -7,6 +7,8 @@ import core.basesyntax.model.figure.Triangle;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.transaction.Transactional;
 import java.util.List;
 
 public class FigureDaoImplTest extends AbstractTest {
