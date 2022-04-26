@@ -1,9 +1,13 @@
 package core.basesyntax.model.ma;
 
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
+@Entity
 public class Coach extends Person {
+    private Long id;
+
     public enum Track {
         JAVA, FE, UI, QA
     }
@@ -26,5 +30,13 @@ public class Coach extends Person {
 
     public void setTrack(Track track) {
         this.track = track;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
