@@ -1,5 +1,8 @@
 package core.basesyntax.model.figure;
 
+import javax.persistence.Entity;
+
+@Entity(name = "Triangle")
 public class Triangle extends Figure {
     private double area;
 
