@@ -8,8 +8,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import javax.persistence.criteria.*;
-
 public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
     public AnimalDaoImpl(SessionFactory sessionFactory) {
         super(sessionFactory);
@@ -40,15 +38,19 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
     @Override
     public List<Animal> findByNameFirstLetter(Character character) {
         try (Session session = sessionFactory.openSession()) {
-            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            /*CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
             CriteriaQuery<Animal> query =
                     criteriaBuilder.createQuery(Animal.class);
             Root<Animal> root = query.from(Animal.class);
-            CriteriaBuilder.In<String> predicateOut =
-            criteriaBuilder.lower(root.get("name"));
-            Predicate predicate = criteriaBuilder.like(root.get("name"), character + "%");
+            Predicate predicate =
+                    criteriaBuilder.like(criteriaBuilder.lower(root.get("name")),
+                            (character + "%").toLowerCase());
             query.where(predicate);
-            return session.createQuery(query).getResultList();
+            return session.createQuery(query).getResultList();*/
+            Query<Animal> query = session.createQuery("FROM Animal a "
+                    + "WHERE LOWER (a.name) LIKE :char", Animal.class);
+            query.setParameter("char", (character + "%").toLowerCase());
+            return query.getResultList();
         } catch (Exception e) {
             throw new RuntimeException("Can't get animals by character: " + character, e);
         }
