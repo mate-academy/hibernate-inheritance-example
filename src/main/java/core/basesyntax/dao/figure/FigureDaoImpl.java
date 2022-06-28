@@ -3,10 +3,13 @@ package core.basesyntax.dao.figure;
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.figure.Figure;
 import java.util.List;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 public class FigureDaoImpl<T extends Figure> extends AbstractDao implements FigureDao<T> {
     public FigureDaoImpl(SessionFactory sessionFactory) {
@@ -38,10 +41,12 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
     @Override
     public List<T> findByColor(String color, Class<T> clazz) {
         try (Session session = sessionFactory.openSession()) {
-            Query<T> figureQuery = session.createQuery(
-                    "FROM Circle WHERE color = :value", clazz);
-            figureQuery.setParameter("value", color);
-            return figureQuery.getResultList();
+            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(clazz);
+            Root<T> figureRoot = criteriaQuery.from(clazz);
+            Predicate predicate = criteriaBuilder.equal(figureRoot.get("color"), color);
+            criteriaQuery.where(predicate);
+            return session.createQuery(criteriaQuery).getResultList();
         } catch (Exception e) {
             throw new RuntimeException("Can`t find figures by color: " + color, e);
         }
