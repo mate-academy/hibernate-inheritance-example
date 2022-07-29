@@ -2,6 +2,7 @@ package core.basesyntax.dao.machine;
 
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.machine.Machine;
+import java.time.LocalDateTime;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -39,7 +40,8 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
     public List<Machine> findByAgeOlderThan(int age) {
         try (Session session = sessionFactory.openSession()) {
             Query<Machine> query = session.createQuery("FROM Machine "
-                    + "WHERE year > :a", Machine.class);
+                    + "WHERE :n - year > :a", Machine.class);
+            query.setParameter("n", LocalDateTime.now().getYear());
             query.setParameter("a", age);
             return query.getResultList();
         } catch (Exception e) {
