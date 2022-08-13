@@ -4,6 +4,9 @@ public class Truck extends Machine {
     private String color;
     private double maxAllowedWeight;
 
+    public Truck() {
+    }
+
     public String getColor() {
         return color;
     }
