@@ -1,7 +1,14 @@
 package core.basesyntax.dao.ma;
 
+import core.basesyntax.exception.DataProcessingException;
 import core.basesyntax.model.ma.Coach;
+import core.basesyntax.util.HibernateUtil;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import java.util.List;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 public class CoachDaoImpl extends PersonDaoImpl implements CoachDao {
@@ -11,6 +18,18 @@ public class CoachDaoImpl extends PersonDaoImpl implements CoachDao {
 
     @Override
     public List<Coach> findByExperienceGreaterThan(int years) {
-        return null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            CriteriaQuery<Coach> criteriaQuery =
+                    criteriaBuilder.createQuery(Coach.class);
+            Root<Coach> root = criteriaQuery.from(Coach.class);
+            Predicate experiencePredicate =
+                    criteriaBuilder.greaterThan(root.get("experience"), years);
+            criteriaQuery.select(root).where(experiencePredicate);
+            return session.createQuery(criteriaQuery).getResultList();
+        } catch (Exception e) {
+            throw new DataProcessingException("Can't get coaches "
+                    + "with experience greater than " + years, e);
+        }
     }
 }
