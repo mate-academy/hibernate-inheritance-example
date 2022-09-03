@@ -4,7 +4,6 @@ import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.dao.ObjectDao;
 import core.basesyntax.dao.ObjectDaoImpl;
 import core.basesyntax.model.zoo.Animal;
-import core.basesyntax.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -25,10 +24,10 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
 
     @Override
     public List<Animal> findByNameFirstLetter(Character character) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             Query<Animal> query = session.createQuery("FROM Animal a "
-                    + "WHERE a.name LIKE :format", Animal.class);
-            query.setParameter("format", character + "%");
+                    + "WHERE LOWER(a.name) LIKE :format", Animal.class);
+            query.setParameter("format", Character.toLowerCase(character) + "%");
             return query.getResultList();
         } catch (Exception e) {
             throw new RuntimeException("Can't get animal by first letter " + character, e);

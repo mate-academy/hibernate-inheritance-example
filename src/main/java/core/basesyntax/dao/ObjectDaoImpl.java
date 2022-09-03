@@ -1,7 +1,6 @@
 package core.basesyntax.dao;
 
 import core.basesyntax.exception.DataProcessingException;
-import core.basesyntax.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -18,7 +17,7 @@ public class ObjectDaoImpl<T extends Object> extends AbstractDao implements Obje
         Session session = null;
         Transaction transaction = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.save(item);
             transaction.commit();
