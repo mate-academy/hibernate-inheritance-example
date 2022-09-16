@@ -1,6 +1,8 @@
 package core.basesyntax.dao.ma;
 
 import core.basesyntax.dao.AbstractTest;
+import core.basesyntax.dao.ma.CoachDao;
+import core.basesyntax.dao.ma.CoachDaoImpl;
 import core.basesyntax.model.ma.Coach;
 import core.basesyntax.model.ma.Mentor;
 import core.basesyntax.model.ma.Person;
