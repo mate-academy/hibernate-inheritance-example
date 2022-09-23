@@ -1,6 +1,11 @@
 package core.basesyntax.model.zoo;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+@Entity(name = "cat")
 public class Cat extends Animal {
+    @Column(name = "number_of_lives")
     private int numberOfLives;
     private String color;
 
