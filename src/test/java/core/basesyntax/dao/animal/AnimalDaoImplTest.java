@@ -75,6 +75,7 @@ public class AnimalDaoImplTest extends AbstractTest {
         animalDao.save(bull);
         animalDao.save(fluffy);
         List<Animal> animalsByNameFirstLetter = animalDao.findByNameFirstLetter('B');
+        System.out.println(animalsByNameFirstLetter);
         Assert.assertNotNull(animalsByNameFirstLetter);
         Assert.assertEquals(3, animalsByNameFirstLetter.size());
     }
