@@ -37,10 +37,13 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
 
     @Override
     public List<Animal> findByNameFirstLetter(Character character) {
+        String upperCase = character.toString().toUpperCase();
+        String lowerCase = character.toString().toLowerCase();
         try (Session session = sessionFactory.openSession()) {
             Query<Animal> query = session.createQuery("FROM animal a "
-                    + "WHERE a.name like :pattern", Animal.class);
-            query.setParameter("pattern", character + "%");
+                    + "WHERE a.name like :upperCase OR a.name like :lowerCase", Animal.class);
+            query.setParameter("upperCase", upperCase + "%");
+            query.setParameter("lowerCase", lowerCase + "%");
             return query.getResultList();
         } catch (Exception e) {
             throw new RuntimeException("Can't find animals by first letter: " + character, e);

@@ -3,8 +3,6 @@ package core.basesyntax.dao.figure;
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.figure.Figure;
 import java.util.List;
-
-import core.basesyntax.model.zoo.Animal;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -40,8 +38,10 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
     @Override
     public List<T> findByColor(String color, Class<T> clazz) {
         try (Session session = sessionFactory.openSession()) {
-            Query<T> query = session.createQuery("FROM triangle , circle "
-                    + "WHERE color = :color", clazz);
+            Query<T> query = session.createQuery("FROM "
+                    + clazz.getSimpleName()
+                    + " f "
+                    + "WHERE f.color = :color", clazz);
             query.setParameter("color", color);
             return query.getResultList();
         } catch (Exception e) {

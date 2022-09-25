@@ -3,7 +3,7 @@ package core.basesyntax.model.figure;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-@Entity(name = "circle")
+@Entity
 @Table(name = "circles")
 public class Circle extends Figure {
     private int radius;
