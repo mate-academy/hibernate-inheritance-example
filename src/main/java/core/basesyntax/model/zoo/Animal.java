@@ -15,6 +15,7 @@ public class Animal {
     private Long id;
     private int age;
     private String name;
+
     public Animal() {
     }
 
