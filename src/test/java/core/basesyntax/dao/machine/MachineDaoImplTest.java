@@ -72,6 +72,10 @@ public class MachineDaoImplTest extends AbstractTest {
         machineDao.save(car);
         machineDao.save(truck);
         machineDao.save(machine);
+        System.out.println("____________________________________________________________");
+        System.out.println(machineDao.findByAgeOlderThan(currentYear - 2));
+        System.out.println(currentYear);
+        System.out.println("____________________________________________________________");
         Assert.assertEquals(2, machineDao.findByAgeOlderThan(2).size());
     }
 

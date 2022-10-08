@@ -2,7 +2,6 @@ package core.basesyntax.dao.figure;
 
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.figure.Figure;
-import core.basesyntax.model.ma.Mentor;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

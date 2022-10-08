@@ -1,7 +1,6 @@
 package core.basesyntax.dao.ma;
 
 import core.basesyntax.model.ma.Mentor;
-import core.basesyntax.model.ma.Person;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
