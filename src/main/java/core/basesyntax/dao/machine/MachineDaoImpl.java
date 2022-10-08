@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 public class MachineDaoImpl extends AbstractDao implements MachineDao {
     public MachineDaoImpl(SessionFactory sessionFactory) {
@@ -36,6 +37,11 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
 
     @Override
     public List<Machine> findByAgeOlderThan(int age) {
-        return null;
+        try (Session session = sessionFactory.openSession()) {
+            Query<Machine> query = session.createQuery("from Machine m "
+                    + "where  m.year < :age");
+            query.setParameter("age", age);
+            return query.getResultList();
+        }
     }
 }
