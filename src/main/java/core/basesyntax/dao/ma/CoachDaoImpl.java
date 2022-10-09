@@ -2,6 +2,11 @@ package core.basesyntax.dao.ma;
 
 import core.basesyntax.model.ma.Coach;
 import java.util.List;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 public class CoachDaoImpl extends PersonDaoImpl implements CoachDao {
@@ -11,6 +16,15 @@ public class CoachDaoImpl extends PersonDaoImpl implements CoachDao {
 
     @Override
     public List<Coach> findByExperienceGreaterThan(int years) {
-        return null;
+        try (Session session = sessionFactory.openSession()) {
+            CriteriaBuilder cb = session.getCriteriaBuilder();
+            CriteriaQuery<Coach> query = cb.createQuery(Coach.class);
+            Root<Coach> root = query.from(Coach.class);
+            Predicate predicate = cb.greaterThan(root.get("experience"), years);
+            query.where(predicate);
+            return session.createQuery(query).getResultList();
+        } catch (Exception e) {
+            throw new RuntimeException("Can't find experience greater than :" + years);
+        }
     }
 }
