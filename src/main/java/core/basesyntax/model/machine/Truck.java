@@ -1,10 +1,8 @@
 package core.basesyntax.model.machine;
 
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
-@Entity(name = "truck")
-@Table(name = "trucks")
+@Entity
 public class Truck extends Machine {
     private String color;
     private double maxAllowedWeight;

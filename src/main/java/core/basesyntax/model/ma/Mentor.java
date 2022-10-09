@@ -1,10 +1,8 @@
 package core.basesyntax.model.ma;
 
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
-@Entity(name = "mentor")
-@Table(name = "mentors")
+@Entity
 public class Mentor extends Person {
 
 }
