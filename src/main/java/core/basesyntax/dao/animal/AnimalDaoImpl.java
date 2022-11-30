@@ -3,7 +3,6 @@ package core.basesyntax.dao.animal;
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.exception.DataProcessingException;
 import core.basesyntax.model.zoo.Animal;
-import core.basesyntax.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,7 +19,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
         Session session = null;
         Transaction transaction = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.save(animal);
             transaction.commit();
@@ -39,9 +38,9 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
 
     @Override
     public List<Animal> findByNameFirstLetter(Character character) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             Query<Animal> query = session.createQuery("FROM Animal a "
-                    + "WHERE a.name LIKE :pattern");
+                    + "WHERE LOWER(a.name) LIKE LOWER(:pattern) ");
             query.setParameter("pattern", character + "%");
             return query.getResultList();
         } catch (Exception e) {
