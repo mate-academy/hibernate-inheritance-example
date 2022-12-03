@@ -4,10 +4,10 @@ import core.basesyntax.dao.AbstractTest;
 import core.basesyntax.model.figure.Circle;
 import core.basesyntax.model.figure.Figure;
 import core.basesyntax.model.figure.Triangle;
+import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import java.util.List;
 
 public class FigureDaoImplTest extends AbstractTest {
     public static final String PINK_COLOR = "Pink";

@@ -4,10 +4,10 @@ import core.basesyntax.dao.AbstractTest;
 import core.basesyntax.model.zoo.Animal;
 import core.basesyntax.model.zoo.Cat;
 import core.basesyntax.model.zoo.Dog;
+import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import java.util.List;
 
 public class AnimalDaoImplTest extends AbstractTest {
     private AnimalDao animalDao;

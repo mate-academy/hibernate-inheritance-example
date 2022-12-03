@@ -4,10 +4,10 @@ import core.basesyntax.dao.AbstractTest;
 import core.basesyntax.model.ma.Coach;
 import core.basesyntax.model.ma.Mentor;
 import core.basesyntax.model.ma.Person;
+import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import java.util.List;
 
 public class MentorDaoImplTest extends AbstractTest {
     private MentorDao mentorDao;
