@@ -6,11 +6,9 @@ import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import core.basesyntax.model.zoo.Animal;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 public class FigureDaoImpl<T extends Figure> extends AbstractDao implements FigureDao<T> {
     public FigureDaoImpl(SessionFactory sessionFactory) {
@@ -31,7 +29,8 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Can't save " + figure.getClass().getName().toLowerCase() +" to DB " + figure, e);
+            throw new RuntimeException("Can't save " + figure.getClass().getName().toLowerCase()
+                    + " to DB " + figure, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -41,11 +40,11 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
 
     @Override
     public List<T> findByColor(String color, Class<T> clazz) {
-        try(Session session = sessionFactory.openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             CriteriaBuilder cb = session.getCriteriaBuilder();
             CriteriaQuery<T> query = cb.createQuery(clazz);
             Root<T> root = query.from(clazz);
-            query.where(cb.equal(root.get("color"),color));
+            query.where(cb.equal(root.get("color"), color));
             return session.createQuery(query).getResultList();
         }
     }

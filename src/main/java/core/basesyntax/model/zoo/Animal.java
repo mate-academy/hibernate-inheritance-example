@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name ="Animal_Type")
+@DiscriminatorColumn(name = "Animal_Type")
 @Table(name = "animals")
 public class Animal {
     @Id
@@ -23,6 +23,7 @@ public class Animal {
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
