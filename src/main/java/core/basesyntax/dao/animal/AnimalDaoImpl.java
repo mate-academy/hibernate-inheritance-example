@@ -27,7 +27,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException(e);
+            throw new RuntimeException("Can't save the animal: " + animal, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -42,7 +42,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
                     "from Animal a where upper(a.name) like :c", Animal.class);
             return query.setParameter("c", character + "%").getResultList();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Can't find a list by character: " + character, e);
         }
     }
 }

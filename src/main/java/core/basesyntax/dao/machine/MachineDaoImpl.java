@@ -28,7 +28,7 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException(e);
+            throw new RuntimeException("Can't save the machine: " + machine, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -43,7 +43,7 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
                     "from Machine m where m.year < :age", Machine.class);
             return query.setParameter("age", LocalDateTime.now().getYear() - age).getResultList();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Can't find a list by age: " + age, e);
         }
     }
 }
