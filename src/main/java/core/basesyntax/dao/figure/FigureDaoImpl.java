@@ -8,6 +8,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 public class FigureDaoImpl<T extends Figure> extends AbstractDao implements FigureDao<T> {
     public FigureDaoImpl(SessionFactory sessionFactory) {
         super(sessionFactory);
@@ -38,8 +42,13 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
     @Override
     public List<T> findByColor(String color, Class<T> clazz) {
         try (Session session = sessionFactory.openSession()) {
-            String clazzSimpleName = clazz.getSimpleName();
-            session.createQuery("select new core.basesyntax.model.figure.Figure")
+            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            CriteriaQuery<T> query = criteriaBuilder.createQuery(clazz);
+            Root<T> root = query.from(clazz);
+            query.where(criteriaBuilder.equal(root.get("color"), color));
+            return session.createQuery(query).getResultList();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }
