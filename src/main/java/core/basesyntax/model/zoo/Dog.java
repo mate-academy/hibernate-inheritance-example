@@ -8,7 +8,6 @@ import lombok.Setter;
 @Setter
 @Entity
 public class Dog extends Animal {
-    private Long id;
     private int tailLength;
     private String owner;
 }
