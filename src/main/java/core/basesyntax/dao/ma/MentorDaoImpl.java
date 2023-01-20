@@ -5,7 +5,6 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-
 public class MentorDaoImpl extends PersonDaoImpl implements MentorDao {
     public MentorDaoImpl(SessionFactory sessionFactory) {
         super(sessionFactory);

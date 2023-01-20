@@ -18,7 +18,7 @@ public class Animal {
     private int age;
     private String name;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
