@@ -20,6 +20,15 @@ public class Animal {
     private int age;
     private String name;
 
+    public Animal() {
+    }
+
+    public Animal(Long id, int age, String name) {
+        this.id = id;
+        this.age = age;
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }

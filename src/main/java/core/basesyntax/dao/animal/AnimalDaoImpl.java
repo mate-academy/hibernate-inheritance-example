@@ -3,7 +3,6 @@ package core.basesyntax.dao.animal;
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.exception.DataProcessingException;
 import core.basesyntax.model.zoo.Animal;
-import java.math.BigInteger;
 import java.time.LocalTime;
 import java.time.temporal.ChronoField;
 import java.util.List;
@@ -45,10 +44,11 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
 
     @Override
     public List<Animal> findByNameFirstLetter(Character character) {
-        return LocalTime.now().getLong(ChronoField.MICRO_OF_SECOND)
-                % BigInteger.TWO.intValue() == BigInteger.ZERO.intValue()
-                ? findByNameFirstLetterHql(character)
-                : findByNameFirstLetterCriteriaApi(character);
+        long time = LocalTime.now().getLong(ChronoField.MICRO_OF_SECOND);
+        return time % 3 == 0
+                ? findByNameFirstLetterHql(character) : time % 2 == 0
+                ? findByNameFirstLetterCriteriaApi(character)
+                : findByNameFirstLetterCriteriaDto(character);
     }
 
     private List<Animal> findByNameFirstLetterHql(Character character) {
@@ -75,6 +75,23 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
                     Character.toUpperCase(character) + "%");
             query.select(animalRoot).where(firstLetterPredicate);
             return session.createQuery(query).getResultList();
+        } catch (Exception e) {
+            throw new DataProcessingException(
+                    String.format("Can't find animals by %s first letter", character), e);
+        }
+    }
+
+    private List<Animal> findByNameFirstLetterCriteriaDto(Character character) {
+        try (Session session = getSession()) {
+            System.out.println("DTO projection is doing job");
+            return session.createQuery("select "
+                                    + "new core.basesyntax.model.zoo.Animal(a.id, a.age, a.name) "
+                                    + "from Animal a "
+                                    + "where upper(a.name) "
+                                    + "like upper(:letter)",
+                            Animal.class)
+                    .setParameter("letter", character + "%")
+                    .getResultList();
         } catch (Exception e) {
             throw new DataProcessingException(
                     String.format("Can't find animals by %s first letter", character), e);
