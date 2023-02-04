@@ -1,5 +1,13 @@
 package core.basesyntax.model.ma;
 
-public class Mentor extends Person {
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "mentors")
+public class Mentor extends Person {
+    @Override
+    public String toString() {
+        return super.toString() + "Mentor";
+    }
 }
