@@ -44,6 +44,9 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
                     + "WHERE year < :year ", Machine.class);
             query.setParameter("year", LocalDateTime.now().minusYears(age).getYear());
             return query.getResultList();
+        } catch (Exception e) {
+            throw new DataProcessingException(
+                    "Can't find record with age older than: " + age, e);
         }
     }
 }

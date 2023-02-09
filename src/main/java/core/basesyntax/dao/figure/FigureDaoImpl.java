@@ -43,6 +43,9 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
                     + "WHERE f.color = :color", clazz);
             query.setParameter("color", color);
             return query.getResultList();
+        } catch (Exception e) {
+            throw new DataProcessingException(
+                    "Can't find record with color: " + color, e);
         }
     }
 }

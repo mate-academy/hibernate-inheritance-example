@@ -1,5 +1,6 @@
 package core.basesyntax.dao.ma;
 
+import core.basesyntax.exception.DataProcessingException;
 import core.basesyntax.model.ma.Mentor;
 import java.util.List;
 import org.hibernate.Session;
@@ -18,6 +19,9 @@ public class MentorDaoImpl extends PersonDaoImpl implements MentorDao {
                     + "WHERE age > :age", Mentor.class);
             query.setParameter("age", age);
             return query.getResultList();
+        } catch (Exception e) {
+            throw new DataProcessingException(
+                    "Can't find record with age greater than: " + age, e);
         }
     }
 }

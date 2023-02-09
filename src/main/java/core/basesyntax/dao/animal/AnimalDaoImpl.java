@@ -43,6 +43,9 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
                     + "WHERE LOWER(a.name) LIKE :c ", Animal.class);
             query.setParameter("c", Character.toLowerCase(character) + "%");
             return query.getResultList();
+        } catch (Exception e) {
+            throw new DataProcessingException(
+                    "Can't find record with name which starts with: " + character, e);
         }
     }
 }

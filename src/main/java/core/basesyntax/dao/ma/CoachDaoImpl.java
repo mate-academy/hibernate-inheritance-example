@@ -1,5 +1,6 @@
 package core.basesyntax.dao.ma;
 
+import core.basesyntax.exception.DataProcessingException;
 import core.basesyntax.model.ma.Coach;
 import java.util.List;
 import org.hibernate.Session;
@@ -18,6 +19,9 @@ public class CoachDaoImpl extends PersonDaoImpl implements CoachDao {
                     + "WHERE experience > :e", Coach.class);
             query.setParameter("e", years);
             return query.getResultList();
+        } catch (Exception e) {
+            throw new DataProcessingException(
+                    "Can't find record with experience greater than: " + years, e);
         }
     }
 }
