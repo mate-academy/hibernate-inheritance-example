@@ -1,6 +1,9 @@
 package core.basesyntax.model.machine;
 
-public class Machine {
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
+public abstract class Machine {
     private int year;
     private String maker;
 
