@@ -1,0 +1,117 @@
+package core.basesyntax;
+
+import core.basesyntax.dao.animal.AnimalDao;
+import core.basesyntax.dao.animal.AnimalDaoImpl;
+import core.basesyntax.dao.figure.FigureDao;
+import core.basesyntax.dao.figure.FigureDaoImpl;
+import core.basesyntax.dao.ma.CoachDao;
+import core.basesyntax.dao.ma.CoachDaoImpl;
+import core.basesyntax.dao.ma.PersonDao;
+import core.basesyntax.dao.ma.PersonDaoImpl;
+import core.basesyntax.dao.machine.MachineDao;
+import core.basesyntax.dao.machine.MachineDaoImpl;
+import core.basesyntax.model.figure.Circle;
+import core.basesyntax.model.figure.Figure;
+import core.basesyntax.model.figure.Triangle;
+import core.basesyntax.model.ma.Coach;
+import core.basesyntax.model.ma.Mentor;
+import core.basesyntax.model.ma.Person;
+import core.basesyntax.model.machine.Car;
+import core.basesyntax.model.machine.Machine;
+import core.basesyntax.model.machine.Truck;
+import core.basesyntax.model.zoo.Animal;
+import core.basesyntax.model.zoo.Cat;
+import core.basesyntax.model.zoo.Dog;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class Main {
+    public static void main(String[] args) {
+        /*AnimalDao animalDao;
+        animalDao = new AnimalDaoImpl(initSessionFactory());
+        Animal animal = new Animal();
+        animal.setName("Main animal");
+        animal.setAge(10);
+        //System.out.println(animalDao.save(animal));
+
+        Cat cat = new Cat();
+        cat.setName("Murzik");
+        cat.setAge(13);
+        cat.setColor("Red");
+        cat.setNumberOfLives(7);
+        animalDao.save(cat);
+
+        Dog dog = new Dog();
+        dog.setName("Mishka");
+        dog.setAge(7);
+        dog.setOwner("Tonya");
+        dog.setTailLength(30);
+        animalDao.save(dog);*/
+
+        /*MachineDao machineDao;
+        machineDao = new MachineDaoImpl(initSessionFactory());
+        Machine machine = new Machine();
+        machine.setYear(2000);
+        machine.setMaker("Honda");
+        machineDao.save(machine);
+
+        Car car = new Car();
+        car.setYear(2008);
+        car.setMaker("Ford");
+        car.setModel("Focus");
+        car.setHorsePower(120);
+        machineDao.save(car);
+
+        Truck truck = new Truck();
+        truck.setYear(2005);
+        truck.setMaker("Renault");
+        truck.setColor("Red");
+        truck.setMaxAllowedWeight(15000);
+        machineDao.save(truck);*/
+
+        PersonDao personDao;
+        personDao = new PersonDaoImpl(initSessionFactory());
+        /*Person person = new Person();
+        person.setAge(20);
+        person.setName("Bob");
+        personDao.save(person);
+
+        Person coach = new Coach();
+        coach.setAge(30);
+        coach.setName("Jack");
+        personDao.save(coach);
+
+        Person mentor = new Mentor();
+        mentor.setAge(40);
+        mentor.setName("Will");
+        personDao.save(mentor);*/
+
+        /*CoachDao coachDao = new CoachDaoImpl(initSessionFactory());
+        Coach coach = new Coach();
+        coach.setName("Coach");
+        coach.setAge(30);
+        coach.setExperience(3);
+        coachDao.save(coach);*/
+
+        FigureDao<Figure> figureDao = new FigureDaoImpl<>(initSessionFactory());
+        Circle circle = new Circle();
+        circle.setColor("Red");
+        circle.setRadius(5);
+        figureDao.save(circle);
+
+        Triangle triangle = new Triangle();
+        triangle.setColor("Black");
+        triangle.setArea(56);
+        figureDao.save(triangle);
+
+
+    }
+
+    private static SessionFactory initSessionFactory() {
+        try {
+            return new Configuration().configure().buildSessionFactory();
+        } catch (Exception e) {
+            throw new RuntimeException("Error creating SessionFactory", e);
+        }
+    }
+}
