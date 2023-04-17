@@ -14,9 +14,12 @@ public class MentorDaoImpl extends PersonDaoImpl implements MentorDao {
     @Override
     public List<Mentor> findByAgeGreaterThan(int age) {
         try (Session session = sessionFactory.openSession()) {
-            Query<Mentor> query = session.createQuery("from Mentor m where m.age > :age", Mentor.class);
+            Query<Mentor> query = session.createQuery("from Mentor m "
+                    + "where m.age > :age", Mentor.class);
             query.setParameter("age", age);
             return query.getResultList();
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to find mentors with age greater than: " + age, e);
         }
     }
 }

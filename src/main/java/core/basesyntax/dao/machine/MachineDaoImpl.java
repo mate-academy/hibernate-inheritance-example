@@ -40,7 +40,8 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
     public List<Machine> findByAgeOlderThan(int age) {
         try (Session session = sessionFactory.openSession()) {
             int currentYear = LocalDate.now().getYear();
-            Query<Machine> query = session.createQuery("from Machine m where m.year < :age", Machine.class);
+            Query<Machine> query = session.createQuery("from Machine m "
+                    + "where m.year < :age", Machine.class);
             query.setParameter("age", currentYear - age);
             return query.getResultList();
         }
