@@ -13,9 +13,7 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //@Cascade(CascadeType.PERSIST)
     private int age;
-    //@Cascade(CascadeType.PERSIST)
     private String name;
 
     public Long getId() {
