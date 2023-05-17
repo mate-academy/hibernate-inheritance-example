@@ -18,9 +18,9 @@ public class FigureDaoImplTest extends AbstractTest {
 
     @Override
     protected Class<?>[] entities() {
-        return new Class[] {
-                Circle.class,
-                Triangle.class
+        return new Class[]{
+            Circle.class,
+            Triangle.class
         };
     }
 
