@@ -1,8 +1,27 @@
 package core.basesyntax.model.machine;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "machines")
 public class Machine {
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    private Long id;
     private int year;
     private String maker;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public int getYear() {
         return year;
