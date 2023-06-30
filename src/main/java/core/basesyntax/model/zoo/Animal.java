@@ -8,6 +8,7 @@ import javax.persistence.*;
 public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private int age;
     private String name;
 

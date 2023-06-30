@@ -1,6 +1,13 @@
 package core.basesyntax.model.machine;
 
+import javax.persistence.*;
+
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Machine {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private int year;
     private String maker;
 
@@ -18,5 +25,14 @@ public class Machine {
 
     public void setMaker(String maker) {
         this.maker = maker;
+    }
+
+    @Override
+    public String toString() {
+        return "Machine{"
+                + "id=" + id
+                + ", year=" + year
+                + ", maker='" + maker
+                + '}';
     }
 }
