@@ -1,4 +1,4 @@
-package mate.academy.util;
+package core.basesyntax.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
