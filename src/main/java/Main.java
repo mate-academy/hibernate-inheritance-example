@@ -1,40 +1,42 @@
-
-import core.basesyntax.dao.machine.MachineDao;
-import core.basesyntax.dao.machine.MachineDaoImpl;
-import core.basesyntax.model.machine.Car;
-import core.basesyntax.model.machine.Machine;
-import core.basesyntax.model.machine.Truck;
+import core.basesyntax.dao.ma.*;
+import core.basesyntax.model.ma.Coach;
+import core.basesyntax.model.ma.Mentor;
+import core.basesyntax.model.ma.Person;
 import core.basesyntax.util.HibernateUtil;
 
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        PersonDao personDao = new PersonDaoImpl(HibernateUtil.getSessionFactory());
 
-        MachineDao machineDao = new MachineDaoImpl(HibernateUtil.getSessionFactory());
+        Person person = new Person();
+        person.setAge(150);
+        person.setName("bob");
+        personDao.save(person);
 
-        Machine machine = new Machine();
-        machine.setMaker("ZAZ");
-        machine.setYear(2005);
-        machineDao.save(machine);
+        Mentor mentor = new Mentor();
+        mentor.setAge(234);
+        mentor.setName("Mykola");
+        personDao.save(mentor);
 
-        Car car = new Car();
-        car.setMaker("bmw");
-        car.setModel("316 Compact");
-        car.setHorsePower(16);
-        car.setYear(1657);
-        machineDao.save(car);
+        Coach coach = new Coach();
+        coach.setAge(6);
+        coach.setName("Max");
+        coach.setExperience(5);
+        coach.setTrack(Coach.Track.JAVA);
+        personDao.save(coach);
 
-        Truck truck = new Truck();
-        truck.setColor("White");
-        truck.setMaker("Volvo");
-        truck.setYear(2010);
-        truck.setMaxAllowedWeight(20.0);
-        machineDao.save(truck);
+//        MentorDao mentorDao = new MentorDaoImpl(HibernateUtil.getSessionFactory());
+//        List<Mentor> byAgeGreaterThan = mentorDao.findByAgeGreaterThan(250);
+//        for (Mentor mentor1: byAgeGreaterThan) {
+//            System.out.println(mentor1);
+//        }
 
-        List<Machine> byAgeOlderThan = machineDao.findByAgeOlderThan(15);
-        for (Machine machine1: byAgeOlderThan) {
-            System.out.println(machine1);
+        CoachDao coachDao = new CoachDaoImpl(HibernateUtil.getSessionFactory());
+        List<Coach> byExperienceGreaterThan = coachDao.findByExperienceGreaterThan(1);
+        for(Coach coach1: byExperienceGreaterThan) {
+            System.out.println(coach1);
         }
 
 
