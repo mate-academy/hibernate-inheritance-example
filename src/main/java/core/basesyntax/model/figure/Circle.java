@@ -16,9 +16,9 @@ public class Circle extends Figure {
 
     @Override
     public String toString() {
-        return super.toString() +
-                "Circle{" +
-                "radius=" + radius +
-                '}';
+        return super.toString()
+                + "Circle{"
+                + "radius=" + radius
+                + '}';
     }
 }

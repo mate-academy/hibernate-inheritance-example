@@ -1,6 +1,6 @@
 package core.basesyntax.model.figure;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
 
 @Entity
 public class Triangle extends Figure {
@@ -16,9 +16,9 @@ public class Triangle extends Figure {
 
     @Override
     public String toString() {
-        return super.toString() +
-                "Triangle{" +
-                "area=" + area +
-                '}';
+        return super.toString()
+                + "Triangle{"
+                + "area=" + area
+                + '}';
     }
 }

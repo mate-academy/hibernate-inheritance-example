@@ -2,7 +2,6 @@ package core.basesyntax.dao.ma;
 
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.ma.Person;
-import core.basesyntax.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

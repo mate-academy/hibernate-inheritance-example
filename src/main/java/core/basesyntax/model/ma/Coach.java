@@ -32,10 +32,10 @@ public class Coach extends Person {
 
     @Override
     public String toString() {
-        return super.toString() +
-                "Coach{" +
-                " experience= " + experience +
-                ", track=" + track +
-                '}';
+        return super.toString()
+                + "Coach{"
+                + " experience= " + experience
+                + ", track=" + track
+                + '}';
     }
 }

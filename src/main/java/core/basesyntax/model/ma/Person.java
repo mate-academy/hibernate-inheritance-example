@@ -1,6 +1,11 @@
 package core.basesyntax.model.ma;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -33,10 +38,10 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
-                "id=" + id +
-                ", age=" + age +
-                ", name='" + name + '\'' +
-                '}';
+        return "Person{"
+                + "id=" + id
+                + ", age=" + age
+                + ", name='" + name
+                + '}';
     }
 }
