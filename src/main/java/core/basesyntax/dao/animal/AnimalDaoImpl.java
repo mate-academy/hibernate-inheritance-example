@@ -2,7 +2,9 @@ package core.basesyntax.dao.animal;
 
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.zoo.Animal;
+
 import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -39,8 +41,8 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
     public List<Animal> findByNameFirstLetter(Character character) {
         try (Session session = sessionFactory.openSession()) {
             Query<Animal> findByCharacterQuery = session.createQuery(
-                    "FROM Animal a WHERE a.name LIKE :searchedName", Animal.class);
-            findByCharacterQuery.setParameter("searchedName", character + "%");
+                    "FROM Animal a WHERE LOWER(a.name) LIKE LOWER(:firstLetter)", Animal.class);
+            findByCharacterQuery.setParameter("firstLetter", character + "%");
             return findByCharacterQuery.getResultList();
         } catch (Exception e) {
             throw new RuntimeException("Couldn't find animals by the letter " + character, e);
