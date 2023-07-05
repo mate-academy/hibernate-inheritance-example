@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 
 public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
     public AnimalDaoImpl(SessionFactory sessionFactory) {
+
         super(sessionFactory);
     }
 

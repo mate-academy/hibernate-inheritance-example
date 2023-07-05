@@ -1,5 +1,8 @@
 package core.basesyntax.model.figure;
 
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public class Figure {
     private String color;
 
