@@ -1,6 +1,7 @@
 package core.basesyntax.dao.animal;
 
 import core.basesyntax.dao.AbstractTest;
+import core.basesyntax.dao.animal.impl.AnimalDaoImpl;
 import core.basesyntax.model.zoo.Animal;
 import core.basesyntax.model.zoo.Cat;
 import core.basesyntax.model.zoo.Dog;
