@@ -3,7 +3,9 @@ package core.basesyntax.dao.animal;
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.zoo.Animal;
 import java.util.List;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
     public AnimalDaoImpl(SessionFactory sessionFactory) {
@@ -12,11 +14,35 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
 
     @Override
     public Animal save(Animal animal) {
-        return null;
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.save(animal);
+            transaction.commit();
+        } catch (RuntimeException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new RuntimeException("Can't insert animal " + animal, e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return animal;
     }
 
     @Override
     public List<Animal> findByNameFirstLetter(Character character) {
-        return null;
+        try (final Session session = sessionFactory.openSession()) {
+            return session.createQuery(
+                            "from Animal a where lower(a.name) LIKE '"
+                                    + Character.toLowerCase(character) + "%'", Animal.class)
+                    .getResultList();
+        } catch (RuntimeException e) {
+            throw new RuntimeException("Can't get animals by first char " + character, e);
+        }
     }
 }
