@@ -2,6 +2,8 @@ package core.basesyntax.dao.ma;
 
 import core.basesyntax.model.ma.Coach;
 import java.util.List;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 public class CoachDaoImpl extends PersonDaoImpl implements CoachDao {
@@ -11,6 +13,15 @@ public class CoachDaoImpl extends PersonDaoImpl implements CoachDao {
 
     @Override
     public List<Coach> findByExperienceGreaterThan(int years) {
-        return null;
+        try (Session session = sessionFactory.openSession()) {
+            Query<Coach> query = session.createQuery(
+                    "FROM Coach "
+                            + "WHERE experience > :years", Coach.class
+            );
+            query.setParameter("years", years);
+            return query.getResultList();
+        } catch (Exception e) {
+            throw new RuntimeException("Cant find Coach: ", e);
+        }
     }
 }
