@@ -1,5 +1,8 @@
 package core.basesyntax.model.zoo;
 
+import javax.persistence.Entity;
+
+@Entity(name = "animal")
 public class Cat extends Animal {
     private int numberOfLives;
     private String color;
