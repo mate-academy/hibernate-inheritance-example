@@ -1,5 +1,9 @@
 package core.basesyntax.model.machine;
 
+import javax.persistence.Entity;
+
+@Entity
+//@Table(name = "trucks") --> java error:  Duplicate table mapping trucks
 public class Truck extends Machine {
     private String color;
     private double maxAllowedWeight;
