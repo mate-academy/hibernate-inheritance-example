@@ -1,7 +1,7 @@
 package core.basesyntax.model.ma;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 
 public class Coach extends Person {
     public enum Track {
