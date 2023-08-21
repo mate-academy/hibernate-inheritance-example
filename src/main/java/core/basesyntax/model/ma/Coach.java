@@ -1,8 +1,12 @@
 package core.basesyntax.model.ma;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
+@Entity
+@Table(name = "coaches")
 public class Coach extends Person {
     public enum Track {
         JAVA, FE, UI, QA
