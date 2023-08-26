@@ -1,5 +1,10 @@
 package core.basesyntax.model.figure;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "circle")
 public class Circle extends Figure {
     private int radius;
 
