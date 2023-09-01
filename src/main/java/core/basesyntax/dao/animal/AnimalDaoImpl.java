@@ -3,7 +3,6 @@ package core.basesyntax.dao.animal;
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.zoo.Animal;
 import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -28,7 +27,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Can't insert animal: " + animal);
+            throw new RuntimeException("Can't insert animal: " + animal, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -46,7 +45,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
             return query.getResultList();
         } catch (Exception e) {
             throw new RuntimeException("Can't get animals with name starts with character: "
-                    + character);
+                    + character, e);
         }
     }
 }
