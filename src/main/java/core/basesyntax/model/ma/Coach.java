@@ -31,14 +31,6 @@ public class Coach extends Person {
         this.track = track;
     }
 
-    @Override
-    public String toString() {
-        return "Coach{"
-                + ", experience=" + experience
-                + ", track=" + track
-                + '}';
-    }
-
     public enum Track {
         JAVA, FE, UI, QA
     }

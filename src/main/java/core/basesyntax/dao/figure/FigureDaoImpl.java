@@ -2,7 +2,6 @@ package core.basesyntax.dao.figure;
 
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.figure.Figure;
-import core.basesyntax.util.HibernateUtil;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
@@ -21,7 +20,7 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
         Transaction transaction = null;
         Session session = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.persist(figure);
             transaction.commit();
@@ -40,7 +39,7 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
 
     @Override
     public List<T> findByColor(String color, Class<T> clazz) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
             CriteriaQuery<T> query =
                     criteriaBuilder.createQuery(clazz);

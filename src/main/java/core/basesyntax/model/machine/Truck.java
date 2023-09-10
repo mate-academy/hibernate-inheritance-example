@@ -27,12 +27,4 @@ public class Truck extends Machine {
     public void setMaxAllowedWeight(double maxAllowedWeight) {
         this.maxAllowedWeight = maxAllowedWeight;
     }
-
-    @Override
-    public String toString() {
-        return "Truck{"
-                + ", color='" + color + '\''
-                + ", maxAllowedWeight=" + maxAllowedWeight
-                + '}';
-    }
 }

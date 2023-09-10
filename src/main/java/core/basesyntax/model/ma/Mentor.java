@@ -8,10 +8,4 @@ import jakarta.persistence.Table;
 public class Mentor extends Person {
     public Mentor() {
     }
-
-    @Override
-    public String toString() {
-        return "Mentor{"
-                + '}';
-    }
 }

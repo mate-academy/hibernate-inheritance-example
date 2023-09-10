@@ -2,11 +2,11 @@ package core.basesyntax.dao.machine;
 
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.machine.Machine;
-import core.basesyntax.util.HibernateUtil;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
+import java.time.LocalDate;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,7 +22,7 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
         Transaction transaction = null;
         Session session = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.persist(machine);
             transaction.commit();
@@ -41,13 +41,14 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
 
     @Override
     public List<Machine> findByAgeOlderThan(int age) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        LocalDate localDate = LocalDate.now().minusYears(age);
+        try (Session session = sessionFactory.openSession()) {
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
             CriteriaQuery<Machine> query =
                     criteriaBuilder.createQuery(Machine.class);
             Root<Machine> machineRoot = query.from(Machine.class);
-            Predicate yearGt = criteriaBuilder.gt(machineRoot.get("year"), age);
-            query.where(yearGt);
+            Predicate yearLt = criteriaBuilder.lt(machineRoot.get("year"), localDate.getYear());
+            query.where(yearLt);
             return session.createQuery(query).getResultList();
         } catch (Exception e) {
             throw new RuntimeException("Can't find machine by age older than : " + age, e);

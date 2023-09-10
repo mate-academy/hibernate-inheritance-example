@@ -1,7 +1,6 @@
 package core.basesyntax.dao.ma;
 
 import core.basesyntax.model.ma.Coach;
-import core.basesyntax.util.HibernateUtil;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
@@ -17,7 +16,7 @@ public class CoachDaoImpl extends PersonDaoImpl implements CoachDao {
 
     @Override
     public List<Coach> findByExperienceGreaterThan(int years) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
             CriteriaQuery<Coach> query =
                     criteriaBuilder.createQuery(Coach.class);

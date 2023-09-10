@@ -6,7 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public class Figure {
+public abstract class Figure {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,13 +29,5 @@ public class Figure {
 
     public void setColor(String color) {
         this.color = color;
-    }
-
-    @Override
-    public String toString() {
-        return "Figure{"
-                + "id=" + id
-                + ", color='" + color + '\''
-                + '}';
     }
 }
