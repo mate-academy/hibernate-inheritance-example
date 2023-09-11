@@ -1,8 +1,20 @@
 package core.basesyntax.model.zoo;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Dog extends Animal {
     private int tailLength;
     private String owner;
+
+    public Dog() {
+    }
+
+    public Dog(int age, String name, int tailLength, String owner) {
+        super(age, name);
+        this.tailLength = tailLength;
+        this.owner = owner;
+    }
 
     public int getTailLength() {
         return tailLength;
@@ -18,5 +30,17 @@ public class Dog extends Animal {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    @Override
+    public String toString() {
+        return "Animal{"
+                + "id=" + getId()
+                + ", age=" + getAge()
+                + ", name='" + getName()
+                + "', Dog{"
+                + "tailLength=" + tailLength
+                + ", owner='" + owner + '\''
+                + '}' + '}';
     }
 }
