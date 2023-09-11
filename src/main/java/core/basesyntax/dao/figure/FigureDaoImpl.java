@@ -3,7 +3,6 @@ package core.basesyntax.dao.figure;
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.exception.DataProcessingException;
 import core.basesyntax.model.figure.Figure;
-import core.basesyntax.util.HibernateUtil;
 import java.util.List;
 import java.util.Optional;
 import org.hibernate.Session;
@@ -18,7 +17,7 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
 
     @Override
     public Optional<T> getId(Long id, Class<T> clazz) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             return Optional.ofNullable(session.get(clazz, id));
         } catch (Exception e) {
             throw new DataProcessingException("Can't get a figure by id: " + id, e);
@@ -30,7 +29,7 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
         Session session = null;
         Transaction transaction = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.persist(figure);
             transaction.commit();
@@ -49,7 +48,7 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
 
     @Override
     public List<T> findByColor(String color, Class<T> clazz) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             Query<T> query = session.createQuery("FROM " + clazz.getName() + " f "
                     + "WHERE f.color LIKE :color", clazz);
             query.setParameter("color", color);

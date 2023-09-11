@@ -3,7 +3,6 @@ package core.basesyntax.dao.machine;
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.exception.DataProcessingException;
 import core.basesyntax.model.machine.Machine;
-import core.basesyntax.util.HibernateUtil;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +18,7 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
 
     @Override
     public Optional<Machine> getId(Long id) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             return Optional.ofNullable(session.get(Machine.class, id));
         } catch (Exception e) {
             throw new DataProcessingException("Can't get a machine by id: " + id, e);
@@ -31,7 +30,7 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
         Session session = null;
         Transaction transaction = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.save(machine);
             transaction.commit();
@@ -50,7 +49,7 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
 
     @Override
     public List<Machine> findByAgeOlderThan(int age) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             Query<Machine> query = session.createQuery("FROM Machine m "
                     + "WHERE year< :years", Machine.class);
             query.setParameter("years", LocalDate.now().getYear() - age);

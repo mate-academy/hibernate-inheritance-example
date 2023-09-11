@@ -3,7 +3,6 @@ package core.basesyntax.dao.animal;
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.exception.DataProcessingException;
 import core.basesyntax.model.zoo.Animal;
-import core.basesyntax.util.HibernateUtil;
 import java.util.List;
 import java.util.Optional;
 import org.hibernate.Session;
@@ -18,7 +17,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
 
     @Override
     public Optional<Animal> getId(Long id) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             return Optional.ofNullable(session.get(Animal.class, id));
         } catch (Exception e) {
             throw new DataProcessingException("Can't get a movie by id: " + id, e);
@@ -30,7 +29,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
         Session session = null;
         Transaction transaction = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.save(animal);
             transaction.commit();
@@ -49,10 +48,10 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
 
     @Override
     public List<Animal> findByNameFirstLetter(Character character) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             Query<Animal> query = session.createQuery("FROM Animal a "
-                    + "WHERE a.name LIKE :name", Animal.class);
-            query.setParameter("name", character + "%");
+                    + "WHERE UPPER(a.name) LIKE :name", Animal.class);
+            query.setParameter("name", Character.toUpperCase(character) + "%");
             return query.getResultList();
         } catch (Exception e) {
             throw new DataProcessingException("Can't find animal by name first letter: "
