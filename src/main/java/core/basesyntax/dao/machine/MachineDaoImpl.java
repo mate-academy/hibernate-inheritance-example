@@ -2,8 +2,12 @@ package core.basesyntax.dao.machine;
 
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.machine.Machine;
+import java.time.Year;
 import java.util.List;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 public class MachineDaoImpl extends AbstractDao implements MachineDao {
     public MachineDaoImpl(SessionFactory sessionFactory) {
@@ -12,11 +16,48 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
 
     @Override
     public Machine save(Machine machine) {
-        return null;
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.persist(machine);
+            transaction.commit();
+            return machine;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new RuntimeException();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
 
     @Override
     public List<Machine> findByAgeOlderThan(int age) {
-        return null;
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            Query<Machine> query = session
+                    .createQuery("FROM Machine m where m.year < :age ", Machine.class);
+            query.setParameter("age", Year.now().getValue() - age);
+            List<Machine> list = query.list();
+            transaction.commit();
+            return list;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new RuntimeException();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
 }
