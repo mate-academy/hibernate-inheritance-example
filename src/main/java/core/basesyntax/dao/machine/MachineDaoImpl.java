@@ -5,6 +5,7 @@ import core.basesyntax.model.machine.Machine;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
+import java.util.Calendar;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -39,11 +40,13 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
 
     @Override
     public List<Machine> findByAgeOlderThan(int age) {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
         try (Session session = sessionFactory.openSession()) {
             CriteriaBuilder cb = session.getCriteriaBuilder();
             CriteriaQuery<Machine> query = cb.createQuery(Machine.class);
             Root<Machine> root = query.from(Machine.class);
-            query.where(cb.lessThan(root.get("year"), age));
+            query.where(cb.lessThan(root.get("year"), year - age));
             return session.createQuery(query).getResultList();
         } catch (Exception e) {
             throw new RuntimeException("Can't get a machine by age : " + age, e);
