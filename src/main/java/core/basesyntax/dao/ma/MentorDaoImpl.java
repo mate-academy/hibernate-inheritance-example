@@ -2,9 +2,9 @@ package core.basesyntax.dao.ma;
 
 import core.basesyntax.exception.DataProcessingException;
 import core.basesyntax.model.ma.Mentor;
-import java.util.List;
 import core.basesyntax.model.ma.Person;
 import jakarta.persistence.Query;
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
