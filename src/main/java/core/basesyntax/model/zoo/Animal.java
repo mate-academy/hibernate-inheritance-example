@@ -1,6 +1,5 @@
 package core.basesyntax.model.zoo;
 
-
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Entity;
