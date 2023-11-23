@@ -1,10 +1,8 @@
 package core.basesyntax.dao.animal;
 
 import core.basesyntax.dao.AbstractDao;
-import core.basesyntax.model.ma.Mentor;
 import core.basesyntax.model.zoo.Animal;
 import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -45,7 +43,8 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
             query.setParameter("char", Character.toLowerCase(character));
             return query.getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Error getting animals with name starting with: " + character, e);
+            throw new RuntimeException("Error getting animals with name starting with: "
+                    + character, e);
         }
     }
 }

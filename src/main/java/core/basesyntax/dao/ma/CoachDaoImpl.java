@@ -1,11 +1,7 @@
 package core.basesyntax.dao.ma;
 
 import core.basesyntax.model.ma.Coach;
-
-import java.time.LocalDate;
 import java.util.List;
-
-import core.basesyntax.model.machine.Machine;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -23,7 +19,8 @@ public class CoachDaoImpl extends PersonDaoImpl implements CoachDao {
             query.setParameter("years", years);
             return query.getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Error getting coaches with experience over years: " + years, e);
+            throw new RuntimeException("Error getting coaches with experience over years: "
+                    + years, e);
         }
     }
 }
