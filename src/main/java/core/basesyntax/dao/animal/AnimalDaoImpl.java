@@ -3,7 +3,6 @@ package core.basesyntax.dao.animal;
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.zoo.Animal;
 import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -25,12 +24,12 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
             transaction.commit();
             return animal;
         } catch (Exception e) {
-            if(transaction != null) {
+            if (transaction != null) {
                 transaction.rollback();
             }
             throw new RuntimeException("Can't insert animal " + animal, e);
         } finally {
-            if(session != null) {
+            if (session != null) {
                 session.close();
             }
         }
@@ -40,7 +39,8 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
     public List<Animal> findByNameFirstLetter(Character character) {
         try (Session session = factory.openSession()) {
             Query<Animal> query = session.createQuery("FROM Animal a "
-                    + "WHERE name LIKE :characterToUpper OR name LIKE :characterToLower", Animal.class);
+                    + "WHERE name LIKE :characterToUpper "
+                    + "OR name LIKE :characterToLower", Animal.class);
             query.setParameter("characterToUpper", character.toString().toUpperCase() + "%");
             query.setParameter("characterToLower", character.toString().toLowerCase() + "%");
             return query.getResultList();

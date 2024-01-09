@@ -17,22 +17,22 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
     public T save(T figure) {
         Session session = null;
         Transaction transaction = null;
-         try {
-             session = factory.openSession();
-             transaction = session.beginTransaction();
-             session.persist(figure);
-             transaction.commit();
-             return figure;
-         } catch (Exception e) {
-             if(transaction != null) {
-                 transaction.rollback();
-             }
-             throw new RuntimeException("Can't insert figure" + figure, e);
-         } finally {
-             if(session != null) {
-                 session.close();
-             }
-         }
+        try {
+            session = factory.openSession();
+            transaction = session.beginTransaction();
+            session.persist(figure);
+            transaction.commit();
+            return figure;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new RuntimeException("Can't insert figure" + figure, e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
 
     @Override
