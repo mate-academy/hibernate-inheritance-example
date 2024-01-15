@@ -4,8 +4,6 @@ import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.exception.DataProcessingException;
 import core.basesyntax.model.zoo.Animal;
 import java.util.List;
-
-import core.basesyntax.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -30,7 +28,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Cant insert animal: " + animal, e);
+            throw new DataProcessingException("Can't insert an animal: " + animal, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -43,11 +41,12 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
         try (Session session = sessionFactory.openSession()) {
             Query<Animal> query = session.createQuery(
                     "SELECT a FROM Animal a "
-                    + "WHERE LOWER(a.name) LIKE :character", Animal.class);
+                            + "WHERE LOWER(a.name) LIKE :character", Animal.class);
             query.setParameter("character", Character.toLowerCase(character) + "%");
             return query.getResultList();
         } catch (Exception e) {
-            throw new DataProcessingException("Can`t find animal by name first letter: " + character, e);
+            throw new DataProcessingException("Can't find an animal by name first latter: "
+                    + character, e);
         }
     }
 }
