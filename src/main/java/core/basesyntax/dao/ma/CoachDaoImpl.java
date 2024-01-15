@@ -3,7 +3,6 @@ package core.basesyntax.dao.ma;
 import core.basesyntax.exception.DataProcessingException;
 import core.basesyntax.model.ma.Coach;
 import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
