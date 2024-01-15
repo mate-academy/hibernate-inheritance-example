@@ -3,10 +3,8 @@ package core.basesyntax.dao.machine;
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.exception.DataProcessingException;
 import core.basesyntax.model.machine.Machine;
-
 import java.time.LocalDate;
 import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -31,7 +29,7 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Can`t save machine: " + machine, e);
+            throw new DataProcessingException("Can't insert a machine: " + machine, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -44,12 +42,12 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
         try (Session session = sessionFactory.openSession()) {
             int year = LocalDate.now().getYear() - age;
             Query<Machine> query = session.createQuery(
-                    "SELECT m FROM Machine m"
-                    + "WHERE m.year < :year", Machine.class);
+                    "SELECT m FROM Machine m "
+                            + "WHERE m.year < :year", Machine.class);
             query.setParameter("year", year);
             return query.getResultList();
         } catch (Exception e) {
-            throw new DataProcessingException("Can`t find machine by age older than: " + age, e);
+            throw new DataProcessingException("Can't find a car by age older than: " + age, e);
         }
     }
 }
