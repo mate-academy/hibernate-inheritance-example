@@ -4,7 +4,6 @@ import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.exception.DataProcessingException;
 import core.basesyntax.model.figure.Figure;
 import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -41,8 +40,8 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
     public List<T> findByColor(String color, Class<T> clazz) {
         try (Session session = sessionFactory.openSession()) {
             Query<T> query = session.createQuery(
-                    "SELECT cz FROM " + clazz.getName() +" cz"
-                    + "WHERE cz.color = :color", clazz);
+                    "SELECT cz FROM " + clazz.getName() + " cz"
+                    + " WHERE cz.color = :color", clazz);
             query.setParameter("color", color);
             return query.getResultList();
         } catch (Exception e) {
