@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 public class Machine {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
+    private Long id;
     private int year;
     private String maker;
 
@@ -24,5 +25,13 @@ public class Machine {
 
     public void setMaker(String maker) {
         this.maker = maker;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
