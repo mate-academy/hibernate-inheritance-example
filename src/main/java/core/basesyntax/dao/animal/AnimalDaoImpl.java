@@ -42,7 +42,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
                     .setParameter("char", character + "%")
                     .getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("can't get animal by name", e);
+            throw new RuntimeException("can't get animal by first letter", e);
         }
     }
 }
