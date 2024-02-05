@@ -1,6 +1,15 @@
 package core.basesyntax.model.machine;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Machine {
+    @Id
+    private Long id;
     private int year;
     private String maker;
 
@@ -18,5 +27,9 @@ public class Machine {
 
     public void setMaker(String maker) {
         this.maker = maker;
+    }
+
+    public Long getId() {
+        return id;
     }
 }
