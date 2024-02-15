@@ -2,8 +2,6 @@ package core.basesyntax.dao.ma;
 
 import core.basesyntax.model.ma.Mentor;
 import java.util.List;
-
-import core.basesyntax.model.machine.Machine;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
