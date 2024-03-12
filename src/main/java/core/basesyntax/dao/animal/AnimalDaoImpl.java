@@ -3,7 +3,6 @@ package core.basesyntax.dao.animal;
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.zoo.Animal;
 import java.util.List;
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -33,17 +32,20 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
             if (session != null) {
                 session.close();
             }
-        }    }
+        }
+    }
 
     @Override
     public List<Animal> findByNameFirstLetter(Character character) {
         try (Session session = sessionFactory.openSession()) {
             Query<Animal> query = session.createQuery("FROM Animal a "
-                    + "WHERE a.name " +
-                    "LIKE :characterToUpperCase OR a.name " +
-                    "LIKE :characterToLowerCase", Animal.class);
-            query.setParameter("characterToUpperCase",String.valueOf(character).toUpperCase() + '%');
-            query.setParameter("characterToLowerCase",String.valueOf(character).toLowerCase() + '%');
+                    + "WHERE a.name "
+                    + "LIKE :characterToUpperCase OR a.name "
+                    + "LIKE :characterToLowerCase", Animal.class);
+            query.setParameter("characterToUpperCase",
+                    String.valueOf(character).toUpperCase() + '%');
+            query.setParameter("characterToLowerCase",
+                    String.valueOf(character).toLowerCase() + '%');
             return query.getResultList();
         } catch (Exception e) {
             throw new RuntimeException("Can't get list of animal whose names start with: "

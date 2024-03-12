@@ -1,7 +1,6 @@
 package core.basesyntax.dao.machine;
 
 import core.basesyntax.dao.AbstractDao;
-import core.basesyntax.model.ma.Mentor;
 import core.basesyntax.model.machine.Machine;
 import java.time.LocalDate;
 import java.util.List;
