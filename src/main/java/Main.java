@@ -138,11 +138,11 @@ public class Main {
         machineDao.save(truck);
         machineDao.save(machine);
 
-        Machine myMachine = new Machine();
-        myMachine.setYear(2022);
-        System.out.println(machineDao.save(myMachine));
         List<Machine> byAgeOlderThan = machineDao.findByAgeOlderThan(2);
         System.out.println(byAgeOlderThan);
+        Machine myMachine = new Machine();
+        myMachine.setYear(2019);
+        machineDao.save(myMachine);
         System.out.println(machineDao.findByAgeOlderThan(2));
     }
 }

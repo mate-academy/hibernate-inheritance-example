@@ -25,6 +25,7 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.persist(machine);
+            transaction.commit();
             return machine;
         } catch (Exception e) {
             if (transaction != null) {

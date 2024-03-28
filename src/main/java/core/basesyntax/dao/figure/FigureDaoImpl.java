@@ -24,6 +24,7 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.persist(figure);
+            transaction.commit();
             return figure;
         } catch (Exception e) {
             if (transaction != null) {

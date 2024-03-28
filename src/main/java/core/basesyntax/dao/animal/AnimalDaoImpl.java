@@ -24,6 +24,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.persist(animal);
+            transaction.commit();
             return animal;
         } catch (Exception e) {
             if (transaction != null) {
@@ -44,7 +45,11 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
             CriteriaQuery<Animal> query =
                     criteriaBuilder.createQuery(Animal.class);
             Root<Animal> root = query.from(Animal.class);
-            Predicate namePredicate = criteriaBuilder.like(root.get("name"), character + "%");
+            Predicate nameLowPredicate = criteriaBuilder.like(root.get("name"),
+                    Character.toLowerCase(character) + "%");
+            Predicate nameUpPredicate = criteriaBuilder.like(root.get("name"),
+                    Character.toUpperCase(character) + "%");
+            Predicate namePredicate = criteriaBuilder.or(nameLowPredicate, nameUpPredicate);
             query.select(root).where(namePredicate);
             return session.createQuery(query).getResultList();
         } catch (Exception e) {
