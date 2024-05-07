@@ -1,9 +1,16 @@
 package core.basesyntax.model.ma;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 
+@Entity
 public class Coach extends Person {
+
     public enum Track {
         JAVA, FE, UI, QA
     }
