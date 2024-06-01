@@ -1,6 +1,12 @@
 package core.basesyntax.model.figure;
 
-public class Figure {
+import jakarta.persistence.*;
+
+@MappedSuperclass
+public  abstract class Figure {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String color;
 
     public String getColor() {
@@ -9,5 +15,13 @@ public class Figure {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
