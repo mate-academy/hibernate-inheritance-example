@@ -2,7 +2,6 @@ package core.basesyntax.dao.figure;
 
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.figure.Figure;
-import core.basesyntax.util.HibernateUtil;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
@@ -19,24 +18,24 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
 
     @Override
     public T save(T figure) {
-        Transaction transaction = null;
         Session session = null;
+        Transaction transaction = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.persist(figure);
             transaction.commit();
-            return figure;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Can't insert figure " + figure, e);
+            throw new RuntimeException("Can't save figure " + figure, e);
         } finally {
             if (session != null) {
                 session.close();
             }
         }
+        return figure;
     }
 
     @Override
