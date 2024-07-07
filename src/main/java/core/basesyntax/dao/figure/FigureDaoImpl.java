@@ -2,8 +2,13 @@ package core.basesyntax.dao.figure;
 
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.figure.Figure;
+import jakarta.persistence.criteria.CriteriaQuery;
 import java.util.List;
+import java.util.stream.Collectors;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.query.criteria.HibernateCriteriaBuilder;
 
 public class FigureDaoImpl<T extends Figure> extends AbstractDao implements FigureDao<T> {
     public FigureDaoImpl(SessionFactory sessionFactory) {
@@ -12,11 +17,38 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
 
     @Override
     public T save(T figure) {
-        return null;
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.persist(figure);
+            transaction.commit();
+            return figure;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new RuntimeException("Can't insert figure " + figure, e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
 
     @Override
     public List<T> findByColor(String color, Class<T> clazz) {
-        return null;
+        try (Session session = sessionFactory.openSession()) {
+            HibernateCriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            CriteriaQuery<T> query = criteriaBuilder.createQuery(clazz);
+            query.from(clazz);
+            return session.createQuery(query).getResultList()
+                    .stream()
+                    .filter(figure -> figure.getColor().equals(color))
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new RuntimeException("Can't find by color " + color);
+        }
     }
 }
