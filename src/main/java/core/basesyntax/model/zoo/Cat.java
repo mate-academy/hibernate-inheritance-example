@@ -1,5 +1,8 @@
 package core.basesyntax.model.zoo;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Cat extends Animal {
     private int numberOfLives;
     private String color;
@@ -18,5 +21,14 @@ public class Cat extends Animal {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    @Override
+    public String toString() {
+        return "Cat{"
+                + "numberOfLives=" + numberOfLives
+                + ", color='" + color + '\''
+                + "} of "
+                + super.toString();
     }
 }
