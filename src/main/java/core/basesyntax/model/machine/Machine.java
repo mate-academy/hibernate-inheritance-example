@@ -12,8 +12,17 @@ import jakarta.persistence.InheritanceType;
 public class Machine {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
+    private Long id;
     private int year;
     private String maker;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public int getYear() {
         return year;
