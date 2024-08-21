@@ -1,9 +1,13 @@
 package core.basesyntax.dao.animal;
 
 import core.basesyntax.dao.AbstractDao;
+import core.basesyntax.exeption.DataProcessingException;
 import core.basesyntax.model.zoo.Animal;
 import java.util.List;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
     public AnimalDaoImpl(SessionFactory sessionFactory) {
@@ -12,11 +16,40 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
 
     @Override
     public Animal save(Animal animal) {
-        return null;
+        Session session = null;
+        Transaction transaction = null;
+
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.getTransaction();
+            transaction.begin();
+
+            session.persist(animal);
+
+            transaction.commit();
+
+            return animal;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new DataProcessingException("Can't save animal", e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
 
     @Override
     public List<Animal> findByNameFirstLetter(Character character) {
-        return null;
+        try (Session session = sessionFactory.openSession()) {
+            Query<Animal> query = session.createQuery(
+                    "FROM Animal WHERE LOWER(name) LIKE :ch", Animal.class);
+            query.setParameter("ch", character.toString().toLowerCase() + "%");
+            return query.getResultList();
+        } catch (Exception e) {
+            throw new DataProcessingException("Can't find animal by name first letter", e);
+        }
     }
 }
