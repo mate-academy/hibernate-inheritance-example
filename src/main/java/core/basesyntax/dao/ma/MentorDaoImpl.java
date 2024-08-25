@@ -1,7 +1,9 @@
 package core.basesyntax.dao.ma;
 
 import core.basesyntax.model.ma.Mentor;
+import core.basesyntax.util.HibernateUtil;
 import java.util.List;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 public class MentorDaoImpl extends PersonDaoImpl implements MentorDao {
@@ -11,6 +13,14 @@ public class MentorDaoImpl extends PersonDaoImpl implements MentorDao {
 
     @Override
     public List<Mentor> findByAgeGreaterThan(int age) {
-        return null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery("from Mentor "
+                            + "WHERE age > :age", Mentor.class)
+                    .setParameter("age", age)
+                    .getResultList();
+        } catch (Exception e) {
+            throw new RuntimeException("Can't find the mentor by age greater than "
+                    + "age = " + age, e);
+        }
     }
 }
