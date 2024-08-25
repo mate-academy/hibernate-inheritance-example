@@ -2,7 +2,6 @@ package core.basesyntax.dao.ma;
 
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.ma.Person;
-import core.basesyntax.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -17,7 +16,7 @@ public class PersonDaoImpl extends AbstractDao implements PersonDao {
         Session session = null;
         Transaction transaction = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.persist(person);
             transaction.commit();

@@ -1,7 +1,6 @@
 package core.basesyntax.dao.ma;
 
 import core.basesyntax.model.ma.Coach;
-import core.basesyntax.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,7 +12,7 @@ public class CoachDaoImpl extends PersonDaoImpl implements CoachDao {
 
     @Override
     public List<Coach> findByExperienceGreaterThan(int years) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             return session.createQuery("from Coach "
                             + "WHERE experience > :years", Coach.class)
                     .setParameter("years", years)
