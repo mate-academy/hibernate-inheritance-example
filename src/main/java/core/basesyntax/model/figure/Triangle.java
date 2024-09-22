@@ -9,6 +9,7 @@ public class Triangle extends Figure {
     public double getArea() {
         return area;
     }
+
     public void setArea(double area) {
         this.area = area;
     }
