@@ -3,7 +3,6 @@ package core.basesyntax.dao.figure;
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.figure.Figure;
 import java.util.List;
-import java.util.Queue;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -39,13 +38,16 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
     @Override
     public List<T> findByColor(String color, Class<T> clazz) {
         try (Session session = sessionFactory.openSession()) {
+            String clazzName = clazz.getSimpleName();
             Query<T> getFigureByColor = session.createQuery(
-                    "SELECT t FROM "
-                            + "WHERE "
-            );
+                    "SELECT t FROM " + clazzName + " t "
+                            + "WHERE t.color = :requiredColor",
+                    clazz);
+            getFigureByColor.setParameter("requiredColor", color);
             return getFigureByColor.getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Cannot find figure: " + clazz + " by color: " + color, e);
+            throw new RuntimeException(
+                    "Cannot find figure: " + clazz.getSimpleName() + " by color: " + color, e);
         }
     }
 }

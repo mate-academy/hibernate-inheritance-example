@@ -1,7 +1,6 @@
 package core.basesyntax.model.figure;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
