@@ -20,6 +20,7 @@ public class PersonDaoImpl extends AbstractDao implements PersonDao {
             transaction = session.beginTransaction();
             session.persist(person);
             transaction.commit();
+            return person;
         } catch (RuntimeException e) {
             if (transaction != null) {
                 transaction.rollback();
@@ -30,6 +31,5 @@ public class PersonDaoImpl extends AbstractDao implements PersonDao {
                 session.close();
             }
         }
-        return person;
     }
 }

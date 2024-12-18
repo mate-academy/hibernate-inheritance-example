@@ -21,6 +21,7 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
             transaction = session.beginTransaction();
             session.persist(animal);
             transaction.commit();
+            return animal;
         } catch (RuntimeException e) {
             if (transaction != null) {
                 transaction.rollback();
@@ -31,11 +32,15 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
                 session.close();
             }
         }
-        return animal;
     }
 
     @Override
     public List<Animal> findByNameFirstLetter(Character character) {
-        return null;
+        try (Session session = sessionFactory.openSession()) {
+            String pattern = character.toString().toLowerCase() + "%";
+            return session.createQuery("FROM Animal WHERE LOWER(name) LIKE :characterPattern",
+                    Animal.class).setParameter("characterPattern", pattern)
+                    .getResultList();
+        }
     }
 }
