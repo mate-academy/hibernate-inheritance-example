@@ -3,7 +3,10 @@ package core.basesyntax.dao.animal;
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.zoo.Animal;
 import java.util.List;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
     public AnimalDaoImpl(SessionFactory sessionFactory) {
@@ -12,9 +15,11 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
 
     @Override
     public Animal save(Animal animal) {
-        var session = sessionFactory.openSession();
-        var transaction = session.beginTransaction();
+        Session session = null;
+        Transaction transaction = null;
         try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
             session.persist(animal);
             transaction.commit();
             return animal;
@@ -22,23 +27,25 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Error while saving animal: " + animal, e);
+            throw new RuntimeException("Can't insert animal " + animal, e);
         } finally {
-            session.close();
+            if (session != null) {
+                session.close();
+            }
         }
     }
 
     @Override
     public List<Animal> findByNameFirstLetter(Character character) {
-        try (var session = sessionFactory.openSession()) {
-            var criteriaBuilder = session.getCriteriaBuilder();
-            var criteriaQuery = criteriaBuilder.createQuery(Animal.class);
-            var root = criteriaQuery.from(Animal.class);
-
-            criteriaQuery.select(root)
-                    .where(criteriaBuilder.like(root.get("name"), character + "%"));
-
-            return session.createQuery(criteriaQuery).getResultList();
+        if (character == null) {
+            throw new IllegalArgumentException("Character cannot be null");
+        }
+        try (Session session = sessionFactory.openSession()) {
+            Query<Animal> query = session.createQuery("FROM Animal a "
+                    + "WHERE a.name LIKE :lowerCase OR a.name LIKE :upperCase", Animal.class);
+            query.setParameter("lowerCase", character.toString().toLowerCase() + "%");
+            query.setParameter("upperCase", character.toString().toUpperCase() + "%");
+            return query.getResultList();
         }
     }
 }
