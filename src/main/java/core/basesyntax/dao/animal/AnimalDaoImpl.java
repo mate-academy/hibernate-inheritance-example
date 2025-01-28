@@ -12,11 +12,33 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
 
     @Override
     public Animal save(Animal animal) {
-        return null;
+        var session = sessionFactory.openSession();
+        var transaction = session.beginTransaction();
+        try {
+            session.persist(animal);
+            transaction.commit();
+            return animal;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new RuntimeException("Error while saving animal: " + animal, e);
+        } finally {
+            session.close();
+        }
     }
 
     @Override
     public List<Animal> findByNameFirstLetter(Character character) {
-        return null;
+        try (var session = sessionFactory.openSession()) {
+            var criteriaBuilder = session.getCriteriaBuilder();
+            var criteriaQuery = criteriaBuilder.createQuery(Animal.class);
+            var root = criteriaQuery.from(Animal.class);
+
+            criteriaQuery.select(root)
+                    .where(criteriaBuilder.like(root.get("name"), character + "%"));
+
+            return session.createQuery(criteriaQuery).getResultList();
+        }
     }
 }
