@@ -4,10 +4,12 @@ import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.machine.Machine;
 import java.time.LocalDate;
 import java.util.List;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 public class MachineDaoImpl extends AbstractDao implements MachineDao {
     public MachineDaoImpl(SessionFactory sessionFactory) {
@@ -39,11 +41,15 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
     @Override
     public List<Machine> findByAgeOlderThan(int age) {
         try (Session session = sessionFactory.openSession()) {
-            int releaseYear = LocalDate.now().getYear() - age;
-            Query<Machine> query = session.createQuery("FROM Machine m "
-                    + "WHERE m.year < :releaseYear", Machine.class);
-            query.setParameter("releaseYear", releaseYear);
-            return query.getResultList();
+            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            CriteriaQuery<Machine> criteriaQuery =
+                    criteriaBuilder.createQuery(Machine.class);
+            Root<Machine> root = criteriaQuery.from(Machine.class);
+            int currentYear = LocalDate.now().getYear();
+            int thresholdYear = currentYear - age;
+
+            criteriaQuery.select(root).where(criteriaBuilder.lt(root.get("year"), thresholdYear));
+            return session.createQuery(criteriaQuery).getResultList();
         }
     }
 }
