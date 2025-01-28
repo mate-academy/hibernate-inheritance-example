@@ -3,7 +3,6 @@ package core.basesyntax.dao.figure;
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.figure.Figure;
 import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -18,19 +17,19 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
     public T save(T figure) {
         Session session = null;
         Transaction transaction = null;
-        try{
+        try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.persist(figure);
             transaction.commit();
             return figure;
-        } catch (Exception e){
-            if(transaction != null){
+        } catch (Exception e) {
+            if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Save figure failed" + figure,e);
+            throw new RuntimeException("Save figure failed" + figure, e);
         } finally {
-            if (session != null){
+            if (session != null) {
                 session.close();
             }
         }
@@ -38,7 +37,7 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
 
     @Override
     public List<T> findByColor(String color, Class<T> clazz) {
-        try(Session session = sessionFactory.openSession()){
+        try (Session session = sessionFactory.openSession()) {
             Query<T> query = session.createQuery("FROM " + clazz.getSimpleName() + " c "
                     + "WHERE c.color = :color", clazz);
             query.setParameter("color", color);
