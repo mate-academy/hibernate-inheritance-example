@@ -2,7 +2,6 @@ package core.basesyntax.dao.machine;
 
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.machine.Machine;
-
 import java.util.Calendar;
 import java.util.List;
 import org.hibernate.Session;
