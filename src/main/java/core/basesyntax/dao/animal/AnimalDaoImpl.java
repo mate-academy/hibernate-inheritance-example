@@ -43,7 +43,8 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
                     .setParameter("pattern", (character + "%").toLowerCase())
                     .list();
         } catch (Exception e) {
-            throw new RuntimeException("Error occurred while retrieving animals from the database", e);
+            throw new RuntimeException("Error occurred while retrieving animals "
+                    + "from the database", e);
         }
     }
 }

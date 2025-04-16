@@ -1,7 +1,6 @@
 package core.basesyntax.dao.machine;
 
 import core.basesyntax.dao.AbstractDao;
-import core.basesyntax.model.ma.Mentor;
 import core.basesyntax.model.machine.Machine;
 import java.time.Year;
 import java.util.List;
@@ -47,7 +46,8 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
                     .setParameter("maxYear", maxYear)
                     .list();
         } catch (Exception e) {
-            throw new RuntimeException("Error occurred while retrieving machines from the database", e);
+            throw new RuntimeException("Error occurred while retrieving machines "
+                    + "from the database", e);
         }
     }
 }
