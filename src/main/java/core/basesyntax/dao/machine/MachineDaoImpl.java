@@ -12,11 +12,23 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
 
     @Override
     public Machine save(Machine machine) {
-        return null;
+        try {
+            sessionFactory.inTransaction(s -> s.persist(machine));
+            return machine;
+        } catch (Exception e) {
+            throw new RuntimeException("Can't add machine to the DB", e);
+        }
     }
 
     @Override
     public List<Machine> findByAgeOlderThan(int age) {
-        return null;
+        try {
+            return sessionFactory.fromSession(s -> s.createQuery("FROM Machine m "
+            + "WHERE (YEAR(CURRENT DATE ) - m.year) > :age", Machine.class)
+                    .setParameter("age", age)
+                    .getResultList());
+        } catch (Exception e) {
+            throw new RuntimeException("No machine older than " + age, e);
+        }
     }
 }
