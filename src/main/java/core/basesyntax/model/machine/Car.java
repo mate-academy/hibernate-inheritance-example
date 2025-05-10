@@ -1,8 +1,20 @@
 package core.basesyntax.model.machine;
 
+import jakarta.persistence.Entity;
+
+@Entity(name = "cars")
 public class Car extends Machine {
     private int horsePower;
     private String model;
+
+    public Car() {
+    }
+
+    public Car(int horsePower, String model) {
+        super();
+        this.horsePower = horsePower;
+        this.model = model;
+    }
 
     public int getHorsePower() {
         return horsePower;
