@@ -1,7 +1,11 @@
 package core.basesyntax.dao.ma;
 
 import core.basesyntax.model.ma.Mentor;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import java.util.List;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 public class MentorDaoImpl extends PersonDaoImpl implements MentorDao {
@@ -11,6 +15,14 @@ public class MentorDaoImpl extends PersonDaoImpl implements MentorDao {
 
     @Override
     public List<Mentor> findByAgeGreaterThan(int age) {
-        return null;
+        try (Session session = sessionFactory.openSession()) {
+            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            CriteriaQuery<Mentor> criteriaQuery =
+                    criteriaBuilder.createQuery(Mentor.class);
+            Root<Mentor> root = criteriaQuery.from(Mentor.class);
+
+            criteriaQuery.select(root).where(criteriaBuilder.gt(root.get("age"), age));
+            return session.createQuery(criteriaQuery).getResultList();
+        }
     }
 }
