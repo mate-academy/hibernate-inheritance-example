@@ -1,8 +1,20 @@
 package core.basesyntax.model.machine;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Car extends Machine {
     private int horsePower;
     private String model;
+
+    public Car() {
+    }
+
+    public Car(int year, String maker, int horsePower, String model) {
+        super(year, maker);
+        this.horsePower = horsePower;
+        this.model = model;
+    }
 
     public int getHorsePower() {
         return horsePower;
@@ -18,5 +30,13 @@ public class Car extends Machine {
 
     public void setModel(String model) {
         this.model = model;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Car{"
+                + "horsePower=" + horsePower
+                + ", model='" + model + '\''
+                + '}';
     }
 }
