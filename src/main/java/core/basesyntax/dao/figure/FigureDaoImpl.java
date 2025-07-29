@@ -12,11 +12,25 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
 
     @Override
     public T save(T figure) {
-        return null;
+        try (var session = sessionFactory.openSession()) {
+            var transaction = session.beginTransaction();
+            session.persist(figure);
+            transaction.commit();
+            return figure;
+        } catch (Exception e) {
+            throw new RuntimeException("Can`t save figure!: " + figure, e);
+        }
     }
 
     @Override
     public List<T> findByColor(String color, Class<T> clazz) {
-        return null;
+        try (var session = sessionFactory.openSession()) {
+            var query = session.createQuery(
+                    "FROM " + clazz.getSimpleName() + " a WHERE a.color = :color", clazz);
+            query.setParameter("color", color);
+            return query.getResultList();
+        } catch (Exception e) {
+            throw new RuntimeException("Can`t find figure by color!: " + color, e);
+        }
     }
 }

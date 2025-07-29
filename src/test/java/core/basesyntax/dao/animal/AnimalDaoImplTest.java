@@ -78,7 +78,6 @@ public class AnimalDaoImplTest extends AbstractTest {
         Assert.assertNotNull(animalsByNameFirstLetter);
         Assert.assertEquals(3, animalsByNameFirstLetter.size());
     }
-
     @Test
     public void findByNameFirstLetter_ZeroAnimals() {
         Dog rob = new Dog();
