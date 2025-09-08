@@ -12,11 +12,26 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
 
     @Override
     public Animal save(Animal animal) {
-        return null;
+        try (var session = getSession()) {
+            var tx = session.beginTransaction();
+            session.persist(animal);
+            tx.commit();
+            return animal;
+        }
     }
 
     @Override
     public List<Animal> findByNameFirstLetter(Character character) {
-        return null;
+        try (var session = getSession()) {
+            var tx = session.beginTransaction();
+            var query = session.createQuery(
+                    "FROM Animal a WHERE upper(a.name) LIKE :firstLetter",
+                    Animal.class
+            );
+            query.setParameter("firstLetter", (character + "%").toUpperCase());
+            List<Animal> result = query.getResultList();
+            tx.commit();
+            return result;
+        }
     }
 }
