@@ -4,6 +4,7 @@ import core.basesyntax.dao.AbstractTest;
 import core.basesyntax.model.ma.Coach;
 import core.basesyntax.model.ma.Mentor;
 import core.basesyntax.model.ma.Person;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,7 +24,8 @@ public class MentorDaoImplTest extends AbstractTest {
 
     @Before
     public void setUp() {
-        mentorDao = new MentorDaoImpl(getSessionFactory());
+        mentorDao =
+                new MentorDaoImpl(getSessionFactory());
     }
 
     @Test
@@ -45,7 +47,8 @@ public class MentorDaoImplTest extends AbstractTest {
         Assert.assertNotNull(secondMentor.getId());
         Assert.assertNotNull(thirdMentor.getId());
 
-        List<Mentor> byAgeGreaterThan = mentorDao.findByAgeGreaterThan(20);
+        List<Mentor> byAgeGreaterThan =
+                mentorDao.findByAgeGreaterThan(20);
         Assert.assertEquals(2, byAgeGreaterThan.size());
     }
 }

@@ -42,13 +42,15 @@ public class CoachDaoImplTest extends AbstractTest {
         Assert.assertNotNull(coach.getId());
         Assert.assertNotNull(secondCoach.getId());
 
-        List<Coach> coaches = coachDao.findByExperienceGreaterThan(2);
+        List<Coach> coaches = coachDao
+                .findByExperienceGreaterThan(2);
         Assert.assertEquals(1, coaches.size());
         Assert.assertEquals("Coach", coaches.get(0).getName());
     }
 
     @Test
     public void findByNonExistentExperience() {
-        Assert.assertEquals(0, coachDao.findByExperienceGreaterThan(3).size());
+        Assert.assertEquals(0, coachDao
+                .findByExperienceGreaterThan(3).size());
     }
 }
