@@ -34,6 +34,7 @@ public class MachineDaoImplTest extends AbstractTest {
         Machine actualMachine = machineDao.save(machine);
         Assert.assertNotNull(actualMachine);
         Assert.assertEquals(1L, actualMachine.getId().longValue());
+
     }
 
     @Test
