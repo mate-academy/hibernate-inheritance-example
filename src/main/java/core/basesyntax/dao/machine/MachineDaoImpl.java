@@ -42,8 +42,10 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
 
+            int currentYear = java.time.Year.now().getValue();
             List<Machine> machines = session.createQuery(
-                            "FROM Machine m WHERE m.year > :age", Machine.class)
+                            "FROM Machine m WHERE (:currentYear - m.year) > :age", Machine.class)
+                    .setParameter("currentYear", currentYear)
                     .setParameter("age", age)
                     .getResultList();
 
