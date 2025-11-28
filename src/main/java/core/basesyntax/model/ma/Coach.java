@@ -12,6 +12,9 @@ public class Coach extends Person {
     @Enumerated(EnumType.STRING)
     private Track track;
 
+    public Coach() {
+    }
+
     public int getExperience() {
         return experience;
     }
