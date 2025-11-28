@@ -1,11 +1,11 @@
 package core.basesyntax.model.zoo;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "cat_animal")
+@DiscriminatorValue("CAT")
 public class Cat extends Animal {
     @Column(nullable = true)
     private int numberOfLives;

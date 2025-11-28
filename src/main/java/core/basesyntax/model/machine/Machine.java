@@ -9,7 +9,7 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "macines")
+@Table(name = "machines")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Machine {
     @Id

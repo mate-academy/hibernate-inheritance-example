@@ -1,8 +1,10 @@
 package core.basesyntax.model.figure;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
-@Entity(name = "triangle_figure")
+@Entity
+@Table(name = "triangle_figure")
 public class Triangle extends Figure {
     private double area;
 

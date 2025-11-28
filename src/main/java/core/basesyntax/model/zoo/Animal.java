@@ -1,5 +1,7 @@
 package core.basesyntax.model.zoo;
 
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,6 +13,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "animals")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "animal_type", discriminatorType = DiscriminatorType.STRING)
 public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

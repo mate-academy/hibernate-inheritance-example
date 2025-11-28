@@ -25,14 +25,13 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
-                throw e;
             }
+            throw e;
         } finally {
             if (session != null) {
                 session.close();
             }
         }
-        return machine;
     }
 
     @Override
