@@ -1,7 +1,16 @@
 package core.basesyntax.model.machine;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "cars")
 public class Car extends Machine {
+    @Column(name = "horse_power")
     private int horsePower;
+
+    @Column(name = "model")
     private String model;
 
     public int getHorsePower() {
