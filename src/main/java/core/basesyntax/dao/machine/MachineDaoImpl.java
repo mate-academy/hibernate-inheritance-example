@@ -2,6 +2,10 @@ package core.basesyntax.dao.machine;
 
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.machine.Machine;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import java.time.LocalDate;
 import java.util.List;
 import org.hibernate.Session;
@@ -41,10 +45,12 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
         int currentYear = localDate.getYear();
         int yearThreshold = currentYear - age;
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("FROM Machine m WHERE m.year < :yearThreshold",
-                            Machine.class)
-                    .setParameter("yearThreshold", yearThreshold)
-                    .getResultList();
+            CriteriaBuilder cb = session.getCriteriaBuilder();
+            CriteriaQuery<Machine> query = cb.createQuery(Machine.class);
+            Root<Machine> root = query.from(Machine.class);
+            Predicate predicate = cb.lessThan(root.get("year"), yearThreshold);
+            query.where(predicate);
+            return session.createQuery(query).getResultList();
         } catch (RuntimeException e) {
             throw new RuntimeException("Can't get machine by year:" + age, e);
         }
