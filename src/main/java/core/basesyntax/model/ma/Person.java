@@ -17,7 +17,7 @@ public class Person {
     private int age;
     private String name;
 
-    private Long getId() {
+    public Long getId() {
         return id;
     }
 
