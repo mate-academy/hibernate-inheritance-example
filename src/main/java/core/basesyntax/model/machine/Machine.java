@@ -32,4 +32,8 @@ public class Machine {
     public void setMaker(String maker) {
         this.maker = maker;
     }
+
+    public Long getId() {
+        return id;
+    }
 }
