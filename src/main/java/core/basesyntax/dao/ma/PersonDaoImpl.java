@@ -2,7 +2,9 @@ package core.basesyntax.dao.ma;
 
 import core.basesyntax.dao.AbstractDao;
 import core.basesyntax.model.ma.Person;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 public class PersonDaoImpl extends AbstractDao implements PersonDao {
     public PersonDaoImpl(SessionFactory sessionFactory) {
@@ -11,6 +13,19 @@ public class PersonDaoImpl extends AbstractDao implements PersonDao {
 
     @Override
     public Person save(Person person) {
-        return null;
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = openSession();
+            transaction = session.beginTransaction();
+            session.persist(person);
+            transaction.commit();
+            return person;
+        } catch (Exception e) {
+            transactionNullCheck(transaction);
+            throw new RuntimeException("Can't persist person: " + person, e);
+        } finally {
+            closeSession(session);
+        }
     }
 }
