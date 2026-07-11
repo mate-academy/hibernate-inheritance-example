@@ -1,5 +1,8 @@
 package core.basesyntax.model.zoo;
 
+import jakarta.persistence.DiscriminatorValue;
+
+@DiscriminatorValue("CAT")
 public class Cat extends Animal {
     private int numberOfLives;
     private String color;

@@ -11,6 +11,7 @@ public class PersonDaoImpl extends AbstractDao implements PersonDao {
 
     @Override
     public Person save(Person person) {
-        return null;
+        return (Person) sessionFactory.getCurrentSession()
+                .save(person);
     }
 }
