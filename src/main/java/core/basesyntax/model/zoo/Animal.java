@@ -13,8 +13,13 @@ public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private int age;
     private String name;
+
+    public Long getId() {
+        return id;
+    }
 
     public int getAge() {
         return age;
