@@ -1,5 +1,7 @@
 package core.basesyntax.model.zoo;
 
+
+
 public class Animal {
     private int age;
     private String name;
