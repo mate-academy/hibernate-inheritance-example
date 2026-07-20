@@ -1,6 +1,12 @@
 package core.basesyntax.model.zoo;
 
 
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+
+import java.lang.annotation.Inherited;
+
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 
 public class Animal {
     private int age;
