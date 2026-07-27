@@ -2,7 +2,9 @@ package core.basesyntax.dao.ma;
 
 import core.basesyntax.model.ma.Mentor;
 import java.util.List;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 public class MentorDaoImpl extends PersonDaoImpl implements MentorDao {
     public MentorDaoImpl(SessionFactory sessionFactory) {
@@ -11,6 +13,18 @@ public class MentorDaoImpl extends PersonDaoImpl implements MentorDao {
 
     @Override
     public List<Mentor> findByAgeGreaterThan(int age) {
-        return null;
+        Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            List<Mentor> result = session.createQuery(
+                            "FROM Mentor WHERE age > :age", Mentor.class)
+                    .setParameter("age", age)
+                    .getResultList();
+            transaction.commit();
+            return result;
+        } catch (Exception e) {
+            transaction.rollback();
+            throw new RuntimeException("Can't find mentors", e);
+        }
     }
 }
