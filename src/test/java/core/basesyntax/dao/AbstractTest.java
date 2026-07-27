@@ -74,6 +74,7 @@ public abstract class AbstractTest {
 
         //data source settings
         properties.put("hibernate.connection.datasource", newDataSource());
+        properties.put("hibernate.current_session_context_class", "thread");
         return properties;
     }
 
