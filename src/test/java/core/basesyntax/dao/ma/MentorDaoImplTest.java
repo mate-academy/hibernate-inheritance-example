@@ -37,9 +37,13 @@ public class MentorDaoImplTest extends AbstractTest {
         Mentor thirdMentor = new Mentor();
         thirdMentor.setName("FirstMentor");
         thirdMentor.setAge(18);
-        mentorDao.save(firstMentor);
-        mentorDao.save(secondMentor);
-        mentorDao.save(thirdMentor);
+        try {
+            mentorDao.save(firstMentor);
+            mentorDao.save(secondMentor);
+            mentorDao.save(thirdMentor);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         Assert.assertNotNull(firstMentor.getId());
         Assert.assertNotNull(secondMentor.getId());
