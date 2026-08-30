@@ -1,5 +1,8 @@
 package core.basesyntax.model.machine;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Truck extends Machine {
     private String color;
     private double maxAllowedWeight;
@@ -18,5 +21,10 @@ public class Truck extends Machine {
 
     public void setMaxAllowedWeight(double maxAllowedWeight) {
         this.maxAllowedWeight = maxAllowedWeight;
+    }
+
+    @Override
+    public Long getId() {
+        return super.getId();
     }
 }
