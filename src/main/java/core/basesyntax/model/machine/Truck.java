@@ -1,5 +1,10 @@
 package core.basesyntax.model.machine;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "trucks")
 public class Truck extends Machine {
     private String color;
     private double maxAllowedWeight;
@@ -18,5 +23,16 @@ public class Truck extends Machine {
 
     public void setMaxAllowedWeight(double maxAllowedWeight) {
         this.maxAllowedWeight = maxAllowedWeight;
+    }
+
+    @Override
+    public String toString() {
+        return "Truck{"
+                + "id=" + super.getId()
+                + ", year=" + super.getYear()
+                + ", maker=" + super.getMaker()
+                + ", color=" + color
+                + ", maxAllowedWeight=" + maxAllowedWeight
+                + '}';
     }
 }
