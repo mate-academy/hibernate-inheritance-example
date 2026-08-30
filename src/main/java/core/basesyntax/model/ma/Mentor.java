@@ -1,5 +1,22 @@
 package core.basesyntax.model.ma;
 
-public class Mentor extends Person {
+import jakarta.persistence.Entity;
 
+@Entity
+public class Mentor extends Person {
+    public Mentor() {
+    }
+
+    public Mentor(int age, String name) {
+        super(age, name);
+    }
+
+    @Override
+    public String toString() {
+        return "Person{"
+                + "id=" + getId()
+                + ", age=" + getAge()
+                + ", name='" + getName() + '\''
+                + '}';
+    }
 }
