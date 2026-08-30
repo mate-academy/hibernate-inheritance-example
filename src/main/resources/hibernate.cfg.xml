@@ -1,0 +1,24 @@
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hi_db?serverTimezone=UTC</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">Root1234</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">create-drop</property>
+
+        <mapping class="core.basesyntax.model.figure.Triangle"/>
+        <mapping class="core.basesyntax.model.figure.Circle"/>
+        <mapping class="core.basesyntax.model.ma.Person"/>
+        <mapping class="core.basesyntax.model.ma.Coach"/>
+        <mapping class="core.basesyntax.model.ma.Mentor"/>
+        <mapping class="core.basesyntax.model.machine.Machine"/>
+        <mapping class="core.basesyntax.model.machine.Truck"/>
+        <mapping class="core.basesyntax.model.machine.Car"/>
+        <mapping class="core.basesyntax.model.zoo.Animal"/>
+        <mapping class="core.basesyntax.model.zoo.Cat"/>
+        <mapping class="core.basesyntax.model.zoo.Dog"/>
+    </session-factory>
+</hibernate-configuration>
