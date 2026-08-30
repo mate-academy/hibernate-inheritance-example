@@ -11,6 +11,11 @@ public class PersonDaoImpl extends AbstractDao implements PersonDao {
 
     @Override
     public Person save(Person person) {
-        return null;
+        try (var session = getSession()) {
+            var tx = session.beginTransaction();
+            session.persist(person);
+            tx.commit();
+            return person;
+        }
     }
 }
