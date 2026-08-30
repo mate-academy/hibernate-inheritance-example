@@ -1,7 +1,13 @@
 package core.basesyntax.model.zoo;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "cat")
 public class Cat extends Animal {
     private int numberOfLives;
+
     private String color;
 
     public int getNumberOfLives() {
