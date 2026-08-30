@@ -1,13 +1,11 @@
 package core.basesyntax.model.ma;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 
+@Entity
 public class Coach extends Person {
-    public enum Track {
-        JAVA, FE, UI, QA
-    }
-
     private int experience;
     @Enumerated(EnumType.STRING)
     private Track track;
@@ -26,5 +24,9 @@ public class Coach extends Person {
 
     public void setTrack(Track track) {
         this.track = track;
+    }
+
+    public enum Track {
+        JAVA, FE, UI, QA
     }
 }
