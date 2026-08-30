@@ -1,0 +1,23 @@
+<hibernate-configuration xmlns="http://www.hibernate.org/xsd/orm/cfg">
+    <session-factory>
+        <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/hibernate-inheritance</property>
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">Bs1234!</property>
+        <property name="show_sql">false</property>
+        <property name="hbm2ddl.auto">create-drop</property>
+
+        <mapping class="mate.academy.model.Circle"/>
+        <mapping class="mate.academy.model.Triangle"/>
+        <mapping class="mate.academy.model.Coach"/>
+        <mapping class="mate.academy.model.Mentor"/>
+        <mapping class="mate.academy.model.Person"/>
+        <mapping class="mate.academy.model.Car"/>
+        <mapping class="mate.academy.model.Machine"/>
+        <mapping class="mate.academy.model.Truck"/>
+        <mapping class="mate.academy.model.Animal"/>
+        <mapping class="mate.academy.model.Cat"/>
+        <mapping class="mate.academy.model.Dog"/>
+    </session-factory>
+</hibernate-configuration>
