@@ -1,7 +1,26 @@
 package core.basesyntax.model.figure;
 
-public class Figure {
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Table;
+
+@MappedSuperclass
+@Table(name = "figures")
+public abstract class Figure {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String color;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getColor() {
         return color;
