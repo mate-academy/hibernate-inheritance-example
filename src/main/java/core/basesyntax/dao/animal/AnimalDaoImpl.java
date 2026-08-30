@@ -12,11 +12,15 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
 
     @Override
     public Animal save(Animal animal) {
-        return null;
+        return (Animal) sessionFactory.getCurrentSession()
+                .save(animal);
     }
 
     @Override
     public List<Animal> findByNameFirstLetter(Character character) {
-        return null;
+        return sessionFactory.getCurrentSession()
+                .createQuery("FROM Animal WHERE name LIKE :pattern", Animal.class)
+                .setParameter("pattern", character + "%")
+                .getResultList();
     }
 }
