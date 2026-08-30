@@ -1,13 +1,16 @@
 package core.basesyntax.model.figure;
 
-public class Triangle extends Figure {
-    private double area;
+import jakarta.persistence.Entity;
 
-    public double getArea() {
+@Entity
+public class Triangle extends Figure {
+    private int area;
+
+    public int getArea() {
         return area;
     }
 
-    public void setArea(double area) {
+    public void setArea(int area) {
         this.area = area;
     }
 }
