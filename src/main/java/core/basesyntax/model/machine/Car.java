@@ -1,5 +1,8 @@
 package core.basesyntax.model.machine;
 
+import jakarta.persistence.Entity;
+
+@Entity(name = "Car")
 public class Car extends Machine {
     private int horsePower;
     private String model;
