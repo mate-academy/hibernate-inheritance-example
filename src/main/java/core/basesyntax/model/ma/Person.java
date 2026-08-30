@@ -1,5 +1,9 @@
 package core.basesyntax.model.ma;
 
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Person {
     private int age;
     private String name;
