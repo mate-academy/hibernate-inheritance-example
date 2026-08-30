@@ -1,8 +1,16 @@
 package core.basesyntax.model.zoo;
 
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("cat")
 public class Cat extends Animal {
     private int numberOfLives;
     private String color;
+
+    public Cat() {
+    }
 
     public int getNumberOfLives() {
         return numberOfLives;
