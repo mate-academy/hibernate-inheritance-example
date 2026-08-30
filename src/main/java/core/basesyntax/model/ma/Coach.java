@@ -1,8 +1,12 @@
 package core.basesyntax.model.ma;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 
+@Entity
+@PrimaryKeyJoinColumn(name = "coach_id")
 public class Coach extends Person {
     public enum Track {
         JAVA, FE, UI, QA
