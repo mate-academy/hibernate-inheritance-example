@@ -1,6 +1,13 @@
 package core.basesyntax.model.figure;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "circles")
 public class Circle extends Figure {
+    @Column(name = "radius")
     private int radius;
 
     public int getRadius() {
