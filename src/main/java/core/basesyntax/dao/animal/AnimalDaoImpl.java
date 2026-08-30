@@ -12,11 +12,21 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
 
     @Override
     public Animal save(Animal animal) {
-        return null;
+        return performReturnWithinTx(session -> {
+            session.persist(animal);
+            return animal;
+        });
     }
 
     @Override
     public List<Animal> findByNameFirstLetter(Character character) {
-        return null;
+        return performReturnWithoutTx(session ->
+            session.createQuery("""
+                        from Animal a
+                        where lower(a.name) LIKE lower(CONCAT(:char, '%'))""", Animal.class
+                    )
+                    .setParameter("char", character)
+                    .getResultList()
+        );
     }
 }
