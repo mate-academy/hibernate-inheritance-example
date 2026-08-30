@@ -1,5 +1,12 @@
 package core.basesyntax.model.ma;
 
-public class Mentor extends Person {
+import jakarta.persistence.Entity;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
+@Entity
+public class Mentor extends Person {
 }
+
