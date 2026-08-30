@@ -1,9 +1,17 @@
 package core.basesyntax.dao.machine;
 
 import core.basesyntax.dao.AbstractDao;
+import core.basesyntax.exception.DataProcessingException;
 import core.basesyntax.model.machine.Machine;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
+import java.time.LocalDate;
 import java.util.List;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 public class MachineDaoImpl extends AbstractDao implements MachineDao {
     public MachineDaoImpl(SessionFactory sessionFactory) {
@@ -12,11 +20,40 @@ public class MachineDaoImpl extends AbstractDao implements MachineDao {
 
     @Override
     public Machine save(Machine machine) {
-        return null;
+        Transaction transaction = null;
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.persist(machine);
+            transaction.commit();
+            return machine;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new DataProcessingException("Can't insert the machine into the DB " + machine, e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
 
     @Override
     public List<Machine> findByAgeOlderThan(int age) {
-        return null;
+        try (Session session = sessionFactory.openSession()) {
+            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            CriteriaQuery<Machine> criteriaQuery =
+                    criteriaBuilder.createQuery(Machine.class);
+            Root<Machine> root = criteriaQuery.from(Machine.class);
+            Predicate agePredicate = criteriaBuilder.lessThan(root.get("year"),
+                    LocalDate.now().getYear() - age);
+            criteriaQuery.select(root).where(agePredicate);
+            return session.createQuery(criteriaQuery).getResultList();
+        } catch (Exception e) {
+            throw new DataProcessingException("Can't find any machine with age older than "
+                    + age, e);
+        }
     }
 }
