@@ -1,5 +1,9 @@
 package core.basesyntax.model.ma;
 
-public class Mentor extends Person {
+import jakarta.persistence.Entity;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 
+@Entity
+@PrimaryKeyJoinColumn(name = "id")
+public class Mentor extends Person {
 }
