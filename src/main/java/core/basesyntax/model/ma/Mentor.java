@@ -1,5 +1,16 @@
 package core.basesyntax.model.ma;
 
-public class Mentor extends Person {
+import jakarta.persistence.Entity;
 
+@Entity
+public class Mentor extends Person {
+    private String level;
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
 }
