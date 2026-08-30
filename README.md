@@ -1,5 +1,7 @@
 # hibernate-inheritance
 
+`mvn -DskipTests=false clean package`
+
 In this HW you will have a practice with different inheritance strategies.
 
 Action items:
