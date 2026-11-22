@@ -41,8 +41,8 @@ public class FigureDaoImpl<T extends Figure> extends AbstractDao implements Figu
         String className = clazz.getName();
         try (Session session = sessionFactory.openSession();) {
 
-            return session.createQuery("from " + className + " c " +
-                            "where c.color = :color", clazz)
+            return session.createQuery("from " + className + " c "
+                            + "where c.color = :color", clazz)
                     .setParameter("color", color)
                     .getResultList();
         } catch (HibernateException e) {

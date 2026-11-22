@@ -40,8 +40,9 @@ public class AnimalDaoImpl extends AbstractDao implements AnimalDao {
         String firstUpLetter = character.toString().toUpperCase();
         String firstLowLetter = character.toString().toLowerCase();
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("from Animal a" +
-                            " where a.name like :characterUp or a.name like :characterLow", Animal.class)
+            return session.createQuery("from Animal a"
+                            + " where a.name "
+                            + "like :characterUp or a.name like :characterLow", Animal.class)
                     .setParameter("characterUp", firstUpLetter + "%")
                     .setParameter("characterLow", firstLowLetter + "%")
                     .getResultList();
